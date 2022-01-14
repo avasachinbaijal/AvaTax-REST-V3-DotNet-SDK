@@ -33,11 +33,7 @@ namespace Avalara.ASV.Test.Api
     {
         private ShippingVerificationApi instance;
 
-        public ShippingVerificationApiTests()
-        {
-            instance = new ShippingVerificationApi();
-        }
-
+        
         public void Dispose()
         {
             // Cleanup when everything is done.

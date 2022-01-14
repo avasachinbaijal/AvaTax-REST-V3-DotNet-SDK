@@ -75,12 +75,6 @@ namespace Avalara.ASV.Client
         int Timeout { get; }
 
         /// <summary>
-        /// Gets the proxy.
-        /// </summary>
-        /// <value>Proxy.</value>
-        WebProxy Proxy { get; }
-
-        /// <summary>
         /// Gets the user agent.
         /// </summary>
         /// <value>User agent.</value>
@@ -110,5 +104,27 @@ namespace Avalara.ASV.Client
         /// </summary>
         /// <value>X509 Certificate collection.</value>
         X509CertificateCollection ClientCertificates { get; }
+        /// <summary>
+        /// Gets or sets the AvaTaxEnvironment
+        /// </summary>
+        /// <value>AvaTaxEnvironment(Enum)</value>
+        AvaTaxEnvironment? Environment { get; }
+
+        /// <summary>
+        /// Gets the application name.
+        /// </summary>
+        /// <value>AppName.</value>
+        string AppName { get; }
+
+        /// <summary>
+        /// Gets the application version.
+        /// </summary>
+        /// <value>AppVersion.</value>
+        string AppVersion { get; }
+        /// <summary>
+        /// Gets the machine name.
+        /// </summary>
+        /// <value>MachineName.</value>
+        string MachineName { get; }
     }
 }

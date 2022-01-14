@@ -20,17 +20,43 @@ using System.Text;
 namespace Avalara.ASV.Client
 {
     /// <summary>
+    /// Represents an environment for Avalara
+    /// </summary>
+    public enum AvaTaxEnvironment
+    {
+        /// <summary>
+        /// Represents the sandbox environment, https://sandbox-rest.avatax.com
+        /// </summary>
+        Sandbox = 0,
+
+        /// <summary>
+        /// Represents the production environment, https://rest.avatax.com
+        /// </summary>
+        Production = 1
+    }
+    /// <summary>
     /// Represents a set of configuration settings
     /// </summary>
     public class Configuration : IReadableConfiguration
     {
         #region Constants
 
+        
+        /// <summary>
+        /// Official URL of AvaTax (Sandbox)
+        /// </summary>
+        private static readonly string AVATAX_SANDBOX_URL = "https://sandbox-rest.avatax.com";
+
+        /// <summary>
+        /// Official URL of AvaTax (Production)
+        /// </summary>
+        private static readonly string AVATAX_PRODUCTION_URL = "https://rest.avatax.com";
+
         /// <summary>
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "22.1.0";
+        internal const string Version = "22.1.0";
 
         /// <summary>
         /// Identifier for ISO 8601 DateTime Format
@@ -49,17 +75,12 @@ namespace Avalara.ASV.Client
         public static readonly ExceptionFactory DefaultExceptionFactory = (methodName, response) =>
         {
             var status = (int)response.StatusCode;
-            if (status >= 400)
+            if (status==0 || status >= 400)
             {
                 return new ApiException(status,
                     string.Format("Error calling {0}: {1}", methodName, response.RawContent),
                     response.RawContent, response.Headers);
-            }
-            if (status == 0)
-            {
-                return new ApiException(status,
-                    string.Format("Error calling {0}: {1}", methodName, response.ErrorText), response.ErrorText);
-            }
+            }            
             return null;
         };
 
@@ -104,9 +125,8 @@ namespace Avalara.ASV.Client
         [System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "VirtualMemberCallInConstructor")]
         public Configuration()
         {
-            Proxy = null;
-            UserAgent = "OpenAPI-Generator/22.1.0/csharp";
-            BasePath = "http://localhost";
+            UserAgent = "CSharpRestClient";
+            BasePath = "";
             DefaultHeaders = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();
             ApiKeyPrefix = new ConcurrentDictionary<string, string>();
@@ -124,6 +144,7 @@ namespace Avalara.ASV.Client
             Timeout = 100000;
         }
 
+        /*
         /// <summary>
         /// Initializes a new instance of the <see cref="Configuration" /> class
         /// </summary>
@@ -160,7 +181,7 @@ namespace Avalara.ASV.Client
                 ApiKeyPrefix.Add(keyValuePair);
             }
         }
-
+        */
         #endregion Constructors
 
         #region Properties
@@ -169,7 +190,21 @@ namespace Avalara.ASV.Client
         /// Gets or sets the base path for API access.
         /// </summary>
         public virtual string BasePath {
-            get { return _basePath; }
+            get {
+                switch (this.Environment)
+                {
+                    case AvaTaxEnvironment.Production:
+                        _basePath = AVATAX_PRODUCTION_URL;
+                        break;
+                    case AvaTaxEnvironment.Sandbox:
+                        _basePath = AVATAX_SANDBOX_URL;
+                        break;
+                    default:
+                        break;
+                }
+                return _basePath; 
+            
+            }
             set { _basePath = value; }
         }
 
@@ -200,12 +235,6 @@ namespace Avalara.ASV.Client
         public virtual int Timeout { get; set; }
 
         /// <summary>
-        /// Gets or sets the proxy
-        /// </summary>
-        /// <value>Proxy.</value>
-        public virtual WebProxy Proxy { get; set; }
-
-        /// <summary>
         /// Gets or sets the HTTP user agent.
         /// </summary>
         /// <value>Http user agent.</value>
@@ -222,6 +251,29 @@ namespace Avalara.ASV.Client
         /// </summary>
         /// <value>The password.</value>
         public virtual string Password { get; set; }
+
+        /// <summary>
+        /// Gets or sets the AvaTaxEnvironment
+        /// </summary>
+        /// <value>AvaTaxEnvironment(Enum)</value>
+        public virtual AvaTaxEnvironment? Environment { get; set; }
+
+        /// <summary>
+        /// Gets the application name.
+        /// </summary>
+        /// <value>AppName.</value>
+        public virtual string AppName { get; set; }
+        /// <summary>
+        /// Gets the application version.
+        /// </summary>
+        /// <value>AppVersion.</value>
+        public virtual string AppVersion { get; set; }
+        /// <summary>
+        /// Gets the machine name.
+        /// </summary>
+        /// <value>MachineName.</value>
+        public virtual string MachineName { get; set; }
+
 
         /// <summary>
         /// Gets the API key with prefix.
@@ -504,16 +556,22 @@ namespace Avalara.ASV.Client
                 DefaultHeaders = defaultHeaders,
                 BasePath = second.BasePath ?? first.BasePath,
                 Timeout = second.Timeout,
-                Proxy = second.Proxy ?? first.Proxy,
                 UserAgent = second.UserAgent ?? first.UserAgent,
                 Username = second.Username ?? first.Username,
                 Password = second.Password ?? first.Password,
                 AccessToken = second.AccessToken ?? first.AccessToken,
                 TempFolderPath = second.TempFolderPath ?? first.TempFolderPath,
-                DateTimeFormat = second.DateTimeFormat ?? first.DateTimeFormat
+                DateTimeFormat = second.DateTimeFormat ?? first.DateTimeFormat,
+                Environment = second.Environment ?? first.Environment,
+                AppName = second.AppName ?? first.AppName,
+                AppVersion = second.AppVersion ?? first.AppVersion,
+                MachineName = second.MachineName ?? first.MachineName
             };
             return config;
         }
         #endregion Static Members
     }
+
+   
 }
+

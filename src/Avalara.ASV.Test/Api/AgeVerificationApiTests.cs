@@ -33,10 +33,7 @@ namespace Avalara.ASV.Test.Api
     {
         private AgeVerificationApi instance;
 
-        public AgeVerificationApiTests()
-        {
-            instance = new AgeVerificationApi();
-        }
+       
 
         public void Dispose()
         {

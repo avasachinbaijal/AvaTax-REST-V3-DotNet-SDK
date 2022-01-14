@@ -29,6 +29,7 @@ using RestSharp;
 using RestSharp.Deserializers;
 using RestSharpMethod = RestSharp.Method;
 using Polly;
+using Avalara.ASV.Api;
 
 namespace Avalara.ASV.Client
 {
@@ -162,9 +163,21 @@ namespace Avalara.ASV.Client
     /// </summary>
     public partial class ApiClient : ISynchronousClient, IAsynchronousClient
     {
-        private readonly string _baseUrl;
 
         /// <summary>
+        /// BaseUrl for API calls
+        /// </summary>
+        private readonly string _baseUrl;
+        /// <summary>
+        /// The standard client header for AvaTax API calls
+        /// </summary>
+        private static readonly string AVALARA_CLIENT_HEADER = "X-Avalara-Client";
+        internal string SdkVersion = string.Empty;
+        /// <summary>
+        /// The standard configuration object
+        /// </summary>
+        internal Avalara.ASV.Client.IReadableConfiguration Configuration;
+
         /// Specifies the settings on a <see cref="JsonSerializer" /> object.
         /// These settings can be adjusted to accommodate custom serialization rules.
         /// </summary>
@@ -194,6 +207,7 @@ namespace Avalara.ASV.Client
         /// <param name="response">The RestSharp response object</param>
         partial void InterceptResponse(IRestRequest request, IRestResponse response);
 
+        /*
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" />, defaulting to the global configurations' base url.
         /// </summary>
@@ -213,6 +227,33 @@ namespace Avalara.ASV.Client
                 throw new ArgumentException("basePath cannot be empty");
 
             _baseUrl = basePath;
+        }
+        */
+        ShippingVerificationApi apiInstance = new ShippingVerificationApi();
+        public ShippingVerificationApi GetShippingVerificationApi()
+        {
+            return apiInstance;
+        }
+        /// <summary>
+        /// Initializes a new instance of the ApiClient />
+        /// </summary>
+        /// <param name="config"></param>
+        /// <exception cref="ArgumentException"></exception>
+        public ApiClient(IReadableConfiguration config)
+        {
+            if (config == null )
+                throw new ArgumentException("configuration cannot be empty");
+
+            if (config.Environment==null &&
+                string.IsNullOrEmpty(config.BasePath))
+                throw new ArgumentException("basePath cannot be empty");
+
+            Configuration= Avalara.ASV.Client.Configuration.MergeConfigurations(
+                Avalara.ASV.Client.GlobalConfiguration.Instance,
+                config
+            );
+            _baseUrl = Configuration.BasePath;
+            apiInstance = new ShippingVerificationApi();
         }
 
         /// <summary>
@@ -262,25 +303,39 @@ namespace Avalara.ASV.Client
         /// <param name="method">The http verb.</param>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        /// <param name="configuration">A per-request configuration object. It is assumed that any merge with
+        
         /// GlobalConfiguration has been done before calling this method.</param>
         /// <returns>[private] A new RestRequest instance.</returns>
         /// <exception cref="ArgumentNullException"></exception>
         private RestRequest NewRequest(
             HttpMethod method,
             string path,
-            RequestOptions options,
-            IReadableConfiguration configuration)
+            RequestOptions options)
         {
             if (path == null) throw new ArgumentNullException("path");
             if (options == null) throw new ArgumentNullException("options");
-            if (configuration == null) throw new ArgumentNullException("configuration");
-
+            string clientID= String.Format("{0}; {1}; {2}; {3}; {4}", Configuration.AppName, Configuration.AppVersion, 
+                "CSharpRestClient",SdkVersion, Configuration.MachineName);
+            
             RestRequest request = new RestRequest(Method(method))
             {
                 Resource = path,
-                JsonSerializer = new CustomJsonCodec(SerializerSettings, configuration)
+                JsonSerializer = new CustomJsonCodec(SerializerSettings, Configuration)
             };
+            request.AddHeader(AVALARA_CLIENT_HEADER, clientID);
+            // authentication (BasicAuth) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(Configuration.Username) || !string.IsNullOrEmpty(Configuration.Password))
+            {
+                request.AddHeader("Authorization", "Basic " + 
+                    Avalara.ASV.Client.ClientUtils.Base64Encode(
+                        Configuration.Username + ":" + Configuration.Password));
+            }
+            // authentication (Bearer) required
+            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                request.AddHeader("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
 
             if (options.PathParameters != null)
             {
@@ -301,9 +356,9 @@ namespace Avalara.ASV.Client
                 }
             }
 
-            if (configuration.DefaultHeaders != null)
+            if (Configuration.DefaultHeaders != null)
             {
-                foreach (var headerParam in configuration.DefaultHeaders)
+                foreach (var headerParam in Configuration.DefaultHeaders)
                 {
                     request.AddHeader(headerParam.Key, headerParam.Value);
                 }
@@ -458,11 +513,6 @@ namespace Avalara.ASV.Client
 
             client.Timeout = configuration.Timeout;
 
-            if (configuration.Proxy != null)
-            {
-                client.Proxy = configuration.Proxy;
-            }
-
             if (configuration.UserAgent != null)
             {
                 client.UserAgent = configuration.UserAgent;
@@ -577,11 +627,6 @@ namespace Avalara.ASV.Client
 
             client.Timeout = configuration.Timeout;
 
-            if (configuration.Proxy != null)
-            {
-                client.Proxy = configuration.Proxy;
-            }
-
             if (configuration.UserAgent != null)
             {
                 client.UserAgent = configuration.UserAgent;
@@ -663,14 +708,14 @@ namespace Avalara.ASV.Client
         /// </summary>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        /// <param name="configuration">A per-request configuration object. It is assumed that any merge with
+        
         /// GlobalConfiguration has been done before calling this method.</param>
         /// <param name="cancellationToken">Token that enables callers to cancel the request.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public Task<ApiResponse<T>> GetAsync<T>(string path, RequestOptions options, IReadableConfiguration configuration = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public Task<ApiResponse<T>> GetAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var config = configuration ?? GlobalConfiguration.Instance;
-            return ExecAsync<T>(NewRequest(HttpMethod.Get, path, options, config), config, cancellationToken);
+            var config = Configuration ?? GlobalConfiguration.Instance;
+            return ExecAsync<T>(NewRequest(HttpMethod.Get, path, options), config, cancellationToken);
         }
 
         /// <summary>
@@ -678,14 +723,14 @@ namespace Avalara.ASV.Client
         /// </summary>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        /// <param name="configuration">A per-request configuration object. It is assumed that any merge with
+        
         /// GlobalConfiguration has been done before calling this method.</param>
         /// <param name="cancellationToken">Token that enables callers to cancel the request.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public Task<ApiResponse<T>> PostAsync<T>(string path, RequestOptions options, IReadableConfiguration configuration = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public Task<ApiResponse<T>> PostAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var config = configuration ?? GlobalConfiguration.Instance;
-            return ExecAsync<T>(NewRequest(HttpMethod.Post, path, options, config), config, cancellationToken);
+            var config = Configuration ?? GlobalConfiguration.Instance;
+            return ExecAsync<T>(NewRequest(HttpMethod.Post, path, options), config, cancellationToken);
         }
 
         /// <summary>
@@ -693,14 +738,14 @@ namespace Avalara.ASV.Client
         /// </summary>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        /// <param name="configuration">A per-request configuration object. It is assumed that any merge with
+        
         /// GlobalConfiguration has been done before calling this method.</param>
         /// <param name="cancellationToken">Token that enables callers to cancel the request.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public Task<ApiResponse<T>> PutAsync<T>(string path, RequestOptions options, IReadableConfiguration configuration = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public Task<ApiResponse<T>> PutAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var config = configuration ?? GlobalConfiguration.Instance;
-            return ExecAsync<T>(NewRequest(HttpMethod.Put, path, options, config), config, cancellationToken);
+            var config = Configuration ?? GlobalConfiguration.Instance;
+            return ExecAsync<T>(NewRequest(HttpMethod.Put, path, options), config, cancellationToken);
         }
 
         /// <summary>
@@ -708,14 +753,14 @@ namespace Avalara.ASV.Client
         /// </summary>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        /// <param name="configuration">A per-request configuration object. It is assumed that any merge with
+        
         /// GlobalConfiguration has been done before calling this method.</param>
         /// <param name="cancellationToken">Token that enables callers to cancel the request.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public Task<ApiResponse<T>> DeleteAsync<T>(string path, RequestOptions options, IReadableConfiguration configuration = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public Task<ApiResponse<T>> DeleteAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var config = configuration ?? GlobalConfiguration.Instance;
-            return ExecAsync<T>(NewRequest(HttpMethod.Delete, path, options, config), config, cancellationToken);
+            var config = Configuration ?? GlobalConfiguration.Instance;
+            return ExecAsync<T>(NewRequest(HttpMethod.Delete, path, options), config, cancellationToken);
         }
 
         /// <summary>
@@ -723,14 +768,14 @@ namespace Avalara.ASV.Client
         /// </summary>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        /// <param name="configuration">A per-request configuration object. It is assumed that any merge with
+        
         /// GlobalConfiguration has been done before calling this method.</param>
         /// <param name="cancellationToken">Token that enables callers to cancel the request.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public Task<ApiResponse<T>> HeadAsync<T>(string path, RequestOptions options, IReadableConfiguration configuration = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public Task<ApiResponse<T>> HeadAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var config = configuration ?? GlobalConfiguration.Instance;
-            return ExecAsync<T>(NewRequest(HttpMethod.Head, path, options, config), config, cancellationToken);
+            var config = Configuration ?? GlobalConfiguration.Instance;
+            return ExecAsync<T>(NewRequest(HttpMethod.Head, path, options), config, cancellationToken);
         }
 
         /// <summary>
@@ -738,14 +783,14 @@ namespace Avalara.ASV.Client
         /// </summary>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        /// <param name="configuration">A per-request configuration object. It is assumed that any merge with
+        
         /// GlobalConfiguration has been done before calling this method.</param>
         /// <param name="cancellationToken">Token that enables callers to cancel the request.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public Task<ApiResponse<T>> OptionsAsync<T>(string path, RequestOptions options, IReadableConfiguration configuration = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public Task<ApiResponse<T>> OptionsAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var config = configuration ?? GlobalConfiguration.Instance;
-            return ExecAsync<T>(NewRequest(HttpMethod.Options, path, options, config), config, cancellationToken);
+            var config = Configuration ?? GlobalConfiguration.Instance;
+            return ExecAsync<T>(NewRequest(HttpMethod.Options, path, options), config, cancellationToken);
         }
 
         /// <summary>
@@ -753,14 +798,14 @@ namespace Avalara.ASV.Client
         /// </summary>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        /// <param name="configuration">A per-request configuration object. It is assumed that any merge with
+        
         /// GlobalConfiguration has been done before calling this method.</param>
         /// <param name="cancellationToken">Token that enables callers to cancel the request.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public Task<ApiResponse<T>> PatchAsync<T>(string path, RequestOptions options, IReadableConfiguration configuration = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public Task<ApiResponse<T>> PatchAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var config = configuration ?? GlobalConfiguration.Instance;
-            return ExecAsync<T>(NewRequest(HttpMethod.Patch, path, options, config), config, cancellationToken);
+            var config = Configuration ?? GlobalConfiguration.Instance;
+            return ExecAsync<T>(NewRequest(HttpMethod.Patch, path, options), config, cancellationToken);
         }
         #endregion IAsynchronousClient
 
@@ -770,13 +815,12 @@ namespace Avalara.ASV.Client
         /// </summary>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        /// <param name="configuration">A per-request configuration object. It is assumed that any merge with
-        /// GlobalConfiguration has been done before calling this method.</param>
+        /// <param name="sdkVersion">Client SDK version.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public ApiResponse<T> Get<T>(string path, RequestOptions options, IReadableConfiguration configuration = null)
+        public ApiResponse<T> Get<T>(string path, RequestOptions options)
         {
-            var config = configuration ?? GlobalConfiguration.Instance;
-            return Exec<T>(NewRequest(HttpMethod.Get, path, options, config), config);
+            var config = Configuration ?? GlobalConfiguration.Instance;
+            return Exec<T>(NewRequest(HttpMethod.Get, path, options), config);
         }
 
         /// <summary>
@@ -784,13 +828,12 @@ namespace Avalara.ASV.Client
         /// </summary>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        /// <param name="configuration">A per-request configuration object. It is assumed that any merge with
-        /// GlobalConfiguration has been done before calling this method.</param>
+        /// <param name="sdkVersion">Client SDK version.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public ApiResponse<T> Post<T>(string path, RequestOptions options, IReadableConfiguration configuration = null)
+        public ApiResponse<T> Post<T>(string path, RequestOptions options)
         {
-            var config = configuration ?? GlobalConfiguration.Instance;
-            return Exec<T>(NewRequest(HttpMethod.Post, path, options, config), config);
+            var config = Configuration ?? GlobalConfiguration.Instance;
+            return Exec<T>(NewRequest(HttpMethod.Post, path, options), config);
         }
 
         /// <summary>
@@ -798,13 +841,12 @@ namespace Avalara.ASV.Client
         /// </summary>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        /// <param name="configuration">A per-request configuration object. It is assumed that any merge with
-        /// GlobalConfiguration has been done before calling this method.</param>
+        /// <param name="sdkVersion">Client SDK version.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public ApiResponse<T> Put<T>(string path, RequestOptions options, IReadableConfiguration configuration = null)
+        public ApiResponse<T> Put<T>(string path, RequestOptions options)
         {
-            var config = configuration ?? GlobalConfiguration.Instance;
-            return Exec<T>(NewRequest(HttpMethod.Put, path, options, config), config);
+            var config = Configuration ?? GlobalConfiguration.Instance;
+            return Exec<T>(NewRequest(HttpMethod.Put, path, options), config);
         }
 
         /// <summary>
@@ -812,13 +854,12 @@ namespace Avalara.ASV.Client
         /// </summary>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        /// <param name="configuration">A per-request configuration object. It is assumed that any merge with
-        /// GlobalConfiguration has been done before calling this method.</param>
+        /// <param name="sdkVersion">Client SDK version.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public ApiResponse<T> Delete<T>(string path, RequestOptions options, IReadableConfiguration configuration = null)
+        public ApiResponse<T> Delete<T>(string path, RequestOptions options)
         {
-            var config = configuration ?? GlobalConfiguration.Instance;
-            return Exec<T>(NewRequest(HttpMethod.Delete, path, options, config), config);
+            var config = Configuration ?? GlobalConfiguration.Instance;
+            return Exec<T>(NewRequest(HttpMethod.Delete, path, options), config);
         }
 
         /// <summary>
@@ -826,13 +867,12 @@ namespace Avalara.ASV.Client
         /// </summary>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        /// <param name="configuration">A per-request configuration object. It is assumed that any merge with
-        /// GlobalConfiguration has been done before calling this method.</param>
+        /// <param name="sdkVersion">Client SDK version.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public ApiResponse<T> Head<T>(string path, RequestOptions options, IReadableConfiguration configuration = null)
+        public ApiResponse<T> Head<T>(string path, RequestOptions options)
         {
-            var config = configuration ?? GlobalConfiguration.Instance;
-            return Exec<T>(NewRequest(HttpMethod.Head, path, options, config), config);
+            var config = Configuration ?? GlobalConfiguration.Instance;
+            return Exec<T>(NewRequest(HttpMethod.Head, path, options), config);
         }
 
         /// <summary>
@@ -840,13 +880,12 @@ namespace Avalara.ASV.Client
         /// </summary>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        /// <param name="configuration">A per-request configuration object. It is assumed that any merge with
-        /// GlobalConfiguration has been done before calling this method.</param>
+        /// <param name="sdkVersion">Client SDK version.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public ApiResponse<T> Options<T>(string path, RequestOptions options, IReadableConfiguration configuration = null)
+        public ApiResponse<T> Options<T>(string path, RequestOptions options)
         {
-            var config = configuration ?? GlobalConfiguration.Instance;
-            return Exec<T>(NewRequest(HttpMethod.Options, path, options, config), config);
+            var config = Configuration ?? GlobalConfiguration.Instance;
+            return Exec<T>(NewRequest(HttpMethod.Options, path, options), config);
         }
 
         /// <summary>
@@ -854,13 +893,12 @@ namespace Avalara.ASV.Client
         /// </summary>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        /// <param name="configuration">A per-request configuration object. It is assumed that any merge with
-        /// GlobalConfiguration has been done before calling this method.</param>
+        /// <param name="sdkVersion">Client SDK version.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public ApiResponse<T> Patch<T>(string path, RequestOptions options, IReadableConfiguration configuration = null)
+        public ApiResponse<T> Patch<T>(string path, RequestOptions options)
         {
-            var config = configuration ?? GlobalConfiguration.Instance;
-            return Exec<T>(NewRequest(HttpMethod.Patch, path, options, config), config);
+            var config = Configuration ?? GlobalConfiguration.Instance;
+            return Exec<T>(NewRequest(HttpMethod.Patch, path, options), config);
         }
         #endregion ISynchronousClient
     }
