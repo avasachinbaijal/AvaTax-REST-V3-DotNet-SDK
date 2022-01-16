@@ -1,4 +1,5 @@
 /*
+ Avalara API Client Library
  * Avalara Shipping Verification for Beverage Alcohol
  *
  * API for evaluating transactions against direct-to-consumer Beverage Alcohol shipping regulations.  This API is currently in beta. 
@@ -22,7 +23,7 @@ namespace Avalara.ASV.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IShippingVerificationApiSync : IApiAccessor
+    public interface IShippingVerificationApiSync 
     {
         #region Synchronous Operations
         /// <summary>
@@ -122,7 +123,7 @@ namespace Avalara.ASV.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IShippingVerificationApiAsync : IApiAccessor
+    public interface IShippingVerificationApiAsync 
     {
         #region Asynchronous Operations
         /// <summary>
@@ -239,60 +240,44 @@ namespace Avalara.ASV.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IShippingVerificationApi : IShippingVerificationApiSync, IShippingVerificationApiAsync
-    {
-
-    }
-
-    /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
-    /// </summary>
-    public partial class ShippingVerificationApi : IShippingVerificationApi
+    public partial class ShippingVerificationApi : IShippingVerificationApiSync, IShippingVerificationApiAsync
     {
         private Avalara.ASV.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 		
         /// <summary>
         /// Initializes a new instance of the <see cref="ShippingVerificationApi"/> class
-        /// using a Configuration object and client instance.
         /// </summary>
-        /// <param name="client">The client interface for synchronous API access.</param>
-        /// <param name="asyncClient">The client interface for asynchronous API access.</param>
-        /// <param name="configuration">The configuration object.</param>
-        public ShippingVerificationApi(Avalara.ASV.Client.ApiClient client)
+        public ShippingVerificationApi()
         {
-            if (client == null) throw new ArgumentNullException("client");
-            if (client.Configuration == null) throw new ArgumentNullException("client.Configuration");
-
-            this.Client = client;
-			this.Client.SdkVersion = "22.1.0";
-            this.Configuration = client.Configuration;
             this.ExceptionFactory = Avalara.ASV.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
-        /// The client for accessing this underlying API.
+        /// Initializes a new instance of the <see cref="ShippingVerificationApi"/> class
+        /// using a Configuration object and client instance.
+        /// <param name="client">The client interface for API access.</param>
         /// </summary>
-        public Avalara.ASV.Client.ApiClient Client { get; set; }
+        public ShippingVerificationApi(Avalara.ASV.Client.ApiClient client)
+        {
+             SetConfiguration(client);
+             this.ExceptionFactory = Avalara.ASV.Client.Configuration.DefaultExceptionFactory;
+        }       
 
         /// <summary>
-        /// Gets the base path of the API client.
+        /// The client for accessing this underlying API.
         /// </summary>
-        /// <value>The base path</value>
-        public string GetBasePath()
-        {
-            return this.Configuration.BasePath;
-        }
+        private Avalara.ASV.Client.ApiClient Client { get; set; }
 
         /// <summary>
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public Avalara.ASV.Client.IReadableConfiguration Configuration { get; set; }
+        private Avalara.ASV.Client.IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public Avalara.ASV.Client.ExceptionFactory ExceptionFactory
+        private Avalara.ASV.Client.ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -306,6 +291,15 @@ namespace Avalara.ASV.Api
         }
 
         /// <summary>
+        /// Set the API client.
+        /// </summary>
+        /// <param name="client">The client interface for API access.</param>
+        public void SetApiClient(Avalara.ASV.Client.ApiClient client)
+        {
+            SetConfiguration(client);
+        }
+
+        /// <summary>
         /// Removes the transaction from consideration when evaluating regulations that span multiple transactions. 
         /// </summary>
         /// <exception cref="Avalara.ASV.Client.ApiException">Thrown when fails to make API call</exception>
@@ -315,6 +309,7 @@ namespace Avalara.ASV.Api
         /// <returns></returns>
         public void DeregisterShipment(string companyCode, string transactionCode, string documentType = default(string))
         {
+            CheckClient();
             DeregisterShipmentWithHttpInfo(companyCode, transactionCode, documentType);
         }
 
@@ -393,6 +388,7 @@ namespace Avalara.ASV.Api
         /// <returns>Task of void</returns>
         public async System.Threading.Tasks.Task DeregisterShipmentAsync(string companyCode, string transactionCode, string documentType = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+             CheckClient();
             await DeregisterShipmentWithHttpInfoAsync(companyCode, transactionCode, documentType, cancellationToken).ConfigureAwait(false);
         }
 
@@ -475,6 +471,7 @@ namespace Avalara.ASV.Api
         /// <returns></returns>
         public void RegisterShipment(string companyCode, string transactionCode, string documentType = default(string))
         {
+            CheckClient();
             RegisterShipmentWithHttpInfo(companyCode, transactionCode, documentType);
         }
 
@@ -553,6 +550,7 @@ namespace Avalara.ASV.Api
         /// <returns>Task of void</returns>
         public async System.Threading.Tasks.Task RegisterShipmentAsync(string companyCode, string transactionCode, string documentType = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+             CheckClient();
             await RegisterShipmentWithHttpInfoAsync(companyCode, transactionCode, documentType, cancellationToken).ConfigureAwait(false);
         }
 
@@ -635,6 +633,7 @@ namespace Avalara.ASV.Api
         /// <returns>ShippingVerifyResult</returns>
         public ShippingVerifyResult RegisterShipmentIfCompliant(string companyCode, string transactionCode, string documentType = default(string))
         {
+            CheckClient();
             Avalara.ASV.Client.ApiResponse<ShippingVerifyResult> localVarResponse = RegisterShipmentIfCompliantWithHttpInfo(companyCode, transactionCode, documentType);
             return localVarResponse.Data;
         }
@@ -714,6 +713,7 @@ namespace Avalara.ASV.Api
         /// <returns>Task of ShippingVerifyResult</returns>
         public async System.Threading.Tasks.Task<ShippingVerifyResult> RegisterShipmentIfCompliantAsync(string companyCode, string transactionCode, string documentType = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+             CheckClient();
             Avalara.ASV.Client.ApiResponse<ShippingVerifyResult> localVarResponse = await RegisterShipmentIfCompliantWithHttpInfoAsync(companyCode, transactionCode, documentType, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
@@ -797,6 +797,7 @@ namespace Avalara.ASV.Api
         /// <returns>ShippingVerifyResult</returns>
         public ShippingVerifyResult VerifyShipment(string companyCode, string transactionCode, string documentType = default(string))
         {
+            CheckClient();
             Avalara.ASV.Client.ApiResponse<ShippingVerifyResult> localVarResponse = VerifyShipmentWithHttpInfo(companyCode, transactionCode, documentType);
             return localVarResponse.Data;
         }
@@ -876,6 +877,7 @@ namespace Avalara.ASV.Api
         /// <returns>Task of ShippingVerifyResult</returns>
         public async System.Threading.Tasks.Task<ShippingVerifyResult> VerifyShipmentAsync(string companyCode, string transactionCode, string documentType = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+             CheckClient();
             Avalara.ASV.Client.ApiResponse<ShippingVerifyResult> localVarResponse = await VerifyShipmentWithHttpInfoAsync(companyCode, transactionCode, documentType, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
@@ -949,5 +951,28 @@ namespace Avalara.ASV.Api
             return localVarResponse;
         }
 
+        /// <summary>
+        /// Set the configuration object in APIClient
+        /// </summary>        
+        private void SetConfiguration(ApiClient client)
+        {
+            if (client == null) throw new ArgumentNullException("ApiClient");
+            if (client.Configuration == null) throw new ArgumentNullException("ApiClient.Configuration");
+
+            this.Client = client;
+            this.Client.SdkVersion = "22.1.0";
+            this.Configuration = client.Configuration;
+        }
+        /// <summary>
+        /// Check if APIClient is set
+        /// </summary>
+        /// <value>An instance of the Configuration</value>
+        private void CheckClient()
+        {
+            if (this.Client == null) throw new ArgumentNullException("ApiClient is not set");
+            if (this.Client.Configuration == null) throw new ArgumentNullException("ApiClient.Configuration is not set");
+        }
     }
+
+    
 }

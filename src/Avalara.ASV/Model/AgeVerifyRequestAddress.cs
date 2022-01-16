@@ -1,4 +1,5 @@
 /*
+ Avalara API Client Library
  * Avalara Shipping Verification for Beverage Alcohol
  *
  * API for evaluating transactions against direct-to-consumer Beverage Alcohol shipping regulations.  This API is currently in beta. 

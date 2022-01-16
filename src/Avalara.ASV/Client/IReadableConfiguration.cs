@@ -50,13 +50,6 @@ namespace Avalara.ASV.Client
         string DateTimeFormat { get; }
 
         /// <summary>
-        /// Gets the default header.
-        /// </summary>
-        /// <value>Default header.</value>
-        [Obsolete("Use DefaultHeaders instead.")]
-        IDictionary<string, string> DefaultHeader { get; }
-
-        /// <summary>
         /// Gets the default headers.
         /// </summary>
         /// <value>Default headers.</value>
@@ -73,12 +66,6 @@ namespace Avalara.ASV.Client
         /// </summary>
         /// <value>HTTP connection timeout.</value>
         int Timeout { get; }
-
-        /// <summary>
-        /// Gets the user agent.
-        /// </summary>
-        /// <value>User agent.</value>
-        string UserAgent { get; }
 
         /// <summary>
         /// Gets the username.

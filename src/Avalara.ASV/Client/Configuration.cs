@@ -53,12 +53,6 @@ namespace Avalara.ASV.Client
         private static readonly string AVATAX_PRODUCTION_URL = "https://rest.avatax.com";
 
         /// <summary>
-        /// Version of the package.
-        /// </summary>
-        /// <value>Version of the package.</value>
-        internal const string Version = "22.1.0";
-
-        /// <summary>
         /// Identifier for ISO 8601 DateTime Format
         /// </summary>
         /// <remarks>See https://msdn.microsoft.com/en-us/library/az4se3k1(v=vs.110).aspx#Anchor_8 for more information.</remarks>
@@ -125,8 +119,6 @@ namespace Avalara.ASV.Client
         [System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "VirtualMemberCallInConstructor")]
         public Configuration()
         {
-            UserAgent = "CSharpRestClient";
-            BasePath = "";
             DefaultHeaders = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();
             ApiKeyPrefix = new ConcurrentDictionary<string, string>();
@@ -189,7 +181,7 @@ namespace Avalara.ASV.Client
         /// <summary>
         /// Gets or sets the base path for API access.
         /// </summary>
-        public virtual string BasePath {
+        public string BasePath {
             get {
                 switch (this.Environment)
                 {
@@ -205,74 +197,52 @@ namespace Avalara.ASV.Client
                 return _basePath; 
             
             }
-            set { _basePath = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the default header.
-        /// </summary>
-        [Obsolete("Use DefaultHeaders instead.")]
-        public virtual IDictionary<string, string> DefaultHeader
-        {
-            get
-            {
-                return DefaultHeaders;
-            }
-            set
-            {
-                DefaultHeaders = value;
-            }
+            //set { _basePath = value; }
         }
 
         /// <summary>
         /// Gets or sets the default headers.
         /// </summary>
-        public virtual IDictionary<string, string> DefaultHeaders { get; set; }
+        public IDictionary<string, string> DefaultHeaders { get; set; }
 
         /// <summary>
         /// Gets or sets the HTTP timeout (milliseconds) of ApiClient. Default to 100000 milliseconds.
         /// </summary>
-        public virtual int Timeout { get; set; }
-
-        /// <summary>
-        /// Gets or sets the HTTP user agent.
-        /// </summary>
-        /// <value>Http user agent.</value>
-        public virtual string UserAgent { get; set; }
+        public int Timeout { get; set; }
 
         /// <summary>
         /// Gets or sets the username (HTTP basic authentication).
         /// </summary>
         /// <value>The username.</value>
-        public virtual string Username { get; set; }
+        public string Username { get; set; }
 
         /// <summary>
         /// Gets or sets the password (HTTP basic authentication).
         /// </summary>
         /// <value>The password.</value>
-        public virtual string Password { get; set; }
+        public string Password { get; set; }
 
         /// <summary>
         /// Gets or sets the AvaTaxEnvironment
         /// </summary>
         /// <value>AvaTaxEnvironment(Enum)</value>
-        public virtual AvaTaxEnvironment? Environment { get; set; }
+        public AvaTaxEnvironment? Environment { get; set; }
 
         /// <summary>
         /// Gets the application name.
         /// </summary>
         /// <value>AppName.</value>
-        public virtual string AppName { get; set; }
+        public string AppName { get; set; }
         /// <summary>
         /// Gets the application version.
         /// </summary>
         /// <value>AppVersion.</value>
-        public virtual string AppVersion { get; set; }
+        public string AppVersion { get; set; }
         /// <summary>
         /// Gets the machine name.
         /// </summary>
         /// <value>MachineName.</value>
-        public virtual string MachineName { get; set; }
+        public string MachineName { get; set; }
 
 
         /// <summary>
@@ -554,9 +524,7 @@ namespace Avalara.ASV.Client
                 ApiKey = apiKey,
                 ApiKeyPrefix = apiKeyPrefix,
                 DefaultHeaders = defaultHeaders,
-                BasePath = second.BasePath ?? first.BasePath,
                 Timeout = second.Timeout,
-                UserAgent = second.UserAgent ?? first.UserAgent,
                 Username = second.Username ?? first.Username,
                 Password = second.Password ?? first.Password,
                 AccessToken = second.AccessToken ?? first.AccessToken,
