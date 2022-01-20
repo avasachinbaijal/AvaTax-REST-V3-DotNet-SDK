@@ -1,10 +1,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-VisualStudioVersion = 12.0.0.0
-MinimumVisualStudioVersion = 10.0.0.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avalara.ASV", "src\Avalara.ASV\Avalara.ASV.csproj", "{C55EAD91-21E2-4586-AC1D-E1C57B6A0782}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Avalara.ASV", "src\Avalara.ASV\Avalara.ASV.csproj", "{C55EAD91-21E2-4586-AC1D-E1C57B6A0782}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avalara.ASV.Test", "src\Avalara.ASV.Test\Avalara.ASV.Test.csproj", "{19F1DEBC-DE5E-4517-8062-F000CD499087}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Avalara.ASV.Test", "src\Avalara.ASV.Test\Avalara.ASV.Test.csproj", "{19F1DEBC-DE5E-4517-8062-F000CD499087}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,5 +23,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E3335A15-520A-4CE7-A864-5AFD52A35133}
 	EndGlobalSection
 EndGlobal

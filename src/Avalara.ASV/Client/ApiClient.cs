@@ -208,27 +208,6 @@ namespace Avalara.ASV.Client
 
         
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiClient" />, defaulting to the global configurations' base url.
-        /// </summary>
-        public ApiClient()
-        {
-            this.Configuration= new Configuration();
-        }
-        /*
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiClient" />
-        /// </summary>
-        /// <param name="basePath">The target service's base path in URL format.</param>
-        /// <exception cref="ArgumentException"></exception>
-        public ApiClient(string basePath)
-        {
-            if (string.IsNullOrEmpty(basePath))
-                throw new ArgumentException("basePath cannot be empty");
-
-            _baseUrl = basePath;
-        }
-        */
-        /// <summary>
         /// Initializes a new instance of the ApiClient />
         /// </summary>
         /// <param name="config"></param>

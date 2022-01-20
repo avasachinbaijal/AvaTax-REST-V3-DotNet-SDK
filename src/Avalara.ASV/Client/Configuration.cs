@@ -122,16 +122,7 @@ namespace Avalara.ASV.Client
             DefaultHeaders = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();
             ApiKeyPrefix = new ConcurrentDictionary<string, string>();
-            Servers = new List<IReadOnlyDictionary<string, object>>()
-            {
-                {
-                    new Dictionary<string, object> {
-                        {"url", ""},
-                        {"description", "No description provided"},
-                    }
-                }
-            };
-
+            
             // Setting Timeout has side effects (forces ApiClient creation).
             Timeout = 100000;
         }
@@ -183,6 +174,7 @@ namespace Avalara.ASV.Client
         /// </summary>
         public string BasePath {
             get {
+                _basePath = string.Empty;
                 switch (this.Environment)
                 {
                     case AvaTaxEnvironment.Production:
@@ -194,10 +186,8 @@ namespace Avalara.ASV.Client
                     default:
                         break;
                 }
-                return _basePath; 
-            
-            }
-            //set { _basePath = value; }
+                return _basePath;
+            }            
         }
 
         /// <summary>
@@ -383,82 +373,7 @@ namespace Avalara.ASV.Client
             }
         }
 
-        /// <summary>
-        /// Gets or sets the servers.
-        /// </summary>
-        /// <value>The servers.</value>
-        public virtual IList<IReadOnlyDictionary<string, object>> Servers
-        {
-            get { return _servers; }
-            set
-            {
-                if (value == null)
-                {
-                    throw new InvalidOperationException("Servers may not be null.");
-                }
-                _servers = value;
-            }
-        }
-
-        /// <summary>
-        /// Returns URL based on server settings without providing values
-        /// for the variables
-        /// </summary>
-        /// <param name="index">Array index of the server settings.</param>
-        /// <return>The server URL.</return>
-        public string GetServerUrl(int index)
-        {
-            return GetServerUrl(index, null);
-        }
-
-        /// <summary>
-        /// Returns URL based on server settings.
-        /// </summary>
-        /// <param name="index">Array index of the server settings.</param>
-        /// <param name="inputVariables">Dictionary of the variables and the corresponding values.</param>
-        /// <return>The server URL.</return>
-        public string GetServerUrl(int index, Dictionary<string, string> inputVariables)
-        {
-            if (index < 0 || index >= Servers.Count)
-            {
-                throw new InvalidOperationException($"Invalid index {index} when selecting the server. Must be less than {Servers.Count}.");
-            }
-
-            if (inputVariables == null)
-            {
-                inputVariables = new Dictionary<string, string>();
-            }
-
-            IReadOnlyDictionary<string, object> server = Servers[index];
-            string url = (string)server["url"];
-
-            // go through variable and assign a value
-            foreach (KeyValuePair<string, object> variable in (IReadOnlyDictionary<string, object>)server["variables"])
-            {
-
-                IReadOnlyDictionary<string, object> serverVariables = (IReadOnlyDictionary<string, object>)(variable.Value);
-
-                if (inputVariables.ContainsKey(variable.Key))
-                {
-                    if (((List<string>)serverVariables["enum_values"]).Contains(inputVariables[variable.Key]))
-                    {
-                        url = url.Replace("{" + variable.Key + "}", inputVariables[variable.Key]);
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException($"The variable `{variable.Key}` in the server URL has invalid value #{inputVariables[variable.Key]}. Must be {(List<string>)serverVariables["enum_values"]}");
-                    }
-                }
-                else
-                {
-                    // use default value
-                    url = url.Replace("{" + variable.Key + "}", (string)serverVariables["default_value"]);
-                }
-            }
-
-            return url;
-        }
-
+        
         #endregion Properties
 
         #region Methods
