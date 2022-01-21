@@ -1,10 +1,22 @@
 /*
- Avalara API Client Library
+ * AvaTax Software Development Kit for C#
+ *
+ * (c) 2004-2022 Avalara, Inc.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
  * Avalara Shipping Verification for Beverage Alcohol
  *
  * API for evaluating transactions against direct-to-consumer Beverage Alcohol shipping regulations.  This API is currently in beta. 
  *
- * The version of SDK  : 2.1.6
+
+ * @author     Sachin Baijal <sachin.baijal@avalara.com>
+ * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
+ * @copyright  2004-2022 Avalara, Inc.
+ * @license    https://www.apache.org/licenses/LICENSE-2.0
+ * @version    2.1.7
+ * @link       https://github.com/avadev/AvaTax-REST-V3-DotNet-SDK
  */
 
 
@@ -95,20 +107,15 @@ namespace Avalara.SDK.Api
 		
         /// <summary>
         /// Initializes a new instance of the <see cref="AgeVerificationApi"/> class
-        /// </summary>
-        public AgeVerificationApi()
-        {
-            this.ExceptionFactory = Avalara.SDK.Client.Configuration.DefaultExceptionFactory;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AgeVerificationApi"/> class
         /// using a Configuration object and client instance.
         /// <param name="client">The client interface for API access.</param>
         /// </summary>
-        public AgeVerificationApi(Avalara.SDK.Client.ApiClient client)
+        public AgeVerificationApi(Avalara.SDK.Client.ApiClient client=null)
         {
-             SetConfiguration(client);
+             if (client!=null)
+             {
+                 SetConfiguration(client);
+             }                
              this.ExceptionFactory = Avalara.SDK.Client.Configuration.DefaultExceptionFactory;
         }       
 
@@ -140,15 +147,6 @@ namespace Avalara.SDK.Api
         }
 
         /// <summary>
-        /// Set the API client.
-        /// </summary>
-        /// <param name="client">The client interface for API access.</param>
-        public void SetApiClient(Avalara.SDK.Client.ApiClient client)
-        {
-            SetConfiguration(client);
-        }
-
-        /// <summary>
         /// Determines whether an individual meets or exceeds the minimum legal drinking age. The request must meet the following criteria in order to be evaluated: * *firstName*, *lastName*, and *address* are required fields. * One of the following sets of attributes are required for the *address*:   * *line1, city, region*   * *line1, postalCode*  Optionally, the transaction and its lines may use the following parameters: * A *DOB* (Date of Birth) field. The value should be ISO-8601 compliant (e.g. 2020-07-21). * Beyond the required *address* fields above, a *country* field is permitted   * The valid values for this attribute are [*US, USA*]  **Security Policies** This API depends on the active subscription *AgeVerification*
         /// </summary>
         /// <exception cref="Avalara.SDK.Client.ApiException">Thrown when fails to make API call</exception>
@@ -157,7 +155,6 @@ namespace Avalara.SDK.Api
         /// <returns>AgeVerifyResult</returns>
         public AgeVerifyResult VerifyAge(AgeVerifyRequest ageVerifyRequest, AgeVerifyFailureCode? simulatedFailureCode = default(AgeVerifyFailureCode?))
         {
-            CheckClient();
             Avalara.SDK.Client.ApiResponse<AgeVerifyResult> localVarResponse = VerifyAgeWithHttpInfo(ageVerifyRequest, simulatedFailureCode);
             return localVarResponse.Data;
         }
@@ -231,7 +228,6 @@ namespace Avalara.SDK.Api
         /// <returns>Task of AgeVerifyResult</returns>
         public async System.Threading.Tasks.Task<AgeVerifyResult> VerifyAgeAsync(AgeVerifyRequest ageVerifyRequest, AgeVerifyFailureCode? simulatedFailureCode = default(AgeVerifyFailureCode?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-             CheckClient();
             Avalara.SDK.Client.ApiResponse<AgeVerifyResult> localVarResponse = await VerifyAgeWithHttpInfoAsync(ageVerifyRequest, simulatedFailureCode, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
@@ -309,18 +305,10 @@ namespace Avalara.SDK.Api
             if (client.Configuration == null) throw new ArgumentNullException("ApiClient.Configuration");
 
             this.Client = client;
-            this.Client.SdkVersion = "2.1.6";
+            this.Client.SdkVersion = "2.1.7";
             this.Configuration = client.Configuration;
         }
-        /// <summary>
-        /// Check if APIClient is set
-        /// </summary>
-        /// <value>An instance of the Configuration</value>
-        private void CheckClient()
-        {
-            if (this.Client == null) throw new ArgumentNullException("ApiClient is not set");
-            if (this.Client.Configuration == null) throw new ArgumentNullException("ApiClient.Configuration is not set");
-        }
+        
     }
 
     
