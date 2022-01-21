@@ -4,7 +4,7 @@
  *
  * API for evaluating transactions against direct-to-consumer Beverage Alcohol shipping regulations.  This API is currently in beta. 
  *
- * The version of SDK  : 22.1.0
+ * The version of SDK  : 2.1.6
  */
 
 
@@ -309,7 +309,7 @@ namespace Avalara.SDK.Api
             if (client.Configuration == null) throw new ArgumentNullException("ApiClient.Configuration");
 
             this.Client = client;
-            this.Client.SdkVersion = "22.1.0";
+            this.Client.SdkVersion = "2.1.6";
             this.Configuration = client.Configuration;
         }
         /// <summary>
