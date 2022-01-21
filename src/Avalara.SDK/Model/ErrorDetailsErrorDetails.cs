@@ -4,7 +4,7 @@
  *
  * API for evaluating transactions against direct-to-consumer Beverage Alcohol shipping regulations.  This API is currently in beta. 
  *
- * The version of SDK  : 22.1.0
+ * The version of SDK  : 2.1.7
  */
 
 
