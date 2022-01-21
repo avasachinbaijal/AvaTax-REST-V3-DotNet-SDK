@@ -1,4 +1,4 @@
-# Avalara.ASV - the C# library for the Avalara Shipping Verification for Beverage Alcohol
+# Avalara.SDK - the C# library for the Avalara Shipping Verification for Beverage Alcohol
 
 API for evaluating transactions against direct-to-consumer Beverage Alcohol shipping regulations.
 
@@ -41,9 +41,9 @@ Run the following command to generate the DLL
 
 Then include the DLL (under the `bin` folder) in the C# project, and use the namespaces:
 ```csharp
-using Avalara.ASV.Api;
-using Avalara.ASV.Client;
-using Avalara.ASV.Model;
+using Avalara.SDK.Api;
+using Avalara.SDK.Client;
+using Avalara.SDK.Model;
 ```
 <a name="packaging"></a>
 ## Packaging
@@ -53,7 +53,7 @@ A `.nuspec` is included with the project. You can follow the Nuget quickstart to
 This `.nuspec` uses placeholders from the `.csproj`, so build the `.csproj` directly:
 
 ```
-nuget pack -Build -OutputDirectory out Avalara.ASV.csproj
+nuget pack -Build -OutputDirectory out Avalara.SDK.csproj
 ```
 
 Then, publish to a [local feed](https://docs.microsoft.com/en-us/nuget/hosting-packages/local-feeds) or [other host](https://docs.microsoft.com/en-us/nuget/hosting-packages/overview) and consume the new package via Nuget as usual.
@@ -75,9 +75,9 @@ c.Proxy = webProxy;
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Avalara.ASV.Api;
-using Avalara.ASV.Client;
-using Avalara.ASV.Model;
+using Avalara.SDK.Api;
+using Avalara.SDK.Client;
+using Avalara.SDK.Model;
 
 namespace Example
 {
