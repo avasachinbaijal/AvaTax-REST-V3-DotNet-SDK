@@ -297,20 +297,7 @@ namespace Avalara.SDK.Client
                 JsonSerializer = new CustomJsonCodec(SerializerSettings, Configuration)
             };
             request.AddHeader(AVALARA_CLIENT_HEADER, clientID);
-            // authentication (BasicAuth) required
-            // http basic authentication required
-            if (!string.IsNullOrEmpty(Configuration.Username) || !string.IsNullOrEmpty(Configuration.Password))
-            {
-                request.AddHeader("Authorization", "Basic " + 
-                    Avalara.SDK.Client.ClientUtils.Base64Encode(
-                        Configuration.Username + ":" + Configuration.Password));
-            }
-            // authentication (Bearer) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                request.AddHeader("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
-            }
-
+           
             if (options.PathParameters != null)
             {
                 foreach (var pathParam in options.PathParameters)

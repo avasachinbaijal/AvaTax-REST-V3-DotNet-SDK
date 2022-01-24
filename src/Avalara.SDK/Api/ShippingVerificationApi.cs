@@ -49,18 +49,6 @@ namespace Avalara.SDK.Api
         void DeregisterShipment(string companyCode, string transactionCode, string documentType = default(string));
 
         /// <summary>
-        /// Removes the transaction from consideration when evaluating regulations that span multiple transactions.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Avalara.SDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyCode">The company code of the company that recorded the transaction</param>
-        /// <param name="transactionCode">The transaction code to retrieve</param>
-        /// <param name="documentType">(Optional): The document type of the transaction to operate on. If omitted, defaults to \&quot;SalesInvoice\&quot; (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DeregisterShipmentWithHttpInfo(string companyCode, string transactionCode, string documentType = default(string));
-        /// <summary>
         /// Registers the transaction so that it may be included when evaluating regulations that span multiple transactions.
         /// </summary>
         /// <exception cref="Avalara.SDK.Client.ApiException">Thrown when fails to make API call</exception>
@@ -71,18 +59,6 @@ namespace Avalara.SDK.Api
         void RegisterShipment(string companyCode, string transactionCode, string documentType = default(string));
 
         /// <summary>
-        /// Registers the transaction so that it may be included when evaluating regulations that span multiple transactions.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Avalara.SDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyCode">The company code of the company that recorded the transaction</param>
-        /// <param name="transactionCode">The transaction code to retrieve</param>
-        /// <param name="documentType">(Optional): The document type of the transaction to operate on. If omitted, defaults to \&quot;SalesInvoice\&quot; (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> RegisterShipmentWithHttpInfo(string companyCode, string transactionCode, string documentType = default(string));
-        /// <summary>
         /// Evaluates a transaction against a set of direct-to-consumer shipping regulations and, if compliant, registers the transaction so that it may be included when evaluating regulations that span multiple transactions.
         /// </summary>
         /// <exception cref="Avalara.SDK.Client.ApiException">Thrown when fails to make API call</exception>
@@ -92,18 +68,6 @@ namespace Avalara.SDK.Api
         /// <returns>ShippingVerifyResult</returns>
         ShippingVerifyResult RegisterShipmentIfCompliant(string companyCode, string transactionCode, string documentType = default(string));
 
-        /// <summary>
-        /// Evaluates a transaction against a set of direct-to-consumer shipping regulations and, if compliant, registers the transaction so that it may be included when evaluating regulations that span multiple transactions.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Avalara.SDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyCode">The company code of the company that recorded the transaction</param>
-        /// <param name="transactionCode">The transaction code to retrieve</param>
-        /// <param name="documentType">(Optional): The document type of the transaction to operate on. If omitted, defaults to \&quot;SalesInvoice\&quot; (optional)</param>
-        /// <returns>ApiResponse of ShippingVerifyResult</returns>
-        ApiResponse<ShippingVerifyResult> RegisterShipmentIfCompliantWithHttpInfo(string companyCode, string transactionCode, string documentType = default(string));
         /// <summary>
         /// Evaluates a transaction against a set of direct-to-consumer shipping regulations.
         /// </summary>
@@ -117,18 +81,6 @@ namespace Avalara.SDK.Api
         /// <returns>ShippingVerifyResult</returns>
         ShippingVerifyResult VerifyShipment(string companyCode, string transactionCode, string documentType = default(string));
 
-        /// <summary>
-        /// Evaluates a transaction against a set of direct-to-consumer shipping regulations.
-        /// </summary>
-        /// <remarks>
-        /// The transaction and its lines must meet the following criteria in order to be evaluated: * The transaction must be recorded. Using a type of *SalesInvoice* is recommended. * A parameter with the name *AlcoholRouteType* must be specified and the value must be one of the following: &#39;*DTC*&#39;, &#39;*Retailer DTC*&#39; * A parameter with the name *RecipientName* must be specified and the value must be the name of the recipient. * Each alcohol line must include a *ContainerSize* parameter that describes the volume of a single container. Use the *unit* field to specify one of the following units: &#39;*Litre*&#39;, &#39;*Millilitre*&#39;, &#39;*gallon (US fluid)*&#39;, &#39;*quart (US fluid)*&#39;, &#39;*ounce (fluid US customary)*&#39; * Each alcohol line must include a *PackSize* parameter that describes the number of containers in a pack. Specify *Count* in the *unit* field.  Optionally, the transaction and its lines may use the following parameters: * The *ShipDate* parameter may be used if the date of shipment is different than the date of the transaction. The value should be ISO-8601 compliant (e.g. 2020-07-21). * The *RecipientDOB* parameter may be used to evaluate age restrictions. The value should be ISO-8601 compliant (e.g. 2020-07-21). * The *PurchaserDOB* parameter may be used to evaluate age restrictions. The value should be ISO-8601 compliant (e.g. 2020-07-21). * The *SalesLocation* parameter may be used to describe whether the sale was made *OnSite* or *OffSite*. *OffSite* is the default value. * The *AlcoholContent* parameter may be used to describe the alcohol percentage by volume of the item. Specify *Percentage* in the *unit* field.  **Security Policies** This API depends on all of the following active subscriptions: *AvaAlcohol, AutoAddress, AvaTaxPro*
-        /// </remarks>
-        /// <exception cref="Avalara.SDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyCode">The company code of the company that recorded the transaction</param>
-        /// <param name="transactionCode">The transaction code to retrieve</param>
-        /// <param name="documentType">(Optional): The document type of the transaction to operate on. If omitted, defaults to \&quot;SalesInvoice\&quot; (optional)</param>
-        /// <returns>ApiResponse of ShippingVerifyResult</returns>
-        ApiResponse<ShippingVerifyResult> VerifyShipmentWithHttpInfo(string companyCode, string transactionCode, string documentType = default(string));
         #endregion Synchronous Operations
     }
 
@@ -153,19 +105,6 @@ namespace Avalara.SDK.Api
         System.Threading.Tasks.Task DeregisterShipmentAsync(string companyCode, string transactionCode, string documentType = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Removes the transaction from consideration when evaluating regulations that span multiple transactions.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Avalara.SDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyCode">The company code of the company that recorded the transaction</param>
-        /// <param name="transactionCode">The transaction code to retrieve</param>
-        /// <param name="documentType">(Optional): The document type of the transaction to operate on. If omitted, defaults to \&quot;SalesInvoice\&quot; (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeregisterShipmentWithHttpInfoAsync(string companyCode, string transactionCode, string documentType = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-        /// <summary>
         /// Registers the transaction so that it may be included when evaluating regulations that span multiple transactions.
         /// </summary>
         /// <remarks>
@@ -179,19 +118,6 @@ namespace Avalara.SDK.Api
         /// <returns>Task of void</returns>
         System.Threading.Tasks.Task RegisterShipmentAsync(string companyCode, string transactionCode, string documentType = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
-        /// <summary>
-        /// Registers the transaction so that it may be included when evaluating regulations that span multiple transactions.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Avalara.SDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyCode">The company code of the company that recorded the transaction</param>
-        /// <param name="transactionCode">The transaction code to retrieve</param>
-        /// <param name="documentType">(Optional): The document type of the transaction to operate on. If omitted, defaults to \&quot;SalesInvoice\&quot; (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> RegisterShipmentWithHttpInfoAsync(string companyCode, string transactionCode, string documentType = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Evaluates a transaction against a set of direct-to-consumer shipping regulations and, if compliant, registers the transaction so that it may be included when evaluating regulations that span multiple transactions.
         /// </summary>
@@ -207,19 +133,6 @@ namespace Avalara.SDK.Api
         System.Threading.Tasks.Task<ShippingVerifyResult> RegisterShipmentIfCompliantAsync(string companyCode, string transactionCode, string documentType = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Evaluates a transaction against a set of direct-to-consumer shipping regulations and, if compliant, registers the transaction so that it may be included when evaluating regulations that span multiple transactions.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Avalara.SDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyCode">The company code of the company that recorded the transaction</param>
-        /// <param name="transactionCode">The transaction code to retrieve</param>
-        /// <param name="documentType">(Optional): The document type of the transaction to operate on. If omitted, defaults to \&quot;SalesInvoice\&quot; (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (ShippingVerifyResult)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ShippingVerifyResult>> RegisterShipmentIfCompliantWithHttpInfoAsync(string companyCode, string transactionCode, string documentType = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-        /// <summary>
         /// Evaluates a transaction against a set of direct-to-consumer shipping regulations.
         /// </summary>
         /// <remarks>
@@ -233,19 +146,6 @@ namespace Avalara.SDK.Api
         /// <returns>Task of ShippingVerifyResult</returns>
         System.Threading.Tasks.Task<ShippingVerifyResult> VerifyShipmentAsync(string companyCode, string transactionCode, string documentType = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
-        /// <summary>
-        /// Evaluates a transaction against a set of direct-to-consumer shipping regulations.
-        /// </summary>
-        /// <remarks>
-        /// The transaction and its lines must meet the following criteria in order to be evaluated: * The transaction must be recorded. Using a type of *SalesInvoice* is recommended. * A parameter with the name *AlcoholRouteType* must be specified and the value must be one of the following: &#39;*DTC*&#39;, &#39;*Retailer DTC*&#39; * A parameter with the name *RecipientName* must be specified and the value must be the name of the recipient. * Each alcohol line must include a *ContainerSize* parameter that describes the volume of a single container. Use the *unit* field to specify one of the following units: &#39;*Litre*&#39;, &#39;*Millilitre*&#39;, &#39;*gallon (US fluid)*&#39;, &#39;*quart (US fluid)*&#39;, &#39;*ounce (fluid US customary)*&#39; * Each alcohol line must include a *PackSize* parameter that describes the number of containers in a pack. Specify *Count* in the *unit* field.  Optionally, the transaction and its lines may use the following parameters: * The *ShipDate* parameter may be used if the date of shipment is different than the date of the transaction. The value should be ISO-8601 compliant (e.g. 2020-07-21). * The *RecipientDOB* parameter may be used to evaluate age restrictions. The value should be ISO-8601 compliant (e.g. 2020-07-21). * The *PurchaserDOB* parameter may be used to evaluate age restrictions. The value should be ISO-8601 compliant (e.g. 2020-07-21). * The *SalesLocation* parameter may be used to describe whether the sale was made *OnSite* or *OffSite*. *OffSite* is the default value. * The *AlcoholContent* parameter may be used to describe the alcohol percentage by volume of the item. Specify *Percentage* in the *unit* field.  **Security Policies** This API depends on all of the following active subscriptions: *AvaAlcohol, AutoAddress, AvaTaxPro*
-        /// </remarks>
-        /// <exception cref="Avalara.SDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="companyCode">The company code of the company that recorded the transaction</param>
-        /// <param name="transactionCode">The transaction code to retrieve</param>
-        /// <param name="documentType">(Optional): The document type of the transaction to operate on. If omitted, defaults to \&quot;SalesInvoice\&quot; (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (ShippingVerifyResult)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ShippingVerifyResult>> VerifyShipmentWithHttpInfoAsync(string companyCode, string transactionCode, string documentType = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -261,12 +161,9 @@ namespace Avalara.SDK.Api
         /// using a Configuration object and client instance.
         /// <param name="client">The client interface for API access.</param>
         /// </summary>
-        public ShippingVerificationApi(Avalara.SDK.Client.ApiClient client=null)
+        public ShippingVerificationApi(Avalara.SDK.Client.ApiClient client)
         {
-             if (client!=null)
-             {
-                 SetConfiguration(client);
-             }                
+             SetConfiguration(client);
              this.ExceptionFactory = Avalara.SDK.Client.Configuration.DefaultExceptionFactory;
         }       
 
@@ -318,7 +215,7 @@ namespace Avalara.SDK.Api
         /// <param name="transactionCode">The transaction code to retrieve</param>
         /// <param name="documentType">(Optional): The document type of the transaction to operate on. If omitted, defaults to \&quot;SalesInvoice\&quot; (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public Avalara.SDK.Client.ApiResponse<Object> DeregisterShipmentWithHttpInfo(string companyCode, string transactionCode, string documentType = default(string))
+        private Avalara.SDK.Client.ApiResponse<Object> DeregisterShipmentWithHttpInfo(string companyCode, string transactionCode, string documentType = default(string))
         {
             // verify the required parameter 'companyCode' is set
             if (companyCode == null)
@@ -397,7 +294,7 @@ namespace Avalara.SDK.Api
         /// <param name="documentType">(Optional): The document type of the transaction to operate on. If omitted, defaults to \&quot;SalesInvoice\&quot; (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> DeregisterShipmentWithHttpInfoAsync(string companyCode, string transactionCode, string documentType = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> DeregisterShipmentWithHttpInfoAsync(string companyCode, string transactionCode, string documentType = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'companyCode' is set
             if (companyCode == null)
@@ -478,7 +375,7 @@ namespace Avalara.SDK.Api
         /// <param name="transactionCode">The transaction code to retrieve</param>
         /// <param name="documentType">(Optional): The document type of the transaction to operate on. If omitted, defaults to \&quot;SalesInvoice\&quot; (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public Avalara.SDK.Client.ApiResponse<Object> RegisterShipmentWithHttpInfo(string companyCode, string transactionCode, string documentType = default(string))
+        private Avalara.SDK.Client.ApiResponse<Object> RegisterShipmentWithHttpInfo(string companyCode, string transactionCode, string documentType = default(string))
         {
             // verify the required parameter 'companyCode' is set
             if (companyCode == null)
@@ -557,7 +454,7 @@ namespace Avalara.SDK.Api
         /// <param name="documentType">(Optional): The document type of the transaction to operate on. If omitted, defaults to \&quot;SalesInvoice\&quot; (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> RegisterShipmentWithHttpInfoAsync(string companyCode, string transactionCode, string documentType = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> RegisterShipmentWithHttpInfoAsync(string companyCode, string transactionCode, string documentType = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'companyCode' is set
             if (companyCode == null)
@@ -639,7 +536,7 @@ namespace Avalara.SDK.Api
         /// <param name="transactionCode">The transaction code to retrieve</param>
         /// <param name="documentType">(Optional): The document type of the transaction to operate on. If omitted, defaults to \&quot;SalesInvoice\&quot; (optional)</param>
         /// <returns>ApiResponse of ShippingVerifyResult</returns>
-        public Avalara.SDK.Client.ApiResponse<ShippingVerifyResult> RegisterShipmentIfCompliantWithHttpInfo(string companyCode, string transactionCode, string documentType = default(string))
+        private Avalara.SDK.Client.ApiResponse<ShippingVerifyResult> RegisterShipmentIfCompliantWithHttpInfo(string companyCode, string transactionCode, string documentType = default(string))
         {
             // verify the required parameter 'companyCode' is set
             if (companyCode == null)
@@ -719,7 +616,7 @@ namespace Avalara.SDK.Api
         /// <param name="documentType">(Optional): The document type of the transaction to operate on. If omitted, defaults to \&quot;SalesInvoice\&quot; (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ShippingVerifyResult)</returns>
-        public async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<ShippingVerifyResult>> RegisterShipmentIfCompliantWithHttpInfoAsync(string companyCode, string transactionCode, string documentType = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<ShippingVerifyResult>> RegisterShipmentIfCompliantWithHttpInfoAsync(string companyCode, string transactionCode, string documentType = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'companyCode' is set
             if (companyCode == null)
@@ -801,7 +698,7 @@ namespace Avalara.SDK.Api
         /// <param name="transactionCode">The transaction code to retrieve</param>
         /// <param name="documentType">(Optional): The document type of the transaction to operate on. If omitted, defaults to \&quot;SalesInvoice\&quot; (optional)</param>
         /// <returns>ApiResponse of ShippingVerifyResult</returns>
-        public Avalara.SDK.Client.ApiResponse<ShippingVerifyResult> VerifyShipmentWithHttpInfo(string companyCode, string transactionCode, string documentType = default(string))
+        private Avalara.SDK.Client.ApiResponse<ShippingVerifyResult> VerifyShipmentWithHttpInfo(string companyCode, string transactionCode, string documentType = default(string))
         {
             // verify the required parameter 'companyCode' is set
             if (companyCode == null)
@@ -881,7 +778,7 @@ namespace Avalara.SDK.Api
         /// <param name="documentType">(Optional): The document type of the transaction to operate on. If omitted, defaults to \&quot;SalesInvoice\&quot; (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ShippingVerifyResult)</returns>
-        public async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<ShippingVerifyResult>> VerifyShipmentWithHttpInfoAsync(string companyCode, string transactionCode, string documentType = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<ShippingVerifyResult>> VerifyShipmentWithHttpInfoAsync(string companyCode, string transactionCode, string documentType = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'companyCode' is set
             if (companyCode == null)

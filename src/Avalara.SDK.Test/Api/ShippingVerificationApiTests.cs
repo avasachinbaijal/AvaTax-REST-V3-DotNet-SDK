@@ -33,11 +33,11 @@ namespace Avalara.SDK.Test.Api
     public class ShippingVerificationApiTests : IDisposable
     {
         private ShippingVerificationApi instance;
-
+        /*
         public ShippingVerificationApiTests()
         {
             instance = new ShippingVerificationApi();
-        }
+        }*/
 
         public void Dispose()
         {

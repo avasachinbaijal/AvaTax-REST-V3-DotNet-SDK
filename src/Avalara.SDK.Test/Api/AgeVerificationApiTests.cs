@@ -33,11 +33,11 @@ namespace Avalara.SDK.Test.Api
     public class AgeVerificationApiTests : IDisposable
     {
         private AgeVerificationApi instance;
-
+        /*
         public AgeVerificationApiTests()
         {
             instance = new AgeVerificationApi();
-        }
+        }*/
 
         public void Dispose()
         {
