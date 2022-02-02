@@ -1,11 +1,13 @@
-name: .NET
+name: DotNet-CICD
 
 on:
-  #push:
-  #  branches: [ main ]
-  #pull_request:
-  #  branches: [ main ]
-  workflow_dispatch:
+  push:
+    #branches: [ main ]
+    tags:        
+      - 2.*
+      - 1.*
+  
+  #workflow_dispatch:
     
 
 jobs:
@@ -15,13 +17,26 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Set env
+      run: echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+    - name: Test
+      run: |
+        echo $VERSION
+        echo ${{ env.VERSION }}
+     
     - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v1    
       with:
         dotnet-version: 3.x.x
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore --configuration Release /p:Version=${VERSION}
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal --configuration Release /p:Version=${VERSION}
+    - name: Pack
+      run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
+    - name: Push
+      run: dotnet nuget push Avalara.SDK.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${GITHUB_TOKEN} 
+      env:
+        GITHUB_TOKEN: ${{ secrets.NUGET_API_TOKEN }}
