@@ -6,9 +6,8 @@ on:
     tags:        
       - 2.*
       - 1.*
-  #pull_request:
-  #  branches: [ main ]
-  workflow_dispatch:
+  
+  #workflow_dispatch:
     
 
 jobs:
@@ -32,6 +31,12 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore --configuration Release /p:Version=${VERSION}
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal --configuration Release /p:Version=${VERSION}
+    - name: Pack
+      run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output
+    - name: Push
+      run: dotnet nuget push NuGet.Workflow.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_API_TOKEN}
+      env:
+        GITHUB_TOKEN: ${{ secrets.NUGET_API_TOKEN }}
