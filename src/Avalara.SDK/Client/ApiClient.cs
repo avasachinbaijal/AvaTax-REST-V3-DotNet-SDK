@@ -185,7 +185,6 @@ namespace Avalara.SDK.Client
 
         /// Specifies the settings on a <see cref="JsonSerializer" /> object.
         /// These settings can be adjusted to accommodate custom serialization rules.
-        /// </summary>
         public JsonSerializerSettings SerializerSettings { get; set; } = new JsonSerializerSettings
         {
             // OpenAPI generated types generally hide default constructors.
@@ -275,8 +274,6 @@ namespace Avalara.SDK.Client
         /// <param name="method">The http verb.</param>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        
-        /// GlobalConfiguration has been done before calling this method.</param>
         /// <returns>[private] A new RestRequest instance.</returns>
         /// <exception cref="ArgumentNullException"></exception>
         private RestRequest NewRequest(
@@ -670,7 +667,6 @@ namespace Avalara.SDK.Client
         /// </summary>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        /// GlobalConfiguration has been done before calling this method.</param>
         /// <param name="cancellationToken">Token that enables callers to cancel the request.</param>
         /// <returns>A Task containing ApiResponse</returns>
         public Task<ApiResponse<T>> GetAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -684,7 +680,6 @@ namespace Avalara.SDK.Client
         /// </summary>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        /// GlobalConfiguration has been done before calling this method.</param>
         /// <param name="cancellationToken">Token that enables callers to cancel the request.</param>
         /// <returns>A Task containing ApiResponse</returns>
         public Task<ApiResponse<T>> PostAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -698,7 +693,6 @@ namespace Avalara.SDK.Client
         /// </summary>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        /// GlobalConfiguration has been done before calling this method.</param>
         /// <param name="cancellationToken">Token that enables callers to cancel the request.</param>
         /// <returns>A Task containing ApiResponse</returns>
         public Task<ApiResponse<T>> PutAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -712,7 +706,6 @@ namespace Avalara.SDK.Client
         /// </summary>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        /// GlobalConfiguration has been done before calling this method.</param>
         /// <param name="cancellationToken">Token that enables callers to cancel the request.</param>
         /// <returns>A Task containing ApiResponse</returns>
         public Task<ApiResponse<T>> DeleteAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -726,7 +719,6 @@ namespace Avalara.SDK.Client
         /// </summary>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        /// GlobalConfiguration has been done before calling this method.</param>
         /// <param name="cancellationToken">Token that enables callers to cancel the request.</param>
         /// <returns>A Task containing ApiResponse</returns>
         public Task<ApiResponse<T>> HeadAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -740,7 +732,6 @@ namespace Avalara.SDK.Client
         /// </summary>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        /// GlobalConfiguration has been done before calling this method.</param>
         /// <param name="cancellationToken">Token that enables callers to cancel the request.</param>
         /// <returns>A Task containing ApiResponse</returns>
         public Task<ApiResponse<T>> OptionsAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -754,7 +745,6 @@ namespace Avalara.SDK.Client
         /// </summary>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        /// GlobalConfiguration has been done before calling this method.</param>
         /// <param name="cancellationToken">Token that enables callers to cancel the request.</param>
         /// <returns>A Task containing ApiResponse</returns>
         public Task<ApiResponse<T>> PatchAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))

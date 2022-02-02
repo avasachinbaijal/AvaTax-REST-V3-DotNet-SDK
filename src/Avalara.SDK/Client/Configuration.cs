@@ -111,11 +111,6 @@ namespace Avalara.SDK.Client
         private string _dateTimeFormat = ISO8601_DATETIME_FORMAT;
         private string _tempFolderPath = Path.GetTempPath();
 
-        /// <summary>
-        /// Gets or sets the servers defined in the OpenAPI spec.
-        /// </summary>
-        /// <value>The servers</value>
-        private IList<IReadOnlyDictionary<string, object>> _servers;
         #endregion Private Members
 
         #region Constructors
