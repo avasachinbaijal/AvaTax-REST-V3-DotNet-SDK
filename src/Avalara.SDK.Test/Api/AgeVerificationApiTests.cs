@@ -60,6 +60,8 @@ namespace Avalara.SDK.Test.Api
         [Fact]
         public void VerifyAgeTest()
         {
+            string value = Environment.GetEnvironmentVariable("Test1");
+            Console.WriteLine(string.Format("Value : {0}", string.IsNullOrEmpty(value) ? "NotSet" : value));
             // TODO uncomment below to test the method and replace null with proper value
             //AgeVerifyRequest ageVerifyRequest = null;
             //AgeVerifyFailureCode? simulatedFailureCode = null;
