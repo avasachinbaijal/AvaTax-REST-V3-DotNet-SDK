@@ -99,10 +99,10 @@ namespace Avalara.SDK.Client
         /// <value>X509 Certificate collection.</value>
         X509CertificateCollection ClientCertificates { get; }
         /// <summary>
-        /// Gets or sets the AvaTaxEnvironment
+        /// Gets or sets the AvalaraEnvironment
         /// </summary>
-        /// <value>AvaTaxEnvironment(Enum)</value>
-        AvaTaxEnvironment? Environment { get; }
+        /// <value>AvalaraEnvironment(Enum)</value>
+        AvalaraEnvironment? Environment { get; }
 
         /// <summary>
         /// Gets the application name.

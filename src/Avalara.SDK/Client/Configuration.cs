@@ -29,7 +29,7 @@ namespace Avalara.SDK.Client
     /// <summary>
     /// Represents an environment for Avalara
     /// </summary>
-    public enum AvaTaxEnvironment
+    public enum AvalaraEnvironment
     {
         /// <summary>
         /// Represents the sandbox environment, https://sandbox-rest.avatax.com
@@ -141,10 +141,10 @@ namespace Avalara.SDK.Client
                 _basePath = string.Empty;
                 switch (this.Environment)
                 {
-                    case AvaTaxEnvironment.Production:
+                    case AvalaraEnvironment.Production:
                         _basePath = AVATAX_PRODUCTION_URL;
                         break;
-                    case AvaTaxEnvironment.Sandbox:
+                    case AvalaraEnvironment.Sandbox:
                         _basePath = AVATAX_SANDBOX_URL;
                         break;
                     default:
@@ -177,10 +177,10 @@ namespace Avalara.SDK.Client
         public string Password { get; set; }
 
         /// <summary>
-        /// Gets or sets the AvaTaxEnvironment
+        /// Gets or sets the AvalaraEnvironment
         /// </summary>
-        /// <value>AvaTaxEnvironment(Enum)</value>
-        public AvaTaxEnvironment? Environment { get; set; }
+        /// <value>AvalaraEnvironment(Enum)</value>
+        public AvalaraEnvironment? Environment { get; set; }
 
         /// <summary>
         /// Gets the application name.

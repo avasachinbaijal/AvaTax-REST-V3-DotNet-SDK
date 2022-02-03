@@ -18,6 +18,7 @@ using Xunit;
 
 using Avalara.SDK.Client;
 using Avalara.SDK.Api;
+using Avalara.SDK.Model;
 // uncomment below to import models
 //using Avalara.SDK.Model;
 
@@ -33,11 +34,18 @@ namespace Avalara.SDK.Test.Api
     public class AgeVerificationApiTests : IDisposable
     {
         private AgeVerificationApi instance;
-        /*
+        private ApiClient apiclient;
         public AgeVerificationApiTests()
         {
-            instance = new AgeVerificationApi();
-        }*/
+            Configuration configuration = new Configuration();
+            configuration.Environment = AvalaraEnvironment.Sandbox;
+            configuration.Username = Environment.GetEnvironmentVariable("SANDBOX_USERNAME");
+            configuration.Password = Environment.GetEnvironmentVariable("SANDBOX_PASSWORD");
+            
+            apiclient = new ApiClient(configuration);
+
+            instance = new AgeVerificationApi(apiclient);
+        }
 
         public void Dispose()
         {
@@ -51,7 +59,7 @@ namespace Avalara.SDK.Test.Api
         public void InstanceTest()
         {
             // TODO uncomment below to test 'IsType' AgeVerificationApi
-            //Assert.IsType<AgeVerificationApi>(instance);
+            Assert.IsType<AgeVerificationApi>(instance);
         }
 
         /// <summary>
@@ -60,13 +68,16 @@ namespace Avalara.SDK.Test.Api
         [Fact]
         public void VerifyAgeTest()
         {
-            string value = Environment.GetEnvironmentVariable("Test1");
-            Console.WriteLine(string.Format("Value : {0}", string.IsNullOrEmpty(value) ? "NotSet" : value));
-            // TODO uncomment below to test the method and replace null with proper value
-            //AgeVerifyRequest ageVerifyRequest = null;
-            //AgeVerifyFailureCode? simulatedFailureCode = null;
-            //var response = instance.VerifyAge(ageVerifyRequest, simulatedFailureCode);
-            //Assert.IsType<AgeVerifyResult>(response);
+            AgeVerifyRequest ageVerifyRequest = new AgeVerifyRequest(
+                firstName: "Test",
+                lastName: "Person",
+                address: new AgeVerifyRequestAddress(
+                 line1: "255 S King St", postalCode: "98109"),
+                dOB: "1970-01-01"
+                );
+
+            var response = instance.VerifyAge(ageVerifyRequest);
+            Assert.IsType<AgeVerifyResult>(response);
         }
     }
 }

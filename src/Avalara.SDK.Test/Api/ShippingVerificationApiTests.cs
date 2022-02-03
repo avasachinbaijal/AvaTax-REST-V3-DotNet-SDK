@@ -33,11 +33,18 @@ namespace Avalara.SDK.Test.Api
     public class ShippingVerificationApiTests : IDisposable
     {
         private ShippingVerificationApi instance;
-        /*
+        private ApiClient apiclient;
         public ShippingVerificationApiTests()
         {
-            instance = new ShippingVerificationApi();
-        }*/
+            Configuration configuration = new Configuration();
+            configuration.Environment = AvalaraEnvironment.Sandbox;
+            configuration.Username = Environment.GetEnvironmentVariable("SANDBOX_USERNAME");
+            configuration.Password = Environment.GetEnvironmentVariable("SANDBOX_PASSWORD");
+
+            apiclient = new ApiClient(configuration);
+
+            instance = new ShippingVerificationApi(apiclient);
+        }
 
         public void Dispose()
         {
@@ -50,8 +57,7 @@ namespace Avalara.SDK.Test.Api
         [Fact]
         public void InstanceTest()
         {
-            // TODO uncomment below to test 'IsType' ShippingVerificationApi
-            //Assert.IsType<ShippingVerificationApi>(instance);
+            Assert.IsType<ShippingVerificationApi>(instance);
         }
 
         /// <summary>
@@ -60,52 +66,9 @@ namespace Avalara.SDK.Test.Api
         [Fact]
         public void DeregisterShipmentTest()
         {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string companyCode = null;
-            //string transactionCode = null;
-            //string documentType = null;
-            //instance.DeregisterShipment(companyCode, transactionCode, documentType);
-        }
-
-        /// <summary>
-        /// Test RegisterShipment
-        /// </summary>
-        [Fact]
-        public void RegisterShipmentTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string companyCode = null;
-            //string transactionCode = null;
-            //string documentType = null;
-            //instance.RegisterShipment(companyCode, transactionCode, documentType);
-        }
-
-        /// <summary>
-        /// Test RegisterShipmentIfCompliant
-        /// </summary>
-        [Fact]
-        public void RegisterShipmentIfCompliantTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string companyCode = null;
-            //string transactionCode = null;
-            //string documentType = null;
-            //var response = instance.RegisterShipmentIfCompliant(companyCode, transactionCode, documentType);
-            //Assert.IsType<ShippingVerifyResult>(response);
-        }
-
-        /// <summary>
-        /// Test VerifyShipment
-        /// </summary>
-        [Fact]
-        public void VerifyShipmentTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string companyCode = null;
-            //string transactionCode = null;
-            //string documentType = null;
-            //var response = instance.VerifyShipment(companyCode, transactionCode, documentType);
-            //Assert.IsType<ShippingVerifyResult>(response);
+            string companyCode = "DEFAULT";
+            string transactionCode = "063e1af4-11d3-4489-b8ba-ae1149758df4";
+            instance.DeregisterShipment(companyCode, transactionCode);
         }
     }
 }
