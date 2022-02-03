@@ -31,7 +31,7 @@ jobs:
     - name: Build Package
       run: dotnet build --no-restore --configuration Release /p:Version=${VERSION}
     - name: Test cases
-      run: Echo SANDBOX_USERNAME=${{ secrets.SANDBOX_USERNAME }}& Echo SANDBOX_PASSWORD=${{ secrets.SANDBOX_PASSWORD }}& dotnet test --no-build --verbosity normal --configuration Release /p:Version=${VERSION}
+      run: SANDBOX_USERNAME=${{ secrets.SANDBOX_USERNAME }}; SANDBOX_PASSWORD=${{ secrets.SANDBOX_PASSWORD }}; dotnet test --no-build --verbosity normal --configuration Release
     - name: Pack Package
       run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
     - name: Push Package
