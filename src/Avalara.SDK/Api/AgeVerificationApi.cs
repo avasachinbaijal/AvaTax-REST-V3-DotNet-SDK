@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * Avalara Shipping Verification for Beverage Alcohol
+ * Avalara Shipping Verification only
  *
  * API for evaluating transactions against direct-to-consumer Beverage Alcohol shipping regulations.  This API is currently in beta. 
  *
@@ -15,7 +15,7 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.1.7
+ * @version    2.4.15
  * @link       https://github.com/avadev/AvaTax-REST-V3-DotNet-SDK
  */
 
@@ -258,8 +258,7 @@ namespace Avalara.SDK.Api
             }
 
             // make the HTTP request
-			localVarRequestOptions.HeaderParameters.Add("X-Avalara-Client","22.1.0");
-            var localVarResponse = await this.Client.PostAsync<AgeVerifyResult>("/api/v2/ageverification/verify", localVarRequestOptions, cancellationToken).ConfigureAwait(false);
+			var localVarResponse = await this.Client.PostAsync<AgeVerifyResult>("/api/v2/ageverification/verify", localVarRequestOptions, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -279,7 +278,7 @@ namespace Avalara.SDK.Api
             if (client.Configuration == null) throw new ArgumentNullException("ApiClient.Configuration");
 
             this.Client = client;
-            this.Client.SdkVersion = "2.1.7";
+            this.Client.SdkVersion = "2.4.15";
             this.Configuration = client.Configuration;
         }
         
