@@ -15,7 +15,7 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.4.22
+ * @version    2.4.24
  * @link       https://github.com/avadev/AvaTax-REST-V3-DotNet-SDK
  */
 
@@ -843,7 +843,7 @@ namespace Avalara.SDK.Api
             if (client.Configuration == null) throw new ArgumentNullException("ApiClient.Configuration");
 
             this.Client = client;
-            this.Client.SdkVersion = "2.4.22";
+            this.Client.SdkVersion = "2.4.24";
             this.Configuration = client.Configuration;
         }
         
