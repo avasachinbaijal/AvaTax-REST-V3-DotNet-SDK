@@ -1,4 +1,4 @@
-name: DotNet-CICD
+name: DotNet- Publish to Nuget
 
 on:
   release:
