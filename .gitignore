@@ -5,7 +5,6 @@
 
 # openapi-generator
 .openapi-generator/
-docs/
 
 # User-specific files
 *.rsuser
