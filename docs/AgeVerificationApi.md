@@ -30,16 +30,14 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: BasicAuth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-            // Configure API key authorization: Bearer
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new AgeVerificationApi(config);
+            configuration.Environment = AvalaraEnvironment.Sandbox;
+            configuration.Username = "YOUR USERNAME";
+            configuration.Password = "YOUR PASSWORD";
+            
+            ApiClient apiclient= new ApiClient(configuration);
+            
+            var apiInstance = new AgeVerificationApi(apiclient);
+            
             var ageVerifyRequest = new AgeVerifyRequest(); // AgeVerifyRequest | Information about the individual whose age is being verified.
             var simulatedFailureCode = ;  // AgeVerifyFailureCode? | (Optional) The failure code included in the simulated response of the endpoint. Note that this endpoint is only available in Sandbox for testing purposes. (optional) 
 

@@ -31,16 +31,14 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: BasicAuth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-            // Configure API key authorization: Bearer
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new ShippingVerificationApi(config);
+            configuration.Environment = AvalaraEnvironment.Sandbox;
+            configuration.Username = "YOUR USERNAME";
+            configuration.Password = "YOUR PASSWORD";
+            
+            ApiClient apiclient= new ApiClient(configuration);
+            
+            var apiInstance = new ShippingVerificationApi(apiclient);
+            
             var companyCode = companyCode_example;  // string | The company code of the company that recorded the transaction
             var transactionCode = transactionCode_example;  // string | The transaction code to retrieve
             var documentType = documentType_example;  // string | (Optional): The document type of the transaction to operate on. If omitted, defaults to \"SalesInvoice\" (optional) 
@@ -115,16 +113,14 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: BasicAuth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-            // Configure API key authorization: Bearer
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new ShippingVerificationApi(config);
+            configuration.Environment = AvalaraEnvironment.Sandbox;
+            configuration.Username = "YOUR USERNAME";
+            configuration.Password = "YOUR PASSWORD";
+            
+            ApiClient apiclient= new ApiClient(configuration);
+            
+            var apiInstance = new ShippingVerificationApi(apiclient);
+            
             var companyCode = companyCode_example;  // string | The company code of the company that recorded the transaction
             var transactionCode = transactionCode_example;  // string | The transaction code to retrieve
             var documentType = documentType_example;  // string | (Optional): The document type of the transaction to operate on. If omitted, defaults to \"SalesInvoice\" (optional) 
@@ -199,16 +195,14 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: BasicAuth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-            // Configure API key authorization: Bearer
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new ShippingVerificationApi(config);
+            configuration.Environment = AvalaraEnvironment.Sandbox;
+            configuration.Username = "YOUR USERNAME";
+            configuration.Password = "YOUR PASSWORD";
+            
+            ApiClient apiclient= new ApiClient(configuration);
+            
+            var apiInstance = new ShippingVerificationApi(apiclient);
+            
             var companyCode = companyCode_example;  // string | The company code of the company that recorded the transaction
             var transactionCode = transactionCode_example;  // string | The transaction code to retrieve
             var documentType = documentType_example;  // string | (Optional): The document type of the transaction to operate on. If omitted, defaults to \"SalesInvoice\" (optional) 
@@ -286,16 +280,14 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: BasicAuth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-            // Configure API key authorization: Bearer
-            config.AddApiKey("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("Authorization", "Bearer");
-
-            var apiInstance = new ShippingVerificationApi(config);
+            configuration.Environment = AvalaraEnvironment.Sandbox;
+            configuration.Username = "YOUR USERNAME";
+            configuration.Password = "YOUR PASSWORD";
+            
+            ApiClient apiclient= new ApiClient(configuration);
+            
+            var apiInstance = new ShippingVerificationApi(apiclient);
+            
             var companyCode = companyCode_example;  // string | The company code of the company that recorded the transaction
             var transactionCode = transactionCode_example;  // string | The transaction code to retrieve
             var documentType = documentType_example;  // string | (Optional): The document type of the transaction to operate on. If omitted, defaults to \"SalesInvoice\" (optional) 
