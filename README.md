@@ -5,7 +5,7 @@ API for evaluating transactions against direct-to-consumer Beverage Alcohol ship
 This API is currently in beta.
 
 
-- SDK version: 2.4.26
+- SDK version: 2.4.27
 
 <a name="frameworks-supported"></a>
 ## Frameworks supported
