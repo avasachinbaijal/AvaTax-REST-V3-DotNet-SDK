@@ -1,0 +1,41 @@
+name: DotNet- Build and Test
+
+on:
+  workflow_dispatch:
+    
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+	strategy:
+      matrix:
+        dotnet-version: [ '3.0', '3.1.x', '5.0.x' ]
+
+    steps:
+    - uses: actions/checkout@v1
+	  with:
+		dotnet-version: ${{ matrix.dotnet-version }}
+    - name: Set env
+      run: |
+        echo "SANDBOX_USERNAME=${{ secrets.SANDBOX_USERNAME }}" >> $GITHUB_ENV
+        echo "SANDBOX_PASSWORD=${{ secrets.SANDBOX_PASSWORD }}" >> $GITHUB_ENV
+    - name: Setup .NET  ${{ matrix.dotnet-version }}
+      uses: actions/setup-dotnet@v1.7.2    
+      with:
+        dotnet-version: ${{ matrix.dotnet-version }}
+	
+	- name: Build Package
+      run: dotnet build --no-restore --configuration Release 
+	  
+    - name: Test cases
+      run: dotnet test --no-build --verbosity normal --configuration Release 
+	  
+    - name: Pack Package
+      run: dotnet pack --configuration Release  --no-build --output .
+	  
+    - name: Push Package
+      run: dotnet nuget push Avalara.SDK.44.44.44.nupkg --source https://api.nuget.org/v3/index.json --api-key ${GITHUB_TOKEN} 
+      env:
+        GITHUB_TOKEN: ${{ secrets.NUGET_API_TOKEN }}
+	
