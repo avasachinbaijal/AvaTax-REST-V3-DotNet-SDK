@@ -31,13 +31,13 @@ jobs:
       - name: Build Package
         run: dotnet build --no-restore --configuration Release 
         
-        - name: Test cases
+      - name: Test cases
         run: dotnet test --no-build --verbosity normal --configuration Release 
         
-        - name: Pack Package
+      - name: Pack Package
         run: dotnet pack --configuration Release  --no-build --output .
         
-        - name: Push Package
+      - name: Push Package
         run: dotnet nuget push Avalara.SDK.44.44.44.nupkg --source https://api.nuget.org/v3/index.json --api-key ${GITHUB_TOKEN} 
         env:
           GITHUB_TOKEN: ${{ secrets.NUGET_API_TOKEN }}
