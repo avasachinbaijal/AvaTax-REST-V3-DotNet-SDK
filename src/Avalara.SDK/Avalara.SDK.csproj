@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
     <AssemblyName>Avalara.SDK</AssemblyName>
     <PackageId>Avalara.SDK</PackageId>
     <OutputType>Library</OutputType>
@@ -12,7 +12,7 @@
     <Description>A library generated from a OpenAPI doc</Description>
     <Copyright>No Copyright</Copyright>
     <RootNamespace>Avalara.SDK</RootNamespace>
-    <Version>2.4.26</Version>
+    <Version>2.4.28</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Avalara.SDK.xml</DocumentationFile>
     <RepositoryUrl>https://github.com/GIT_USER_ID/GIT_REPO_ID.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>

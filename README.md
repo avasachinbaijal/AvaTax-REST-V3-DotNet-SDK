@@ -5,10 +5,13 @@ API for evaluating transactions against direct-to-consumer Beverage Alcohol ship
 This API is currently in beta.
 
 
-- SDK version: 2.4.26
+- SDK version: 2.4.28
 
 <a name="frameworks-supported"></a>
 ## Frameworks supported
+- .NET Core >=1.0
+- .NET Framework >=4.6
+- Mono/Xamarin >=vNext
 
 <a name="dependencies"></a>
 ## Dependencies
