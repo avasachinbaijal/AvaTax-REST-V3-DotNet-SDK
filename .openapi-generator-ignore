@@ -7,7 +7,7 @@
 # As an example, the C# client generator defines ApiClient.cs.
 # You can make changes and tell OpenAPI Generator to ignore just this file by uncommenting the following line:
 src/Avalara.SDK/Client/**
-src/Avalara.SDK.Test/**
+#src/Avalara.SDK.Test/**
 
 # You can match any string of characters against a directory, file or extension with a single asterisk (*):
 #foo/*/qux
