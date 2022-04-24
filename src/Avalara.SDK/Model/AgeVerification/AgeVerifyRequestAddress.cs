@@ -35,13 +35,13 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Avalara.SDK.Client.OpenAPIDateConverter;
 
-namespace Avalara.SDK.Model
+namespace Avalara.SDK.Model.AgeVerification
 {
     /// <summary>
     /// AgeVerifyRequestAddress
     /// </summary>
-    [DataContract(Name = "AgeVerifyRequest_address")]
-    public partial class AgeVerifyRequestAddress : IEquatable<AgeVerifyRequestAddress>, IValidatableObject
+    [DataContract]
+    public partial class AgeVerifyRequestAddress :  IEquatable<AgeVerifyRequestAddress>
     {
         /// <summary>
         /// The country code of the address.
@@ -64,12 +64,11 @@ namespace Avalara.SDK.Model
 
         }
 
-
         /// <summary>
         /// The country code of the address.
         /// </summary>
         /// <value>The country code of the address.</value>
-        [DataMember(Name = "country", EmitDefaultValue = false)]
+        [DataMember(Name="country", EmitDefaultValue=false)]
         public CountryEnum? Country { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AgeVerifyRequestAddress" /> class.
@@ -91,26 +90,27 @@ namespace Avalara.SDK.Model
         /// <summary>
         /// Gets or Sets Line1
         /// </summary>
-        [DataMember(Name = "line1", EmitDefaultValue = false)]
+        [DataMember(Name="line1", EmitDefaultValue=false)]
         public string Line1 { get; set; }
 
         /// <summary>
         /// Gets or Sets City
         /// </summary>
-        [DataMember(Name = "city", EmitDefaultValue = false)]
+        [DataMember(Name="city", EmitDefaultValue=false)]
         public string City { get; set; }
 
         /// <summary>
         /// The state code of the address.
         /// </summary>
         /// <value>The state code of the address.</value>
-        [DataMember(Name = "region", EmitDefaultValue = false)]
+        [DataMember(Name="region", EmitDefaultValue=false)]
         public string Region { get; set; }
+
 
         /// <summary>
         /// Gets or Sets PostalCode
         /// </summary>
-        [DataMember(Name = "postalCode", EmitDefaultValue = false)]
+        [DataMember(Name="postalCode", EmitDefaultValue=false)]
         public string PostalCode { get; set; }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace Avalara.SDK.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("class AgeVerifyRequestAddress {\n");
             sb.Append("  Line1: ").Append(Line1).Append("\n");
             sb.Append("  City: ").Append(City).Append("\n");
@@ -157,9 +157,8 @@ namespace Avalara.SDK.Model
         public bool Equals(AgeVerifyRequestAddress input)
         {
             if (input == null)
-            {
                 return false;
-            }
+
             return 
                 (
                     this.Line1 == input.Line1 ||
@@ -178,7 +177,8 @@ namespace Avalara.SDK.Model
                 ) && 
                 (
                     this.Country == input.Country ||
-                    this.Country.Equals(input.Country)
+                    (this.Country != null &&
+                    this.Country.Equals(input.Country))
                 ) && 
                 (
                     this.PostalCode == input.PostalCode ||
@@ -197,34 +197,17 @@ namespace Avalara.SDK.Model
             {
                 int hashCode = 41;
                 if (this.Line1 != null)
-                {
-                    hashCode = (hashCode * 59) + this.Line1.GetHashCode();
-                }
+                    hashCode = hashCode * 59 + this.Line1.GetHashCode();
                 if (this.City != null)
-                {
-                    hashCode = (hashCode * 59) + this.City.GetHashCode();
-                }
+                    hashCode = hashCode * 59 + this.City.GetHashCode();
                 if (this.Region != null)
-                {
-                    hashCode = (hashCode * 59) + this.Region.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Country.GetHashCode();
+                    hashCode = hashCode * 59 + this.Region.GetHashCode();
+                if (this.Country != null)
+                    hashCode = hashCode * 59 + this.Country.GetHashCode();
                 if (this.PostalCode != null)
-                {
-                    hashCode = (hashCode * 59) + this.PostalCode.GetHashCode();
-                }
+                    hashCode = hashCode * 59 + this.PostalCode.GetHashCode();
                 return hashCode;
             }
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

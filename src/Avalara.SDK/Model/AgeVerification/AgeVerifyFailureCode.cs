@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Avalara.SDK.Client.OpenAPIDateConverter;
 
-namespace Avalara.SDK.Model
+namespace Avalara.SDK.Model.AgeVerification
 {
     /// <summary>
     /// Defines AgeVerifyFailureCode

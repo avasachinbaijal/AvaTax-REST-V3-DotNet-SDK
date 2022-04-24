@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * Avalara Shipping Verification only
+ * Avalara Shipping Verification for Beverage Alcohol
  *
  * API for evaluating transactions against direct-to-consumer Beverage Alcohol shipping regulations.  This API is currently in beta. 
  *
@@ -35,13 +35,13 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Avalara.SDK.Client.OpenAPIDateConverter;
 
-namespace Avalara.SDK.Model
+namespace Avalara.SDK.Model.Shipping
 {
     /// <summary>
     /// ShippingVerifyResultLines
     /// </summary>
-    [DataContract(Name = "ShippingVerifyResult_lines")]
-    public partial class ShippingVerifyResultLines : IEquatable<ShippingVerifyResultLines>, IValidatableObject
+    [DataContract]
+    public partial class ShippingVerifyResultLines :  IEquatable<ShippingVerifyResultLines>
     {
         /// <summary>
         /// Describes whether the line is compliant or not. In cases where a determination could not be made, resultCode will provide the reason why.
@@ -82,12 +82,11 @@ namespace Avalara.SDK.Model
 
         }
 
-
         /// <summary>
         /// Describes whether the line is compliant or not. In cases where a determination could not be made, resultCode will provide the reason why.
         /// </summary>
         /// <value>Describes whether the line is compliant or not. In cases where a determination could not be made, resultCode will provide the reason why.</value>
-        [DataMember(Name = "resultCode", EmitDefaultValue = false)]
+        [DataMember(Name="resultCode", EmitDefaultValue=false)]
         public ResultCodeEnum? ResultCode { get; set; }
         /// <summary>
         /// Defines FailureCodes
@@ -152,12 +151,11 @@ namespace Avalara.SDK.Model
         }
 
 
-
         /// <summary>
         /// An enumeration of all the failure codes received for this line.
         /// </summary>
         /// <value>An enumeration of all the failure codes received for this line.</value>
-        [DataMember(Name = "failureCodes", EmitDefaultValue = false)]
+        [DataMember(Name="failureCodes", EmitDefaultValue=false)]
         public List<FailureCodesEnum> FailureCodes { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ShippingVerifyResultLines" /> class.
@@ -178,33 +176,35 @@ namespace Avalara.SDK.Model
             this.FailureCodes = failureCodes;
         }
 
+
         /// <summary>
         /// The lineNumber of the line evaluated.
         /// </summary>
         /// <value>The lineNumber of the line evaluated.</value>
-        [DataMember(Name = "lineNumber", EmitDefaultValue = false)]
+        [DataMember(Name="lineNumber", EmitDefaultValue=false)]
         public string LineNumber { get; set; }
 
         /// <summary>
         /// A short description of the result of the checks made against this line.
         /// </summary>
         /// <value>A short description of the result of the checks made against this line.</value>
-        [DataMember(Name = "message", EmitDefaultValue = false)]
+        [DataMember(Name="message", EmitDefaultValue=false)]
         public string Message { get; set; }
 
         /// <summary>
         /// A detailed description of the result of each of the passed checks made against this line.
         /// </summary>
         /// <value>A detailed description of the result of each of the passed checks made against this line.</value>
-        [DataMember(Name = "successMessages", EmitDefaultValue = false)]
+        [DataMember(Name="successMessages", EmitDefaultValue=false)]
         public string SuccessMessages { get; set; }
 
         /// <summary>
         /// A detailed description of the result of each of the failed checks made against this line.
         /// </summary>
         /// <value>A detailed description of the result of each of the failed checks made against this line.</value>
-        [DataMember(Name = "failureMessages", EmitDefaultValue = false)]
+        [DataMember(Name="failureMessages", EmitDefaultValue=false)]
         public string FailureMessages { get; set; }
+
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -212,7 +212,7 @@ namespace Avalara.SDK.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("class ShippingVerifyResultLines {\n");
             sb.Append("  ResultCode: ").Append(ResultCode).Append("\n");
             sb.Append("  LineNumber: ").Append(LineNumber).Append("\n");
@@ -251,13 +251,13 @@ namespace Avalara.SDK.Model
         public bool Equals(ShippingVerifyResultLines input)
         {
             if (input == null)
-            {
                 return false;
-            }
+
             return 
                 (
                     this.ResultCode == input.ResultCode ||
-                    this.ResultCode.Equals(input.ResultCode)
+                    (this.ResultCode != null &&
+                    this.ResultCode.Equals(input.ResultCode))
                 ) && 
                 (
                     this.LineNumber == input.LineNumber ||
@@ -281,6 +281,8 @@ namespace Avalara.SDK.Model
                 ) && 
                 (
                     this.FailureCodes == input.FailureCodes ||
+                    this.FailureCodes != null &&
+                    input.FailureCodes != null &&
                     this.FailureCodes.SequenceEqual(input.FailureCodes)
                 );
         }
@@ -294,36 +296,20 @@ namespace Avalara.SDK.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.ResultCode.GetHashCode();
+                if (this.ResultCode != null)
+                    hashCode = hashCode * 59 + this.ResultCode.GetHashCode();
                 if (this.LineNumber != null)
-                {
-                    hashCode = (hashCode * 59) + this.LineNumber.GetHashCode();
-                }
+                    hashCode = hashCode * 59 + this.LineNumber.GetHashCode();
                 if (this.Message != null)
-                {
-                    hashCode = (hashCode * 59) + this.Message.GetHashCode();
-                }
+                    hashCode = hashCode * 59 + this.Message.GetHashCode();
                 if (this.SuccessMessages != null)
-                {
-                    hashCode = (hashCode * 59) + this.SuccessMessages.GetHashCode();
-                }
+                    hashCode = hashCode * 59 + this.SuccessMessages.GetHashCode();
                 if (this.FailureMessages != null)
-                {
-                    hashCode = (hashCode * 59) + this.FailureMessages.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.FailureCodes.GetHashCode();
+                    hashCode = hashCode * 59 + this.FailureMessages.GetHashCode();
+                if (this.FailureCodes != null)
+                    hashCode = hashCode * 59 + this.FailureCodes.GetHashCode();
                 return hashCode;
             }
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

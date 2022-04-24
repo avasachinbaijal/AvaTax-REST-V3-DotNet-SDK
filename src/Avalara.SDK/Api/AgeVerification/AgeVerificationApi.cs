@@ -27,9 +27,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Mime;
 using Avalara.SDK.Client;
-using Avalara.SDK.Model;
+using Avalara.SDK.Model.AgeVerification;
 
-namespace Avalara.SDK.Api
+namespace Avalara.SDK.Api.AgeVerification
 {
 
     /// <summary>

@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * Avalara Shipping Verification only
+ * Avalara Shipping Verification for Beverage Alcohol
  *
  * API for evaluating transactions against direct-to-consumer Beverage Alcohol shipping regulations.  This API is currently in beta. 
  *
@@ -35,13 +35,13 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Avalara.SDK.Client.OpenAPIDateConverter;
 
-namespace Avalara.SDK.Model
+namespace Avalara.SDK.Model.Shipping
 {
     /// <summary>
     /// An object holding details about the error.
     /// </summary>
-    [DataContract(Name = "ErrorDetails_error")]
-    public partial class ErrorDetailsError : IEquatable<ErrorDetailsError>, IValidatableObject
+    [DataContract]
+    public partial class ErrorDetailsError :  IEquatable<ErrorDetailsError>
     {
         /// <summary>
         /// Name of the error or message.
@@ -82,12 +82,11 @@ namespace Avalara.SDK.Model
 
         }
 
-
         /// <summary>
         /// Name of the error or message.
         /// </summary>
         /// <value>Name of the error or message.</value>
-        [DataMember(Name = "code", EmitDefaultValue = false)]
+        [DataMember(Name="code", EmitDefaultValue=false)]
         public CodeEnum? Code { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ErrorDetailsError" /> class.
@@ -102,17 +101,18 @@ namespace Avalara.SDK.Model
             this.Details = details;
         }
 
+
         /// <summary>
         /// Concise summary of the message, suitable for display in the caption of an alert box.
         /// </summary>
         /// <value>Concise summary of the message, suitable for display in the caption of an alert box.</value>
-        [DataMember(Name = "message", EmitDefaultValue = false)]
+        [DataMember(Name="message", EmitDefaultValue=false)]
         public string Message { get; set; }
 
         /// <summary>
         /// Gets or Sets Details
         /// </summary>
-        [DataMember(Name = "details", EmitDefaultValue = false)]
+        [DataMember(Name="details", EmitDefaultValue=false)]
         public ErrorDetailsErrorDetails Details { get; set; }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace Avalara.SDK.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("class ErrorDetailsError {\n");
             sb.Append("  Code: ").Append(Code).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
@@ -157,13 +157,13 @@ namespace Avalara.SDK.Model
         public bool Equals(ErrorDetailsError input)
         {
             if (input == null)
-            {
                 return false;
-            }
+
             return 
                 (
                     this.Code == input.Code ||
-                    this.Code.Equals(input.Code)
+                    (this.Code != null &&
+                    this.Code.Equals(input.Code))
                 ) && 
                 (
                     this.Message == input.Message ||
@@ -186,27 +186,14 @@ namespace Avalara.SDK.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Code.GetHashCode();
+                if (this.Code != null)
+                    hashCode = hashCode * 59 + this.Code.GetHashCode();
                 if (this.Message != null)
-                {
-                    hashCode = (hashCode * 59) + this.Message.GetHashCode();
-                }
+                    hashCode = hashCode * 59 + this.Message.GetHashCode();
                 if (this.Details != null)
-                {
-                    hashCode = (hashCode * 59) + this.Details.GetHashCode();
-                }
+                    hashCode = hashCode * 59 + this.Details.GetHashCode();
                 return hashCode;
             }
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

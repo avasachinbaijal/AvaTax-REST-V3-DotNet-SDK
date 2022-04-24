@@ -35,13 +35,13 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Avalara.SDK.Client.OpenAPIDateConverter;
 
-namespace Avalara.SDK.Model
+namespace Avalara.SDK.Model.AgeVerification
 {
     /// <summary>
     /// The Request for the /ageVerification/verify endpoint. Describes information about the person whose age is being verified.
     /// </summary>
-    [DataContract(Name = "AgeVerifyRequest")]
-    public partial class AgeVerifyRequest : IEquatable<AgeVerifyRequest>, IValidatableObject
+    [DataContract]
+    public partial class AgeVerifyRequest :  IEquatable<AgeVerifyRequest>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AgeVerifyRequest" /> class.
@@ -61,26 +61,26 @@ namespace Avalara.SDK.Model
         /// <summary>
         /// Gets or Sets FirstName
         /// </summary>
-        [DataMember(Name = "firstName", EmitDefaultValue = false)]
+        [DataMember(Name="firstName", EmitDefaultValue=false)]
         public string FirstName { get; set; }
 
         /// <summary>
         /// Gets or Sets LastName
         /// </summary>
-        [DataMember(Name = "lastName", EmitDefaultValue = false)]
+        [DataMember(Name="lastName", EmitDefaultValue=false)]
         public string LastName { get; set; }
 
         /// <summary>
         /// Gets or Sets Address
         /// </summary>
-        [DataMember(Name = "address", EmitDefaultValue = false)]
+        [DataMember(Name="address", EmitDefaultValue=false)]
         public AgeVerifyRequestAddress Address { get; set; }
 
         /// <summary>
         /// The value should be ISO-8601 compliant (e.g. 2020-07-21).
         /// </summary>
         /// <value>The value should be ISO-8601 compliant (e.g. 2020-07-21).</value>
-        [DataMember(Name = "DOB", EmitDefaultValue = false)]
+        [DataMember(Name="DOB", EmitDefaultValue=false)]
         public string DOB { get; set; }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Avalara.SDK.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("class AgeVerifyRequest {\n");
             sb.Append("  FirstName: ").Append(FirstName).Append("\n");
             sb.Append("  LastName: ").Append(LastName).Append("\n");
@@ -126,9 +126,8 @@ namespace Avalara.SDK.Model
         public bool Equals(AgeVerifyRequest input)
         {
             if (input == null)
-            {
                 return false;
-            }
+
             return 
                 (
                     this.FirstName == input.FirstName ||
@@ -162,33 +161,15 @@ namespace Avalara.SDK.Model
             {
                 int hashCode = 41;
                 if (this.FirstName != null)
-                {
-                    hashCode = (hashCode * 59) + this.FirstName.GetHashCode();
-                }
+                    hashCode = hashCode * 59 + this.FirstName.GetHashCode();
                 if (this.LastName != null)
-                {
-                    hashCode = (hashCode * 59) + this.LastName.GetHashCode();
-                }
+                    hashCode = hashCode * 59 + this.LastName.GetHashCode();
                 if (this.Address != null)
-                {
-                    hashCode = (hashCode * 59) + this.Address.GetHashCode();
-                }
+                    hashCode = hashCode * 59 + this.Address.GetHashCode();
                 if (this.DOB != null)
-                {
-                    hashCode = (hashCode * 59) + this.DOB.GetHashCode();
-                }
+                    hashCode = hashCode * 59 + this.DOB.GetHashCode();
                 return hashCode;
             }
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

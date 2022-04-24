@@ -33,7 +33,7 @@ namespace Avalara.SDK.Test.Api
     /// </remarks>
     public class AgeVerificationApiTests : IDisposable
     {
-        private AgeVerificationApi instance;
+        private Avalara.SDK.Api.AgeVerification.AgeVerificationApi instance;
         private ApiClient apiclient;
         public AgeVerificationApiTests()
         {
@@ -44,7 +44,7 @@ namespace Avalara.SDK.Test.Api
             
             apiclient = new ApiClient(configuration);
 
-            instance = new AgeVerificationApi(apiclient);
+            instance = new SDK.Api.AgeVerification.AgeVerificationApi(apiclient);
         }
 
         public void Dispose()
@@ -59,7 +59,7 @@ namespace Avalara.SDK.Test.Api
         public void InstanceTest()
         {
             // TODO uncomment below to test 'IsType' AgeVerificationApi
-            Assert.IsType<AgeVerificationApi>(instance);
+            Assert.IsType<SDK.Api.AgeVerification.AgeVerificationApi>(instance);
         }
 
         /// <summary>
@@ -68,16 +68,16 @@ namespace Avalara.SDK.Test.Api
         [Fact]
         public void VerifyAgeTest()
         {
-            AgeVerifyRequest ageVerifyRequest = new AgeVerifyRequest(
+            SDK.Model.AgeVerification.AgeVerifyRequest ageVerifyRequest = new SDK.Model.AgeVerification.AgeVerifyRequest(
                 firstName: "Test",
                 lastName: "Person",
-                address: new AgeVerifyRequestAddress(
+                address: new SDK.Model.AgeVerification.AgeVerifyRequestAddress(
                  line1: "255 S King St", postalCode: "98109"),
                 dOB: "1970-01-01"
                 );
 
             var response = instance.VerifyAge(ageVerifyRequest);
-            Assert.IsType<AgeVerifyResult>(response);
+            Assert.IsType<SDK.Model.AgeVerification.AgeVerifyResult>(response);
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Avalara.SDK.Test.Api
     /// </remarks>
     public class ShippingVerificationApiTests : IDisposable
     {
-        private ShippingVerificationApi instance;
+        private SDK.Api.Shipping.ShippingVerificationApi instance;
         private ApiClient apiclient;
         public ShippingVerificationApiTests()
         {
@@ -43,7 +43,7 @@ namespace Avalara.SDK.Test.Api
 
             apiclient = new ApiClient(configuration);
 
-            instance = new ShippingVerificationApi(apiclient);
+            instance = new SDK.Api.Shipping.ShippingVerificationApi(apiclient);
         }
 
         public void Dispose()
@@ -57,7 +57,7 @@ namespace Avalara.SDK.Test.Api
         [Fact]
         public void InstanceTest()
         {
-            Assert.IsType<ShippingVerificationApi>(instance);
+            Assert.IsType<SDK.Api.Shipping.ShippingVerificationApi>(instance);
         }
 
         /// <summary>

@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * Avalara Shipping Verification only
+ * Avalara Shipping Verification for Beverage Alcohol
  *
  * API for evaluating transactions against direct-to-consumer Beverage Alcohol shipping regulations.  This API is currently in beta. 
  *
@@ -35,13 +35,13 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Avalara.SDK.Client.OpenAPIDateConverter;
 
-namespace Avalara.SDK.Model
+namespace Avalara.SDK.Model.Shipping
 {
     /// <summary>
     /// Message Details Object
     /// </summary>
-    [DataContract(Name = "ErrorDetails_error_details")]
-    public partial class ErrorDetailsErrorDetails : IEquatable<ErrorDetailsErrorDetails>, IValidatableObject
+    [DataContract]
+    public partial class ErrorDetailsErrorDetails :  IEquatable<ErrorDetailsErrorDetails>
     {
         /// <summary>
         /// Name of the error or message.
@@ -82,12 +82,11 @@ namespace Avalara.SDK.Model
 
         }
 
-
         /// <summary>
         /// Name of the error or message.
         /// </summary>
         /// <value>Name of the error or message.</value>
-        [DataMember(Name = "code", EmitDefaultValue = false)]
+        [DataMember(Name="code", EmitDefaultValue=false)]
         public CodeEnum? Code { get; set; }
         /// <summary>
         /// Severity of the message
@@ -104,12 +103,11 @@ namespace Avalara.SDK.Model
 
         }
 
-
         /// <summary>
         /// Severity of the message
         /// </summary>
         /// <value>Severity of the message</value>
-        [DataMember(Name = "severity", EmitDefaultValue = false)]
+        [DataMember(Name="severity", EmitDefaultValue=false)]
         public SeverityEnum? Severity { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ErrorDetailsErrorDetails" /> class.
@@ -132,40 +130,42 @@ namespace Avalara.SDK.Model
             this.Severity = severity;
         }
 
+
         /// <summary>
         /// Concise summary of the message, suitable for display in the caption of an alert box.
         /// </summary>
         /// <value>Concise summary of the message, suitable for display in the caption of an alert box.</value>
-        [DataMember(Name = "message", EmitDefaultValue = false)]
+        [DataMember(Name="message", EmitDefaultValue=false)]
         public string Message { get; set; }
 
         /// <summary>
         /// Unique ID number referring to this error or message.
         /// </summary>
         /// <value>Unique ID number referring to this error or message.</value>
-        [DataMember(Name = "number", EmitDefaultValue = false)]
+        [DataMember(Name="number", EmitDefaultValue=false)]
         public int Number { get; set; }
 
         /// <summary>
         /// A more detailed description of the problem referenced by this error message, suitable for display in the contents area of an alert box.
         /// </summary>
         /// <value>A more detailed description of the problem referenced by this error message, suitable for display in the contents area of an alert box.</value>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
+        [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
 
         /// <summary>
         /// Indicates the SOAP Fault code, if this was related to an error that corresponded to AvaTax SOAP v1 behavior.
         /// </summary>
         /// <value>Indicates the SOAP Fault code, if this was related to an error that corresponded to AvaTax SOAP v1 behavior.</value>
-        [DataMember(Name = "faultCode", EmitDefaultValue = false)]
+        [DataMember(Name="faultCode", EmitDefaultValue=false)]
         public string FaultCode { get; set; }
 
         /// <summary>
         /// URL to help for this message
         /// </summary>
         /// <value>URL to help for this message</value>
-        [DataMember(Name = "helpLink", EmitDefaultValue = false)]
+        [DataMember(Name="helpLink", EmitDefaultValue=false)]
         public string HelpLink { get; set; }
+
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -173,7 +173,7 @@ namespace Avalara.SDK.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("class ErrorDetailsErrorDetails {\n");
             sb.Append("  Code: ").Append(Code).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
@@ -213,13 +213,13 @@ namespace Avalara.SDK.Model
         public bool Equals(ErrorDetailsErrorDetails input)
         {
             if (input == null)
-            {
                 return false;
-            }
+
             return 
                 (
                     this.Code == input.Code ||
-                    this.Code.Equals(input.Code)
+                    (this.Code != null &&
+                    this.Code.Equals(input.Code))
                 ) && 
                 (
                     this.Message == input.Message ||
@@ -228,7 +228,8 @@ namespace Avalara.SDK.Model
                 ) && 
                 (
                     this.Number == input.Number ||
-                    this.Number.Equals(input.Number)
+                    (this.Number != null &&
+                    this.Number.Equals(input.Number))
                 ) && 
                 (
                     this.Description == input.Description ||
@@ -247,7 +248,8 @@ namespace Avalara.SDK.Model
                 ) && 
                 (
                     this.Severity == input.Severity ||
-                    this.Severity.Equals(input.Severity)
+                    (this.Severity != null &&
+                    this.Severity.Equals(input.Severity))
                 );
         }
 
@@ -260,37 +262,22 @@ namespace Avalara.SDK.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Code.GetHashCode();
+                if (this.Code != null)
+                    hashCode = hashCode * 59 + this.Code.GetHashCode();
                 if (this.Message != null)
-                {
-                    hashCode = (hashCode * 59) + this.Message.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Number.GetHashCode();
+                    hashCode = hashCode * 59 + this.Message.GetHashCode();
+                if (this.Number != null)
+                    hashCode = hashCode * 59 + this.Number.GetHashCode();
                 if (this.Description != null)
-                {
-                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
-                }
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.FaultCode != null)
-                {
-                    hashCode = (hashCode * 59) + this.FaultCode.GetHashCode();
-                }
+                    hashCode = hashCode * 59 + this.FaultCode.GetHashCode();
                 if (this.HelpLink != null)
-                {
-                    hashCode = (hashCode * 59) + this.HelpLink.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Severity.GetHashCode();
+                    hashCode = hashCode * 59 + this.HelpLink.GetHashCode();
+                if (this.Severity != null)
+                    hashCode = hashCode * 59 + this.Severity.GetHashCode();
                 return hashCode;
             }
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

@@ -35,13 +35,13 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Avalara.SDK.Client.OpenAPIDateConverter;
 
-namespace Avalara.SDK.Model
+namespace Avalara.SDK.Model.AgeVerification
 {
     /// <summary>
     /// The Result of a call to the /ageVerification/verify endpoint.
     /// </summary>
-    [DataContract(Name = "AgeVerifyResult")]
-    public partial class AgeVerifyResult : IEquatable<AgeVerifyResult>, IValidatableObject
+    [DataContract]
+    public partial class AgeVerifyResult :  IEquatable<AgeVerifyResult>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AgeVerifyResult" /> class.
@@ -58,14 +58,14 @@ namespace Avalara.SDK.Model
         /// Describes whether the individual meets or exceeds the minimum legal drinking age.
         /// </summary>
         /// <value>Describes whether the individual meets or exceeds the minimum legal drinking age.</value>
-        [DataMember(Name = "isOfAge", EmitDefaultValue = true)]
+        [DataMember(Name="isOfAge", EmitDefaultValue=false)]
         public bool IsOfAge { get; set; }
 
         /// <summary>
         /// A list of failure codes describing why a *false* age determination was made.
         /// </summary>
         /// <value>A list of failure codes describing why a *false* age determination was made.</value>
-        [DataMember(Name = "failureCodes", EmitDefaultValue = false)]
+        [DataMember(Name="failureCodes", EmitDefaultValue=false)]
         public List<AgeVerifyResult> FailureCodes { get; set; }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Avalara.SDK.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("class AgeVerifyResult {\n");
             sb.Append("  IsOfAge: ").Append(IsOfAge).Append("\n");
             sb.Append("  FailureCodes: ").Append(FailureCodes).Append("\n");
@@ -109,13 +109,13 @@ namespace Avalara.SDK.Model
         public bool Equals(AgeVerifyResult input)
         {
             if (input == null)
-            {
                 return false;
-            }
+
             return 
                 (
                     this.IsOfAge == input.IsOfAge ||
-                    this.IsOfAge.Equals(input.IsOfAge)
+                    (this.IsOfAge != null &&
+                    this.IsOfAge.Equals(input.IsOfAge))
                 ) && 
                 (
                     this.FailureCodes == input.FailureCodes ||
@@ -134,23 +134,12 @@ namespace Avalara.SDK.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.IsOfAge.GetHashCode();
+                if (this.IsOfAge != null)
+                    hashCode = hashCode * 59 + this.IsOfAge.GetHashCode();
                 if (this.FailureCodes != null)
-                {
-                    hashCode = (hashCode * 59) + this.FailureCodes.GetHashCode();
-                }
+                    hashCode = hashCode * 59 + this.FailureCodes.GetHashCode();
                 return hashCode;
             }
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

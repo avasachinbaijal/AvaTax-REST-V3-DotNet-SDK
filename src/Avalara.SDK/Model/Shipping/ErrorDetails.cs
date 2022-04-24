@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * Avalara Shipping Verification only
+ * Avalara Shipping Verification for Beverage Alcohol
  *
  * API for evaluating transactions against direct-to-consumer Beverage Alcohol shipping regulations.  This API is currently in beta. 
  *
@@ -35,13 +35,13 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Avalara.SDK.Client.OpenAPIDateConverter;
 
-namespace Avalara.SDK.Model
+namespace Avalara.SDK.Model.Shipping
 {
     /// <summary>
     /// Message Object
     /// </summary>
-    [DataContract(Name = "ErrorDetails")]
-    public partial class ErrorDetails : IEquatable<ErrorDetails>, IValidatableObject
+    [DataContract]
+    public partial class ErrorDetails :  IEquatable<ErrorDetails>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ErrorDetails" /> class.
@@ -55,7 +55,7 @@ namespace Avalara.SDK.Model
         /// <summary>
         /// Gets or Sets Error
         /// </summary>
-        [DataMember(Name = "error", EmitDefaultValue = false)]
+        [DataMember(Name="error", EmitDefaultValue=false)]
         public ErrorDetailsError Error { get; set; }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Avalara.SDK.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("class ErrorDetails {\n");
             sb.Append("  Error: ").Append(Error).Append("\n");
             sb.Append("}\n");
@@ -98,9 +98,8 @@ namespace Avalara.SDK.Model
         public bool Equals(ErrorDetails input)
         {
             if (input == null)
-            {
                 return false;
-            }
+
             return 
                 (
                     this.Error == input.Error ||
@@ -119,21 +118,9 @@ namespace Avalara.SDK.Model
             {
                 int hashCode = 41;
                 if (this.Error != null)
-                {
-                    hashCode = (hashCode * 59) + this.Error.GetHashCode();
-                }
+                    hashCode = hashCode * 59 + this.Error.GetHashCode();
                 return hashCode;
             }
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

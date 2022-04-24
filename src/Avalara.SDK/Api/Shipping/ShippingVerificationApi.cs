@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * Avalara Shipping Verification only
+ * Avalara Shipping Verification for Beverage Alcohol
  *
  * API for evaluating transactions against direct-to-consumer Beverage Alcohol shipping regulations.  This API is currently in beta. 
  *
@@ -27,9 +27,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Mime;
 using Avalara.SDK.Client;
-using Avalara.SDK.Model;
+using Avalara.SDK.Model.Shipping;
 
-namespace Avalara.SDK.Api
+namespace Avalara.SDK.Api.Shipping
 {
 
     /// <summary>
