@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Avalara.SDK", "src\Avalara.SDK\Avalara.SDK.csproj", "{76CAB81B-6506-43E3-B84F-EA31EF03C908}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Avalara.SDK", "src\Avalara.SDK\Avalara.SDK.csproj", "{293C04E5-C3FF-44A6-9EB8-1400B0E3891E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Avalara.SDK.Test", "src\Avalara.SDK.Test\Avalara.SDK.Test.csproj", "{19F1DEBC-DE5E-4517-8062-F000CD499087}"
 EndProject
@@ -12,10 +12,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{76CAB81B-6506-43E3-B84F-EA31EF03C908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{76CAB81B-6506-43E3-B84F-EA31EF03C908}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{76CAB81B-6506-43E3-B84F-EA31EF03C908}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{76CAB81B-6506-43E3-B84F-EA31EF03C908}.Release|Any CPU.Build.0 = Release|Any CPU
+		{293C04E5-C3FF-44A6-9EB8-1400B0E3891E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{293C04E5-C3FF-44A6-9EB8-1400B0E3891E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{293C04E5-C3FF-44A6-9EB8-1400B0E3891E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{293C04E5-C3FF-44A6-9EB8-1400B0E3891E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -25,6 +25,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E01C4E21-9754-4274-89AA-05BAD90BB2E6}
+		SolutionGuid = {84B79222-17F7-4AD2-835F-C946C154E12B}
 	EndGlobalSection
 EndGlobal

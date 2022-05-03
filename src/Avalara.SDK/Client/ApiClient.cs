@@ -781,35 +781,6 @@ namespace Avalara.SDK.Client
             
         }
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        private string GetOAuthAccessKey1(string scopes, bool refreshKey = false)
-        {
-            string accessKey;
-            if (this.OAuthObj == null)
-            {
-                OAuthObj = new Auth.OAuth2ClientCredentials(tokenURL: this.Configuration.TokenURL,
-                        clientID: this.Configuration.ClientID,
-                        clientSecret: this.Configuration.ClientSecret,
-                        scopes: scopes);
-            }
-            if (refreshKey)
-            {
-                if (this.hashScopeTable.ContainsKey(scopes))
-                    this.hashScopeTable.Remove(scopes);
-            }
-            lock (this) {
-                if (this.hashScopeTable.ContainsKey(scopes))
-                {
-                    accessKey = Convert.ToString(hashScopeTable[scopes]);
-                }
-                else
-                {
-                    accessKey = this.OAuthObj.GetAccessToken();
-                    this.hashScopeTable.Add(scopes, accessKey);
-                }
-            }
-            return accessKey;
-        }
         #region IAsynchronousClient
         /// <summary>
         /// Make a HTTP GET request (async).

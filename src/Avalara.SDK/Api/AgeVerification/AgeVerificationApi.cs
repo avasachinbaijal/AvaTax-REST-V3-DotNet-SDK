@@ -83,7 +83,6 @@ namespace Avalara.SDK.Api.AgeVerification
         private const string scopes = "TestScope";
         private Avalara.SDK.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
-        public AgeVerificationApi() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="AgeVerificationApi"/> class
         /// using a Configuration object and client instance.
