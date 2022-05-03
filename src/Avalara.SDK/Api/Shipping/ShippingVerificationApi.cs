@@ -154,6 +154,7 @@ namespace Avalara.SDK.Api.Shipping
     /// </summary>
     public partial class ShippingVerificationApi : IShippingVerificationApiSync, IShippingVerificationApiAsync
     {
+        private const string scopes = "TestScope";
         private Avalara.SDK.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 		
         /// <summary>
@@ -171,12 +172,6 @@ namespace Avalara.SDK.Api.Shipping
         /// The client for accessing this underlying API.
         /// </summary>
         private Avalara.SDK.Client.ApiClient Client { get; set; }
-
-        /// <summary>
-        /// Gets or sets the configuration object
-        /// </summary>
-        /// <value>An instance of the Configuration</value>
-        private Avalara.SDK.Client.IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
@@ -248,19 +243,8 @@ namespace Avalara.SDK.Api.Shipping
                 localVarRequestOptions.QueryParameters.Add(Avalara.SDK.Client.ClientUtils.ParameterToMultiMap("", "documentType", documentType));
             }
 
-            // authentication (BasicAuth) required
-            // http basic authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Avalara.SDK.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
-            }
-            // authentication (Bearer) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
-            }
-			// make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration", localVarRequestOptions);
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<Object>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration", localVarRequestOptions, scopes);
 
             if (this.ExceptionFactory != null)
             {
@@ -329,20 +313,8 @@ namespace Avalara.SDK.Api.Shipping
                 localVarRequestOptions.QueryParameters.Add(Avalara.SDK.Client.ClientUtils.ParameterToMultiMap("", "documentType", documentType));
             }
 
-            // authentication (BasicAuth) required
-            // http basic authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Avalara.SDK.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
-            }
-            // authentication (Bearer) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
-            }
-
             // make the HTTP request
-			var localVarResponse = await this.Client.DeleteAsync<Object>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration", localVarRequestOptions, cancellationToken).ConfigureAwait(false);
+			var localVarResponse = await this.Client.DeleteAsync<Object>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration", localVarRequestOptions, cancellationToken, scopes).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -407,19 +379,8 @@ namespace Avalara.SDK.Api.Shipping
                 localVarRequestOptions.QueryParameters.Add(Avalara.SDK.Client.ClientUtils.ParameterToMultiMap("", "documentType", documentType));
             }
 
-            // authentication (BasicAuth) required
-            // http basic authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Avalara.SDK.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
-            }
-            // authentication (Bearer) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
-            }
-			// make the HTTP request
-            var localVarResponse = this.Client.Put<Object>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration", localVarRequestOptions);
+            // make the HTTP request
+            var localVarResponse = this.Client.Put<Object>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration", localVarRequestOptions, scopes);
 
             if (this.ExceptionFactory != null)
             {
@@ -488,20 +449,8 @@ namespace Avalara.SDK.Api.Shipping
                 localVarRequestOptions.QueryParameters.Add(Avalara.SDK.Client.ClientUtils.ParameterToMultiMap("", "documentType", documentType));
             }
 
-            // authentication (BasicAuth) required
-            // http basic authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Avalara.SDK.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
-            }
-            // authentication (Bearer) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
-            }
-
             // make the HTTP request
-			var localVarResponse = await this.Client.PutAsync<Object>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration", localVarRequestOptions, cancellationToken).ConfigureAwait(false);
+			var localVarResponse = await this.Client.PutAsync<Object>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration", localVarRequestOptions, cancellationToken, scopes).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -567,19 +516,8 @@ namespace Avalara.SDK.Api.Shipping
                 localVarRequestOptions.QueryParameters.Add(Avalara.SDK.Client.ClientUtils.ParameterToMultiMap("", "documentType", documentType));
             }
 
-            // authentication (BasicAuth) required
-            // http basic authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Avalara.SDK.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
-            }
-            // authentication (Bearer) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
-            }
-			// make the HTTP request
-            var localVarResponse = this.Client.Put<ShippingVerifyResult>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registerIfCompliant", localVarRequestOptions);
+            // make the HTTP request
+            var localVarResponse = this.Client.Put<ShippingVerifyResult>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registerIfCompliant", localVarRequestOptions, scopes);
 
             if (this.ExceptionFactory != null)
             {
@@ -649,20 +587,8 @@ namespace Avalara.SDK.Api.Shipping
                 localVarRequestOptions.QueryParameters.Add(Avalara.SDK.Client.ClientUtils.ParameterToMultiMap("", "documentType", documentType));
             }
 
-            // authentication (BasicAuth) required
-            // http basic authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Avalara.SDK.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
-            }
-            // authentication (Bearer) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
-            }
-
             // make the HTTP request
-			var localVarResponse = await this.Client.PutAsync<ShippingVerifyResult>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registerIfCompliant", localVarRequestOptions, cancellationToken).ConfigureAwait(false);
+			var localVarResponse = await this.Client.PutAsync<ShippingVerifyResult>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registerIfCompliant", localVarRequestOptions, cancellationToken, scopes).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -728,19 +654,8 @@ namespace Avalara.SDK.Api.Shipping
                 localVarRequestOptions.QueryParameters.Add(Avalara.SDK.Client.ClientUtils.ParameterToMultiMap("", "documentType", documentType));
             }
 
-            // authentication (BasicAuth) required
-            // http basic authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Avalara.SDK.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
-            }
-            // authentication (Bearer) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
-            }
-			// make the HTTP request
-            var localVarResponse = this.Client.Get<ShippingVerifyResult>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/verify", localVarRequestOptions);
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ShippingVerifyResult>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/verify", localVarRequestOptions, scopes);
 
             if (this.ExceptionFactory != null)
             {
@@ -810,20 +725,8 @@ namespace Avalara.SDK.Api.Shipping
                 localVarRequestOptions.QueryParameters.Add(Avalara.SDK.Client.ClientUtils.ParameterToMultiMap("", "documentType", documentType));
             }
 
-            // authentication (BasicAuth) required
-            // http basic authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Avalara.SDK.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
-            }
-            // authentication (Bearer) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
-            }
-
             // make the HTTP request
-			var localVarResponse = await this.Client.GetAsync<ShippingVerifyResult>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/verify", localVarRequestOptions, cancellationToken).ConfigureAwait(false);
+			var localVarResponse = await this.Client.GetAsync<ShippingVerifyResult>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/verify", localVarRequestOptions, cancellationToken, scopes).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -844,7 +747,6 @@ namespace Avalara.SDK.Api.Shipping
 
             this.Client = client;
             this.Client.SdkVersion = "2.4.32";
-            this.Configuration = client.Configuration;
         }
         
     }

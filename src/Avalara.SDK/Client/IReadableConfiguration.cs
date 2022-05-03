@@ -14,6 +14,7 @@
  */
 
 
+using Avalara.SDK.Auth;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -30,7 +31,7 @@ namespace Avalara.SDK.Client
         /// Gets the access token.
         /// </summary>
         /// <value>Access token.</value>
-        string AccessToken { get; }
+        string AccessToken { get; set; }
 
         /// <summary>
         /// Gets the API key.
@@ -120,5 +121,26 @@ namespace Avalara.SDK.Client
         /// </summary>
         /// <value>MachineName.</value>
         string MachineName { get; }
+        
+        /// <summary>
+        /// Authorization Server URL for oAuth2 flow
+        /// </summary>
+        string AuthorizationURL { get; set; }
+        /// <summary>
+        /// Token Server URL for oAuth2 flow
+        /// </summary>
+        string TokenURL { get; set; }
+        /// <summary>
+        /// ClientID for oAuth2 flow
+        /// </summary>
+        string ClientID { get; set; }
+        /// <summary>
+        /// ClientSecret for oAuth2 flow
+        /// </summary>
+        string ClientSecret { get; set; }
+        /// <summary>
+        /// List of Scopes
+        /// </summary>
+        List<string> Scopes { get; set; }
     }
 }

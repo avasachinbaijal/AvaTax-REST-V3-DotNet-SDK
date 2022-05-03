@@ -80,8 +80,10 @@ namespace Avalara.SDK.Api.AgeVerification
     /// </summary>
     public partial class AgeVerificationApi : IAgeVerificationApiSync, IAgeVerificationApiAsync
     {
+        private const string scopes = "TestScope";
         private Avalara.SDK.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
-		
+
+        public AgeVerificationApi() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="AgeVerificationApi"/> class
         /// using a Configuration object and client instance.
@@ -97,12 +99,6 @@ namespace Avalara.SDK.Api.AgeVerification
         /// The client for accessing this underlying API.
         /// </summary>
         private Avalara.SDK.Client.ApiClient Client { get; set; }
-
-        /// <summary>
-        /// Gets or sets the configuration object
-        /// </summary>
-        /// <value>An instance of the Configuration</value>
-        private Avalara.SDK.Client.IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
@@ -169,19 +165,8 @@ namespace Avalara.SDK.Api.AgeVerification
             }
             localVarRequestOptions.Data = ageVerifyRequest;
 
-            // authentication (BasicAuth) required
-            // http basic authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Avalara.SDK.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
-            }
-            // authentication (Bearer) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
-            }
-			// make the HTTP request
-            var localVarResponse = this.Client.Post<AgeVerifyResult>("/api/v2/ageverification/verify", localVarRequestOptions);
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<AgeVerifyResult>("/api/v2/ageverification/verify", localVarRequestOptions, scopes);
 
             if (this.ExceptionFactory != null)
             {
@@ -245,20 +230,8 @@ namespace Avalara.SDK.Api.AgeVerification
             }
             localVarRequestOptions.Data = ageVerifyRequest;
 
-            // authentication (BasicAuth) required
-            // http basic authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Avalara.SDK.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
-            }
-            // authentication (Bearer) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
-            }
-
             // make the HTTP request
-			var localVarResponse = await this.Client.PostAsync<AgeVerifyResult>("/api/v2/ageverification/verify", localVarRequestOptions, cancellationToken).ConfigureAwait(false);
+			var localVarResponse = await this.Client.PostAsync<AgeVerifyResult>("/api/v2/ageverification/verify", localVarRequestOptions, cancellationToken, scopes).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -279,7 +252,6 @@ namespace Avalara.SDK.Api.AgeVerification
 
             this.Client = client;
             this.Client.SdkVersion = "2.4.32";
-            this.Configuration = client.Configuration;
         }
         
     }

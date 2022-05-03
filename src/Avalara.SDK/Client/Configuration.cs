@@ -14,6 +14,7 @@
  */
 
 
+using Avalara.SDK.Auth;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -197,8 +198,30 @@ namespace Avalara.SDK.Client
         /// </summary>
         /// <value>MachineName.</value>
         public string MachineName { get; set; }
-
-
+        /// <summary>
+        /// Authorization Server URL for oAuth2 flow
+        /// </summary>
+        public string AuthorizationURL { get; set; }
+        /// <summary>
+        /// Token Server URL for oAuth2 flow
+        /// </summary>
+        public string TokenURL { get; set; }
+        /// <summary>
+        /// ClientID for oAuth2 flow
+        /// </summary>
+        public string ClientID { get; set; }
+        /// <summary>
+        /// ClientSecret for oAuth2 flow
+        /// </summary>
+        public string ClientSecret { get; set; }
+        /// <summary>
+        /// List of Scopes
+        /// </summary>
+        public List<string> Scopes { get; set; }
+        /// <summary>
+        /// Other Properties to be used for authentication
+        /// </summary>
+        public Dictionary<string, string> ParameterCollection { get; set; }
         /// <summary>
         /// Gets the API key with prefix.
         /// </summary>
@@ -229,7 +252,7 @@ namespace Avalara.SDK.Client
         /// This helper property simplifies code generation.
         /// </summary>
         /// <value>The access token.</value>
-        public virtual string AccessToken { get; set; }
+        public string AccessToken { get; set; }
 
         /// <summary>
         /// Gets or sets the temporary folder path to store the files downloaded from the server.
@@ -337,7 +360,9 @@ namespace Avalara.SDK.Client
             }
         }
 
-        
+       
+
+
         #endregion Properties
 
         #region Methods
@@ -398,7 +423,12 @@ namespace Avalara.SDK.Client
                 Environment = second.Environment ?? first.Environment,
                 AppName = second.AppName ?? first.AppName,
                 AppVersion = second.AppVersion ?? first.AppVersion,
-                MachineName = second.MachineName ?? first.MachineName
+                MachineName = second.MachineName ?? first.MachineName,
+                AuthorizationURL = second.AuthorizationURL ?? first.AuthorizationURL,
+                TokenURL = second.TokenURL ?? first.TokenURL,
+                ClientID = second.ClientID ?? first.ClientID,
+                ClientSecret = second.ClientSecret ?? first.ClientSecret,
+                Scopes = second.Scopes ?? first.Scopes
             };
             return config;
         }
