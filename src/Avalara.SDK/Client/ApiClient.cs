@@ -223,17 +223,17 @@ namespace Avalara.SDK.Client
         /// Allows for extending request processing for <see cref="ApiClient"/> generated code.
         /// </summary>
         /// <param name="request">The RestSharp request object</param>
-        /// <param name="scopes">Scope(s) of OAuth2</param>
-        private void InterceptRequest(IRestRequest request, string scopes)
+        /// <param name="requiredScopes">Scope(s) of OAuth2</param>
+        private void InterceptRequest(IRestRequest request, string requiredScopes)
         {
             //OAuth2 flow
             if (!this.Configuration.ClientID.IsNullorEmpty())
             {
-                string accessKey = GetOAuthAccessToken(scopes);
+                string accessKey = GetOAuthAccessToken(requiredScopes);
                 if (accessKey.IsNullorEmpty())
                 {
-                    UpdateOAuthAccessToken(scopes);
-                    accessKey = GetOAuthAccessToken(scopes);
+                    UpdateOAuthAccessToken(requiredScopes);
+                    accessKey = GetOAuthAccessToken(requiredScopes);
                 }
                 request.AddHeader("Authorization", "Bearer " + accessKey);
             }
@@ -467,7 +467,7 @@ namespace Avalara.SDK.Client
             return transformed;
         }
 
-        private ApiResponse<T> Exec<T>(RestRequest req, IReadableConfiguration configuration, string scopes)
+        private ApiResponse<T> Exec<T>(RestRequest req, IReadableConfiguration configuration, string requiredScopes)
         {
             RestClient client = new RestClient(this.Configuration.BasePath);
 
@@ -504,7 +504,7 @@ namespace Avalara.SDK.Client
                 client.ClientCertificates = configuration.ClientCertificates;
             }
 
-            InterceptRequest(req, scopes);
+            InterceptRequest(req, requiredScopes);
 
             IRestResponse<T> response = null;
 
@@ -520,8 +520,8 @@ namespace Avalara.SDK.Client
                         string[] authValues = authHeader.Split(' ');
                         if (authValues.Length == 2)
                         {
-                            UpdateOAuthAccessToken(scopes, authValues[1]);
-                            string accessToken = GetOAuthAccessToken(scopes);
+                            UpdateOAuthAccessToken(requiredScopes, authValues[1]);
+                            string accessToken = GetOAuthAccessToken(requiredScopes);
                             req.AddHeader("Authorization", "Bearer " + accessToken);
                             response = ExecuteRequest<T>(req, client);
                         }
@@ -627,7 +627,7 @@ namespace Avalara.SDK.Client
             return response;
 
         }
-        private async Task<ApiResponse<T>> ExecAsync<T>(RestRequest req, IReadableConfiguration configuration, System.Threading.CancellationToken cancellationToken, string scopes)
+        private async Task<ApiResponse<T>> ExecAsync<T>(RestRequest req, IReadableConfiguration configuration, System.Threading.CancellationToken cancellationToken, string requiredScopes)
         {
             RestClient client = new RestClient(this.Configuration.BasePath);
 
@@ -664,7 +664,7 @@ namespace Avalara.SDK.Client
                 client.ClientCertificates = configuration.ClientCertificates;
             }
 
-            InterceptRequest(req, scopes);
+            InterceptRequest(req, requiredScopes);
 
             IRestResponse<T> response = await client.ExecuteAsync<T>(req, cancellationToken).ConfigureAwait(false);
             if (response != null && (response.StatusCode == HttpStatusCode.Unauthorized || response.StatusCode == HttpStatusCode.Forbidden))
@@ -678,8 +678,8 @@ namespace Avalara.SDK.Client
                         string[] authValues = authHeader.Split(' ');
                         if (authValues.Length == 2)
                         {
-                            UpdateOAuthAccessToken(scopes, authValues[1]);
-                            string accessToken = GetOAuthAccessToken(scopes);
+                            UpdateOAuthAccessToken(requiredScopes, authValues[1]);
+                            string accessToken = GetOAuthAccessToken(requiredScopes);
                             req.AddHeader("Authorization", "Bearer " + accessToken);
                             response = await client.ExecuteAsync<T>(req, cancellationToken).ConfigureAwait(false);
                         }
@@ -739,43 +739,47 @@ namespace Avalara.SDK.Client
             if (Configuration == null)
                 throw new ArgumentException("configuration cannot be empty");
 
-            if (Configuration.Environment == null ||
-                string.IsNullOrEmpty(Configuration.BasePath))
+            if (Configuration.Environment == null)
                 throw new ArgumentException("Environment is not set in the configuration");
+            if (Configuration.Environment == AvalaraEnvironment.Other)
+            { 
+                if (string.IsNullOrEmpty(Configuration.BasePath))
+                    throw new ArgumentException("BasePath is not set in the configuration");                
+            }
 
         }
 
-        private string GetOAuthAccessToken(string scopes)
+        private string GetOAuthAccessToken(string requiredScopes)
         {
             string accessToken = string.Empty;
-            if (this.hashScopeTable.ContainsKey(scopes))
+            if (this.hashScopeTable.ContainsKey(requiredScopes))
             {
-                accessToken = Convert.ToString(hashScopeTable[scopes]);
+                accessToken = Convert.ToString(hashScopeTable[requiredScopes]);
             }
             return accessToken;
         }
         
         [MethodImpl(MethodImplOptions.Synchronized)]
-        private void UpdateOAuthAccessToken(string scopes, string access_token= default(string))
+        private void UpdateOAuthAccessToken(string requiredScopes, string access_token= default(string))
         {
-            if (GetOAuthAccessToken(scopes).IsNullorEmpty() ||
-                GetOAuthAccessToken(scopes).Equals(access_token) )
+            if (GetOAuthAccessToken(requiredScopes).IsNullorEmpty() ||
+                GetOAuthAccessToken(requiredScopes).Equals(access_token) )
             {
                 if (this.OAuthObj == null)
                 {
                     OAuthObj = new Auth.OAuth2ClientCredentials(tokenURL: this.Configuration.TokenURL,
                             clientID: this.Configuration.ClientID,
                             clientSecret: this.Configuration.ClientSecret,
-                            scopes: scopes);
+                            requiredScopes : requiredScopes);
                 }
                 string accessToken = this.OAuthObj.GetAccessToken();
-                if (this.hashScopeTable.ContainsKey(scopes))
+                if (this.hashScopeTable.ContainsKey(requiredScopes))
                 {
-                    this.hashScopeTable[scopes] = accessToken;
+                    this.hashScopeTable[requiredScopes] = accessToken;
                 }
                 else
                 {
-                    this.hashScopeTable.Add(scopes, accessToken);
+                    this.hashScopeTable.Add(requiredScopes, accessToken);
                 }
             }         
             
@@ -789,10 +793,10 @@ namespace Avalara.SDK.Client
         /// <param name="options">The additional request options.</param>
         /// <param name="cancellationToken">Token that enables callers to cancel the request.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public Task<ApiResponse<T>> GetAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), string scopes = default(string))
+        public Task<ApiResponse<T>> GetAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), string requiredScopes = default(string))
         {
             var config = Configuration ?? GlobalConfiguration.Instance;
-            return ExecAsync<T>(NewRequest(HttpMethod.Get, path, options), config, cancellationToken, scopes);
+            return ExecAsync<T>(NewRequest(HttpMethod.Get, path, options), config, cancellationToken, requiredScopes);
         }
 
         /// <summary>
@@ -802,10 +806,10 @@ namespace Avalara.SDK.Client
         /// <param name="options">The additional request options.</param>
         /// <param name="cancellationToken">Token that enables callers to cancel the request.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public Task<ApiResponse<T>> PostAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), string scopes = default(string))
+        public Task<ApiResponse<T>> PostAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), string requiredScopes = default(string))
         {
             var config = Configuration ?? GlobalConfiguration.Instance;
-            return ExecAsync<T>(NewRequest(HttpMethod.Post, path, options), config, cancellationToken, scopes);
+            return ExecAsync<T>(NewRequest(HttpMethod.Post, path, options), config, cancellationToken, requiredScopes);
         }
 
         /// <summary>
@@ -815,10 +819,10 @@ namespace Avalara.SDK.Client
         /// <param name="options">The additional request options.</param>
         /// <param name="cancellationToken">Token that enables callers to cancel the request.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public Task<ApiResponse<T>> PutAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), string scopes = default(string))
+        public Task<ApiResponse<T>> PutAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), string requiredScopes = default(string))
         {
             var config = Configuration ?? GlobalConfiguration.Instance;
-            return ExecAsync<T>(NewRequest(HttpMethod.Put, path, options), config, cancellationToken, scopes);
+            return ExecAsync<T>(NewRequest(HttpMethod.Put, path, options), config, cancellationToken, requiredScopes);
         }
 
         /// <summary>
@@ -828,10 +832,10 @@ namespace Avalara.SDK.Client
         /// <param name="options">The additional request options.</param>
         /// <param name="cancellationToken">Token that enables callers to cancel the request.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public Task<ApiResponse<T>> DeleteAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), string scopes = default(string))
+        public Task<ApiResponse<T>> DeleteAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), string requiredScopes = default(string))
         {
             var config = Configuration ?? GlobalConfiguration.Instance;
-            return ExecAsync<T>(NewRequest(HttpMethod.Delete, path, options), config, cancellationToken, scopes);
+            return ExecAsync<T>(NewRequest(HttpMethod.Delete, path, options), config, cancellationToken, requiredScopes);
         }
 
         /// <summary>
@@ -841,10 +845,10 @@ namespace Avalara.SDK.Client
         /// <param name="options">The additional request options.</param>
         /// <param name="cancellationToken">Token that enables callers to cancel the request.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public Task<ApiResponse<T>> HeadAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), string scopes = default(string))
+        public Task<ApiResponse<T>> HeadAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), string requiredScopes = default(string))
         {
             var config = Configuration ?? GlobalConfiguration.Instance;
-            return ExecAsync<T>(NewRequest(HttpMethod.Head, path, options), config, cancellationToken, scopes);
+            return ExecAsync<T>(NewRequest(HttpMethod.Head, path, options), config, cancellationToken, requiredScopes);
         }
 
         /// <summary>
@@ -854,10 +858,10 @@ namespace Avalara.SDK.Client
         /// <param name="options">The additional request options.</param>
         /// <param name="cancellationToken">Token that enables callers to cancel the request.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public Task<ApiResponse<T>> OptionsAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), string scopes = default(string))
+        public Task<ApiResponse<T>> OptionsAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), string requiredScopes = default(string))
         {
             var config = Configuration ?? GlobalConfiguration.Instance;
-            return ExecAsync<T>(NewRequest(HttpMethod.Options, path, options), config, cancellationToken, scopes);
+            return ExecAsync<T>(NewRequest(HttpMethod.Options, path, options), config, cancellationToken, requiredScopes);
         }
 
         /// <summary>
@@ -867,10 +871,10 @@ namespace Avalara.SDK.Client
         /// <param name="options">The additional request options.</param>
         /// <param name="cancellationToken">Token that enables callers to cancel the request.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public Task<ApiResponse<T>> PatchAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), string scopes = default(string))
+        public Task<ApiResponse<T>> PatchAsync<T>(string path, RequestOptions options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), string requiredScopes = default(string))
         {
             var config = Configuration ?? GlobalConfiguration.Instance;
-            return ExecAsync<T>(NewRequest(HttpMethod.Patch, path, options), config, cancellationToken, scopes);
+            return ExecAsync<T>(NewRequest(HttpMethod.Patch, path, options), config, cancellationToken, requiredScopes);
         }
         #endregion IAsynchronousClient
 
@@ -881,10 +885,10 @@ namespace Avalara.SDK.Client
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public ApiResponse<T> Get<T>(string path, RequestOptions options, string scopes = default(string))
+        public ApiResponse<T> Get<T>(string path, RequestOptions options, string requiredScopes = default(string))
         {
             var config = Configuration ?? GlobalConfiguration.Instance;
-            return Exec<T>(NewRequest(HttpMethod.Get, path, options), config, scopes);
+            return Exec<T>(NewRequest(HttpMethod.Get, path, options), config, requiredScopes);
         }
 
         /// <summary>
@@ -893,10 +897,10 @@ namespace Avalara.SDK.Client
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public ApiResponse<T> Post<T>(string path, RequestOptions options, string scopes = default(string))
+        public ApiResponse<T> Post<T>(string path, RequestOptions options, string requiredScopes = default(string))
         {
             var config = Configuration ?? GlobalConfiguration.Instance;
-            return Exec<T>(NewRequest(HttpMethod.Post, path, options), config, scopes);
+            return Exec<T>(NewRequest(HttpMethod.Post, path, options), config, requiredScopes);
         }
 
         /// <summary>
@@ -905,10 +909,10 @@ namespace Avalara.SDK.Client
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public ApiResponse<T> Put<T>(string path, RequestOptions options, string scopes = default(string))
+        public ApiResponse<T> Put<T>(string path, RequestOptions options, string requiredScopes = default(string))
         {
             var config = Configuration ?? GlobalConfiguration.Instance;
-            return Exec<T>(NewRequest(HttpMethod.Put, path, options), config, scopes);
+            return Exec<T>(NewRequest(HttpMethod.Put, path, options), config, requiredScopes);
         }
 
         /// <summary>
@@ -917,10 +921,10 @@ namespace Avalara.SDK.Client
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public ApiResponse<T> Delete<T>(string path, RequestOptions options, string scopes = default(string))
+        public ApiResponse<T> Delete<T>(string path, RequestOptions options, string requiredScopes = default(string))
         {
             var config = Configuration ?? GlobalConfiguration.Instance;
-            return Exec<T>(NewRequest(HttpMethod.Delete, path, options), config, scopes);
+            return Exec<T>(NewRequest(HttpMethod.Delete, path, options), config, requiredScopes);
         }
 
         /// <summary>
@@ -929,10 +933,10 @@ namespace Avalara.SDK.Client
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public ApiResponse<T> Head<T>(string path, RequestOptions options, string scopes = default(string))
+        public ApiResponse<T> Head<T>(string path, RequestOptions options, string requiredScopes = default(string))
         {
             var config = Configuration ?? GlobalConfiguration.Instance;
-            return Exec<T>(NewRequest(HttpMethod.Head, path, options), config, scopes);
+            return Exec<T>(NewRequest(HttpMethod.Head, path, options), config, requiredScopes);
         }
 
         /// <summary>
@@ -941,10 +945,10 @@ namespace Avalara.SDK.Client
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public ApiResponse<T> Options<T>(string path, RequestOptions options, string scopes = default(string))
+        public ApiResponse<T> Options<T>(string path, RequestOptions options, string requiredScopes = default(string))
         {
             var config = Configuration ?? GlobalConfiguration.Instance;
-            return Exec<T>(NewRequest(HttpMethod.Options, path, options), config, scopes);
+            return Exec<T>(NewRequest(HttpMethod.Options, path, options), config, requiredScopes);
         }
 
         /// <summary>
@@ -952,12 +956,12 @@ namespace Avalara.SDK.Client
         /// </summary>
         /// <param name="path">The target path (or resource).</param>
         /// <param name="options">The additional request options.</param>
-        /// <param name="scopes">Scopes for Oauth2</param>
+        /// <param name="requiredScopes">requiredScopes for Oauth2</param>
         /// <returns>A Task containing ApiResponse</returns>
-        public ApiResponse<T> Patch<T>(string path, RequestOptions options, string scopes = default(string))
+        public ApiResponse<T> Patch<T>(string path, RequestOptions options, string requiredScopes = default(string))
         {
             var config = Configuration ?? GlobalConfiguration.Instance;
-            return Exec<T>(NewRequest(HttpMethod.Patch, path, options), config, scopes);
+            return Exec<T>(NewRequest(HttpMethod.Patch, path, options), config, requiredScopes);
         }
         #endregion ISynchronousClient
     }

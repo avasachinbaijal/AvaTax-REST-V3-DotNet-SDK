@@ -40,7 +40,11 @@ namespace Avalara.SDK.Client
         /// <summary>
         /// Represents the production environment, https://rest.avatax.com
         /// </summary>
-        Production = 1
+        Production = 1,
+        /// <summary>
+        /// Represents custom environment - User need to configure BasePath and TokenUrl (for OAuth2)
+        /// </summary>
+        Other = 2
     }
     /// <summary>
     /// Represents a set of configuration settings
@@ -59,6 +63,16 @@ namespace Avalara.SDK.Client
         /// Official URL of AvaTax (Production)
         /// </summary>
         private static readonly string AVATAX_PRODUCTION_URL = "https://rest.avatax.com";
+
+        /// <summary>
+        /// Official Token URL of Sandbox Avalara identity Server 
+        /// </summary>
+        private static readonly string TOKEN_SANDBOX_URL = "https://TO-BE-SET";
+
+        /// <summary>
+        /// Official Token URL of Production Avalara identity Server 
+        /// </summary>
+        private static readonly string TOKEN_PRODUCTION_URL = "https://TO-BE-SET";
 
         /// <summary>
         /// Identifier for ISO 8601 DateTime Format
@@ -111,7 +125,7 @@ namespace Avalara.SDK.Client
 
         private string _dateTimeFormat = ISO8601_DATETIME_FORMAT;
         private string _tempFolderPath = Path.GetTempPath();
-
+        private string _tokenURL = default(string);
         #endregion Private Members
 
         #region Constructors
@@ -135,11 +149,15 @@ namespace Avalara.SDK.Client
         #region Properties
 
         /// <summary>
-        /// Gets or sets the base path for API access.
+        /// Gets or sets the base path for APIs. Should be set only for Other Envrionment.
         /// </summary>
-        public string BasePath {
+        public string BasePath
+        {
+            set
+            {
+                _basePath = value;
+            }
             get {
-                _basePath = string.Empty;
                 switch (this.Environment)
                 {
                     case AvalaraEnvironment.Production:
@@ -164,7 +182,6 @@ namespace Avalara.SDK.Client
         /// Gets or sets the HTTP timeout (milliseconds) of ApiClient. Default to 100000 milliseconds.
         /// </summary>
         public int Timeout { get; set; }
-
         /// <summary>
         /// Gets or sets the username (HTTP basic authentication).
         /// </summary>
@@ -199,13 +216,30 @@ namespace Avalara.SDK.Client
         /// <value>MachineName.</value>
         public string MachineName { get; set; }
         /// <summary>
-        /// Authorization Server URL for oAuth2 flow
+        /// Token Server URL for oAuth2 flow. Should be set only for Other Envrionment
         /// </summary>
-        public string AuthorizationURL { get; set; }
-        /// <summary>
-        /// Token Server URL for oAuth2 flow
-        /// </summary>
-        public string TokenURL { get; set; }
+        public string TokenURL
+        {
+            set
+            {
+                _tokenURL = value;
+            }
+            get
+            {
+                switch (this.Environment)
+                {
+                    case AvalaraEnvironment.Production:
+                        _tokenURL = TOKEN_PRODUCTION_URL;
+                        break;
+                    case AvalaraEnvironment.Sandbox:
+                        _tokenURL = TOKEN_SANDBOX_URL;
+                        break;
+                    default:
+                        break;
+                }
+                return _tokenURL;
+            }
+        }
         /// <summary>
         /// ClientID for oAuth2 flow
         /// </summary>
@@ -215,9 +249,9 @@ namespace Avalara.SDK.Client
         /// </summary>
         public string ClientSecret { get; set; }
         /// <summary>
-        /// List of Scopes
+        /// List of RequiredScopes
         /// </summary>
-        public List<string> Scopes { get; set; }
+        public List<string> RequiredScopes { get; set; }
         /// <summary>
         /// Other Properties to be used for authentication
         /// </summary>
@@ -245,15 +279,6 @@ namespace Avalara.SDK.Client
         /// </summary>
         /// <value>X509 Certificate collection.</value>
         public X509CertificateCollection ClientCertificates { get; set; }
-
-        /// <summary>
-        /// Gets or sets the access token for OAuth2 authentication.
-        ///
-        /// This helper property simplifies code generation.
-        /// </summary>
-        /// <value>The access token.</value>
-        public string AccessToken { get; set; }
-
         /// <summary>
         /// Gets or sets the temporary folder path to store the files downloaded from the server.
         /// </summary>
@@ -417,18 +442,17 @@ namespace Avalara.SDK.Client
                 Timeout = second.Timeout,
                 Username = second.Username ?? first.Username,
                 Password = second.Password ?? first.Password,
-                AccessToken = second.AccessToken ?? first.AccessToken,
+                BasePath= second.BasePath ?? first.BasePath,
                 TempFolderPath = second.TempFolderPath ?? first.TempFolderPath,
                 DateTimeFormat = second.DateTimeFormat ?? first.DateTimeFormat,
                 Environment = second.Environment ?? first.Environment,
                 AppName = second.AppName ?? first.AppName,
                 AppVersion = second.AppVersion ?? first.AppVersion,
                 MachineName = second.MachineName ?? first.MachineName,
-                AuthorizationURL = second.AuthorizationURL ?? first.AuthorizationURL,
                 TokenURL = second.TokenURL ?? first.TokenURL,
                 ClientID = second.ClientID ?? first.ClientID,
                 ClientSecret = second.ClientSecret ?? first.ClientSecret,
-                Scopes = second.Scopes ?? first.Scopes
+                RequiredScopes = second.RequiredScopes ?? first.RequiredScopes
             };
             return config;
         }

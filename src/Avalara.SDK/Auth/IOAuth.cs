@@ -60,7 +60,7 @@ namespace Avalara.SDK.Auth
         /// <summary>
         /// List of Scopes
         /// </summary>
-        string Scopes { get; set; }
+        string RequiredScopes { get; set; }
         /// <summary>
         /// Other Properties to be used for authentication
         /// </summary>

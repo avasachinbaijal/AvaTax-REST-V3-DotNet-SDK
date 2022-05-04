@@ -28,12 +28,6 @@ namespace Avalara.SDK.Client
     public interface IReadableConfiguration
     {
         /// <summary>
-        /// Gets the access token.
-        /// </summary>
-        /// <value>Access token.</value>
-        string AccessToken { get; set; }
-
-        /// <summary>
         /// Gets the API key.
         /// </summary>
         /// <value>API key.</value>
@@ -46,11 +40,9 @@ namespace Avalara.SDK.Client
         IDictionary<string, string> ApiKeyPrefix { get; }
 
         /// <summary>
-        /// Gets the base path.
+        /// Returns Avalara 
         /// </summary>
-        /// <value>Base path.</value>
-        string BasePath { get; }
-
+        string BasePath { set; get; }
         /// <summary>
         /// Gets the date time format.
         /// </summary>
@@ -79,13 +71,13 @@ namespace Avalara.SDK.Client
         /// Gets the username.
         /// </summary>
         /// <value>Username.</value>
-        string Username { get; }
+        string Username { set; get; }
 
         /// <summary>
         /// Gets the password.
         /// </summary>
         /// <value>Password.</value>
-        string Password { get; }
+        string Password { set; get; }
 
         /// <summary>
         /// Gets the API key with prefix.
@@ -121,15 +113,11 @@ namespace Avalara.SDK.Client
         /// </summary>
         /// <value>MachineName.</value>
         string MachineName { get; }
-        
-        /// <summary>
-        /// Authorization Server URL for oAuth2 flow
-        /// </summary>
-        string AuthorizationURL { get; set; }
+
         /// <summary>
         /// Token Server URL for oAuth2 flow
         /// </summary>
-        string TokenURL { get; set; }
+        string TokenURL { get;  }
         /// <summary>
         /// ClientID for oAuth2 flow
         /// </summary>
@@ -141,6 +129,6 @@ namespace Avalara.SDK.Client
         /// <summary>
         /// List of Scopes
         /// </summary>
-        List<string> Scopes { get; set; }
+        List<string> RequiredScopes { get; set; }
     }
 }

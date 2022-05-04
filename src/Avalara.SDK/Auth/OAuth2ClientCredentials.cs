@@ -20,14 +20,14 @@ namespace Avalara.SDK.Auth
         /// <param name="tokenURL"></param>
         /// <param name="clientID"></param>
         /// <param name="clientSecret"></param>
-        /// <param name="scopes"></param>
+        /// <param name="requiredScopes"></param>
         public OAuth2ClientCredentials(string tokenURL=default(string) , string clientID = default(string), 
-            string clientSecret = default(string), string scopes= default(string))
+            string clientSecret = default(string), string requiredScopes= default(string))
         {
             this.TokenURL = tokenURL;
             this.ClientID = clientID;
             this.ClientSecret = clientSecret;
-            this.Scopes = scopes;
+            this.RequiredScopes = requiredScopes;
             
         }
         /// <summary>
@@ -47,9 +47,9 @@ namespace Avalara.SDK.Auth
         /// </summary>
         public string ClientSecret { get; set; }
         /// <summary>
-        /// List of Scopes
+        /// List of RequiredScopes
         /// </summary>
-        public string Scopes { get; set; }
+        public string RequiredScopes { get; set; }
         /// <summary>
         /// Other Properties to be used for authentication
         /// </summary>
@@ -63,17 +63,17 @@ namespace Avalara.SDK.Auth
             {
                 if (TokenURL.IsNullorEmpty())
                 {
-                    throw new ArgumentException("Token URL cannot be empty");
+                    throw new ArgumentException("Token URL is not set in the configuration");
                 }
                 if (ClientID.IsNullorEmpty())
                 {
-                    throw new ArgumentException("Client ID cannot be empty");
+                    throw new ArgumentException("Client ID is not set in the configuration");
                 }
                 if (ClientSecret.IsNullorEmpty())
                 {
-                    throw new ArgumentException("Client Secret cannot be empty");
+                    throw new ArgumentException("Client Secret is not set in the configuration");
                 }
-                if (Scopes.IsNullorEmpty())
+                if (RequiredScopes.IsNullorEmpty())
                 {
                     throw new ArgumentException("Scope cannot be empty");
                 }
@@ -87,7 +87,7 @@ namespace Avalara.SDK.Auth
                 request.AddParameter("client_id", ClientID, ParameterType.GetOrPost);
                 request.AddParameter("grant_type", "client_credentials", ParameterType.GetOrPost);
                 request.AddParameter("client_secret", ClientSecret, ParameterType.GetOrPost);
-                request.AddParameter("scope", string.Join(" ", Scopes), ParameterType.GetOrPost);
+                request.AddParameter("scope", string.Join(" ", RequiredScopes), ParameterType.GetOrPost);
 
 
                 var response = client.Execute(request);

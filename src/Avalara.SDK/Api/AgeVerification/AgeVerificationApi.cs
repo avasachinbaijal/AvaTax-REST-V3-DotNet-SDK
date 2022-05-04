@@ -80,7 +80,7 @@ namespace Avalara.SDK.Api.AgeVerification
     /// </summary>
     public partial class AgeVerificationApi : IAgeVerificationApiSync, IAgeVerificationApiAsync
     {
-        private const string scopes = "TestScope";
+        private const string requiredScopes = "TestScope";
         private Avalara.SDK.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace Avalara.SDK.Api.AgeVerification
             localVarRequestOptions.Data = ageVerifyRequest;
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<AgeVerifyResult>("/api/v2/ageverification/verify", localVarRequestOptions, scopes);
+            var localVarResponse = this.Client.Post<AgeVerifyResult>("/api/v2/ageverification/verify", localVarRequestOptions, requiredScopes);
 
             if (this.ExceptionFactory != null)
             {
@@ -230,7 +230,7 @@ namespace Avalara.SDK.Api.AgeVerification
             localVarRequestOptions.Data = ageVerifyRequest;
 
             // make the HTTP request
-			var localVarResponse = await this.Client.PostAsync<AgeVerifyResult>("/api/v2/ageverification/verify", localVarRequestOptions, cancellationToken, scopes).ConfigureAwait(false);
+			var localVarResponse = await this.Client.PostAsync<AgeVerifyResult>("/api/v2/ageverification/verify", localVarRequestOptions, cancellationToken, requiredScopes).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

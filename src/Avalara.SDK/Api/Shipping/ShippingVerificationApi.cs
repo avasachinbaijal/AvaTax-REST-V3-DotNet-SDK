@@ -154,7 +154,7 @@ namespace Avalara.SDK.Api.Shipping
     /// </summary>
     public partial class ShippingVerificationApi : IShippingVerificationApiSync, IShippingVerificationApiAsync
     {
-        private const string scopes = "TestScope";
+        private const string requiredScopes = "TestScope";
         private Avalara.SDK.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 		
         /// <summary>
@@ -244,7 +244,7 @@ namespace Avalara.SDK.Api.Shipping
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration", localVarRequestOptions, scopes);
+            var localVarResponse = this.Client.Delete<Object>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration", localVarRequestOptions, requiredScopes);
 
             if (this.ExceptionFactory != null)
             {
@@ -314,7 +314,7 @@ namespace Avalara.SDK.Api.Shipping
             }
 
             // make the HTTP request
-			var localVarResponse = await this.Client.DeleteAsync<Object>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration", localVarRequestOptions, cancellationToken, scopes).ConfigureAwait(false);
+			var localVarResponse = await this.Client.DeleteAsync<Object>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration", localVarRequestOptions, cancellationToken, requiredScopes).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -380,7 +380,7 @@ namespace Avalara.SDK.Api.Shipping
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Put<Object>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration", localVarRequestOptions, scopes);
+            var localVarResponse = this.Client.Put<Object>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration", localVarRequestOptions, requiredScopes);
 
             if (this.ExceptionFactory != null)
             {
@@ -450,7 +450,7 @@ namespace Avalara.SDK.Api.Shipping
             }
 
             // make the HTTP request
-			var localVarResponse = await this.Client.PutAsync<Object>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration", localVarRequestOptions, cancellationToken, scopes).ConfigureAwait(false);
+			var localVarResponse = await this.Client.PutAsync<Object>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration", localVarRequestOptions, cancellationToken, requiredScopes).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -517,7 +517,7 @@ namespace Avalara.SDK.Api.Shipping
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Put<ShippingVerifyResult>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registerIfCompliant", localVarRequestOptions, scopes);
+            var localVarResponse = this.Client.Put<ShippingVerifyResult>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registerIfCompliant", localVarRequestOptions, requiredScopes);
 
             if (this.ExceptionFactory != null)
             {
@@ -588,7 +588,7 @@ namespace Avalara.SDK.Api.Shipping
             }
 
             // make the HTTP request
-			var localVarResponse = await this.Client.PutAsync<ShippingVerifyResult>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registerIfCompliant", localVarRequestOptions, cancellationToken, scopes).ConfigureAwait(false);
+			var localVarResponse = await this.Client.PutAsync<ShippingVerifyResult>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registerIfCompliant", localVarRequestOptions, cancellationToken, requiredScopes).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -655,7 +655,7 @@ namespace Avalara.SDK.Api.Shipping
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<ShippingVerifyResult>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/verify", localVarRequestOptions, scopes);
+            var localVarResponse = this.Client.Get<ShippingVerifyResult>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/verify", localVarRequestOptions, requiredScopes);
 
             if (this.ExceptionFactory != null)
             {
@@ -726,7 +726,7 @@ namespace Avalara.SDK.Api.Shipping
             }
 
             // make the HTTP request
-			var localVarResponse = await this.Client.GetAsync<ShippingVerifyResult>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/verify", localVarRequestOptions, cancellationToken, scopes).ConfigureAwait(false);
+			var localVarResponse = await this.Client.GetAsync<ShippingVerifyResult>("/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/verify", localVarRequestOptions, cancellationToken, requiredScopes).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
