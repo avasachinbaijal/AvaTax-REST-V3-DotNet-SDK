@@ -154,7 +154,7 @@ namespace Avalara.SDK.Api.Shipping
     /// </summary>
     public partial class ShippingVerificationApi : IShippingVerificationApiSync, IShippingVerificationApiAsync
     {
-        private const string requiredScopes = "TestScope";
+        private const string requiredScopes = "*";
         private Avalara.SDK.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 		
         /// <summary>

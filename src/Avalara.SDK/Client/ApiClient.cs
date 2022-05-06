@@ -227,7 +227,7 @@ namespace Avalara.SDK.Client
         private void InterceptRequest(IRestRequest request, string requiredScopes)
         {
             //OAuth2 flow
-            if (!this.Configuration.ClientID.IsNullorEmpty())
+            if (!this.Configuration.ClientID.IsNullorEmpty() && !this.Configuration.ClientSecret.IsNullorEmpty())
             {
                 string accessKey = GetOAuthAccessToken(requiredScopes);
                 if (accessKey.IsNullorEmpty())
@@ -741,10 +741,13 @@ namespace Avalara.SDK.Client
 
             if (Configuration.Environment == null)
                 throw new ArgumentException("Environment is not set in the configuration");
-            if (Configuration.Environment == AvalaraEnvironment.Other)
+            if (Configuration.Environment == AvalaraEnvironment.Test)
             { 
-                if (string.IsNullOrEmpty(Configuration.BasePath))
-                    throw new ArgumentException("BasePath is not set in the configuration");                
+                if (string.IsNullOrEmpty(Configuration.TestBasePath))
+                    throw new ArgumentException("TestBasePath is required for Test Environment");
+
+                if (string.IsNullOrEmpty(Configuration.TestTokenURL))
+                    throw new ArgumentException("TestTokenURL is required for Test Environment");
             }
 
         }

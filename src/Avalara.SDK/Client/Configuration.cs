@@ -42,9 +42,9 @@ namespace Avalara.SDK.Client
         /// </summary>
         Production = 1,
         /// <summary>
-        /// Represents custom environment - User need to configure BasePath and TokenUrl (for OAuth2)
+        /// Represents Test environment - User need to configure TestBasePath and TestTokenUrl (for OAuth2)
         /// </summary>
-        Other = 2
+        Test = 2
     }
     /// <summary>
     /// Represents a set of configuration settings
@@ -153,10 +153,6 @@ namespace Avalara.SDK.Client
         /// </summary>
         public string BasePath
         {
-            set
-            {
-                _basePath = value;
-            }
             get {
                 switch (this.Environment)
                 {
@@ -166,12 +162,19 @@ namespace Avalara.SDK.Client
                     case AvalaraEnvironment.Sandbox:
                         _basePath = AVATAX_SANDBOX_URL;
                         break;
+                    case AvalaraEnvironment.Test:
+                        _basePath = TestBasePath;
+                        break;
                     default:
                         break;
                 }
                 return _basePath;
             }            
         }
+        /// <summary>
+        /// Base Path of the test environment.
+        /// </summary>
+        public string TestBasePath {set;get;}
 
         /// <summary>
         /// Gets or sets the default headers.
@@ -220,10 +223,6 @@ namespace Avalara.SDK.Client
         /// </summary>
         public string TokenURL
         {
-            set
-            {
-                _tokenURL = value;
-            }
             get
             {
                 switch (this.Environment)
@@ -234,12 +233,19 @@ namespace Avalara.SDK.Client
                     case AvalaraEnvironment.Sandbox:
                         _tokenURL = TOKEN_SANDBOX_URL;
                         break;
+                    case AvalaraEnvironment.Test:
+                        _tokenURL = TestTokenURL;
+                        break;
                     default:
                         break;
                 }
                 return _tokenURL;
             }
         }
+        /// <summary>
+        /// Token Server URL for Test system for oAuth2 flow
+        /// </summary>
+        public string TestTokenURL { set; get; }
         /// <summary>
         /// ClientID for oAuth2 flow
         /// </summary>
@@ -442,14 +448,14 @@ namespace Avalara.SDK.Client
                 Timeout = second.Timeout,
                 Username = second.Username ?? first.Username,
                 Password = second.Password ?? first.Password,
-                BasePath= second.BasePath ?? first.BasePath,
+                TestBasePath= second.TestBasePath ?? first.TestBasePath,
                 TempFolderPath = second.TempFolderPath ?? first.TempFolderPath,
                 DateTimeFormat = second.DateTimeFormat ?? first.DateTimeFormat,
                 Environment = second.Environment ?? first.Environment,
                 AppName = second.AppName ?? first.AppName,
                 AppVersion = second.AppVersion ?? first.AppVersion,
                 MachineName = second.MachineName ?? first.MachineName,
-                TokenURL = second.TokenURL ?? first.TokenURL,
+                TestTokenURL = second.TestTokenURL ?? first.TestTokenURL,
                 ClientID = second.ClientID ?? first.ClientID,
                 ClientSecret = second.ClientSecret ?? first.ClientSecret,
                 RequiredScopes = second.RequiredScopes ?? first.RequiredScopes
