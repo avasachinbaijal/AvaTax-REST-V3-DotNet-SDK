@@ -80,9 +80,9 @@ namespace Avalara.SDK.Api.AgeVerification
     /// </summary>
     public partial class AgeVerificationApi : IAgeVerificationApiSync, IAgeVerificationApiAsync
     {
-        private const string requiredScopes = "TestScope";
+        private const string requiredScopes = "*";
         private Avalara.SDK.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
-
+		
         /// <summary>
         /// Initializes a new instance of the <see cref="AgeVerificationApi"/> class
         /// using a Configuration object and client instance.

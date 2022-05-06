@@ -40,9 +40,13 @@ namespace Avalara.SDK.Client
         IDictionary<string, string> ApiKeyPrefix { get; }
 
         /// <summary>
-        /// Returns Avalara 
+        /// Base Path of the Avalara API 
         /// </summary>
-        string BasePath { set; get; }
+        string BasePath { get; }
+        /// <summary>
+        /// Base Path of the test environment.
+        /// </summary>
+        string TestBasePath { set; get; }
         /// <summary>
         /// Gets the date time format.
         /// </summary>
@@ -118,6 +122,10 @@ namespace Avalara.SDK.Client
         /// Token Server URL for oAuth2 flow
         /// </summary>
         string TokenURL { get;  }
+        /// <summary>
+        /// Token Server URL for Test system for oAuth2 flow
+        /// </summary>
+        string TestTokenURL { set; get; }
         /// <summary>
         /// ClientID for oAuth2 flow
         /// </summary>
