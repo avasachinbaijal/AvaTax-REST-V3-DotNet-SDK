@@ -6,9 +6,9 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * Avalara Shipping Verification for Beverage Alcohol
+ * foundation
  *
- * API for evaluating transactions against direct-to-consumer Beverage Alcohol shipping regulations.  This API is currently in beta. 
+ * Platform foundation consists of services on top of which the Avalara Compliance Cloud platform is built. These services are foundational and provide functionality such as common organization, tenant and user management for the rest of the compliance platform.
  *
 
  * @author     Sachin Baijal <sachin.baijal@avalara.com>
@@ -35,28 +35,38 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Avalara.SDK.Client.OpenAPIDateConverter;
 
-namespace Avalara.SDK.Model.Shipping
+namespace Avalara.SDK.Model.IAMDS
 {
     /// <summary>
-    /// Message Object
+    /// Name of the contact
     /// </summary>
     [DataContract]
-    public partial class ErrorDetails :  IEquatable<ErrorDetails>
+    public partial class ContactName :  IEquatable<ContactName>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ErrorDetails" /> class.
+        /// Initializes a new instance of the <see cref="ContactName" /> class.
         /// </summary>
-        /// <param name="error">error.</param>
-        public ErrorDetails(ErrorDetailsError error = default(ErrorDetailsError))
+        /// <param name="firstName">First Name.</param>
+        /// <param name="lastName">Last Name.</param>
+        public ContactName(string firstName = default(string), string lastName = default(string))
         {
-            this.Error = error;
+            this.FirstName = firstName;
+            this.LastName = lastName;
         }
 
         /// <summary>
-        /// Gets or Sets Error
+        /// First Name
         /// </summary>
-        [DataMember(Name="error", EmitDefaultValue=false)]
-        public ErrorDetailsError Error { get; set; }
+        /// <value>First Name</value>
+        [DataMember(Name="firstName", EmitDefaultValue=false)]
+        public string FirstName { get; set; }
+
+        /// <summary>
+        /// Last Name
+        /// </summary>
+        /// <value>Last Name</value>
+        [DataMember(Name="lastName", EmitDefaultValue=false)]
+        public string LastName { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -65,8 +75,9 @@ namespace Avalara.SDK.Model.Shipping
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ErrorDetails {\n");
-            sb.Append("  Error: ").Append(Error).Append("\n");
+            sb.Append("class ContactName {\n");
+            sb.Append("  FirstName: ").Append(FirstName).Append("\n");
+            sb.Append("  LastName: ").Append(LastName).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -87,24 +98,29 @@ namespace Avalara.SDK.Model.Shipping
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ErrorDetails);
+            return this.Equals(input as ContactName);
         }
 
         /// <summary>
-        /// Returns true if ErrorDetails instances are equal
+        /// Returns true if ContactName instances are equal
         /// </summary>
-        /// <param name="input">Instance of ErrorDetails to be compared</param>
+        /// <param name="input">Instance of ContactName to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ErrorDetails input)
+        public bool Equals(ContactName input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.Error == input.Error ||
-                    (this.Error != null &&
-                    this.Error.Equals(input.Error))
+                    this.FirstName == input.FirstName ||
+                    (this.FirstName != null &&
+                    this.FirstName.Equals(input.FirstName))
+                ) && 
+                (
+                    this.LastName == input.LastName ||
+                    (this.LastName != null &&
+                    this.LastName.Equals(input.LastName))
                 );
         }
 
@@ -117,8 +133,10 @@ namespace Avalara.SDK.Model.Shipping
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Error != null)
-                    hashCode = hashCode * 59 + this.Error.GetHashCode();
+                if (this.FirstName != null)
+                    hashCode = hashCode * 59 + this.FirstName.GetHashCode();
+                if (this.LastName != null)
+                    hashCode = hashCode * 59 + this.LastName.GetHashCode();
                 return hashCode;
             }
         }
