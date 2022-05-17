@@ -15,7 +15,7 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.4.32
+ * @version    2.4.33
  * @link       https://github.com/avadev/AvaTax-REST-V3-DotNet-SDK
  */
 
@@ -80,7 +80,7 @@ namespace Avalara.SDK.Api.AgeVerification
     /// </summary>
     public partial class AgeVerificationApi : IAgeVerificationApiSync, IAgeVerificationApiAsync
     {
-        private const string requiredScopes = "*";
+        private const string requiredScopes = "_SAMPLE_SCOPES_";
         private Avalara.SDK.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 		
         /// <summary>
@@ -250,7 +250,7 @@ namespace Avalara.SDK.Api.AgeVerification
             if (client.Configuration == null) throw new ArgumentNullException("ApiClient.Configuration");
 
             this.Client = client;
-            this.Client.SdkVersion = "2.4.32";
+            this.Client.SdkVersion = "2.4.33";
         }
         
     }
