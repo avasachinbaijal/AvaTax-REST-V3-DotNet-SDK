@@ -6,9 +6,9 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * Avalara Shipping Verification for Beverage Alcohol
+ * foundation
  *
- * API for evaluating transactions against direct-to-consumer Beverage Alcohol shipping regulations.  This API is currently in beta. 
+ * Platform foundation consists of services on top of which the Avalara Compliance Cloud platform is built. These services are foundational and provide functionality such as common organization, tenant and user management for the rest of the compliance platform.
  *
 
  * @author     Sachin Baijal <sachin.baijal@avalara.com>
@@ -35,28 +35,38 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Avalara.SDK.Client.OpenAPIDateConverter;
 
-namespace Avalara.SDK.Model.Shipping
+namespace Avalara.SDK.Model.IAMDS
 {
     /// <summary>
-    /// Message Object
+    /// Tags that can hold additional information about a resource
     /// </summary>
     [DataContract]
-    public partial class ErrorDetails :  IEquatable<ErrorDetails>
+    public partial class Tag :  IEquatable<Tag>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ErrorDetails" /> class.
+        /// Initializes a new instance of the <see cref="Tag" /> class.
         /// </summary>
-        /// <param name="error">error.</param>
-        public ErrorDetails(ErrorDetailsError error = default(ErrorDetailsError))
+        /// <param name="name">Name of the tag.</param>
+        /// <param name="value">User defined value.</param>
+        public Tag(string name = default(string), string value = default(string))
         {
-            this.Error = error;
+            this.Name = name;
+            this.Value = value;
         }
 
         /// <summary>
-        /// Gets or Sets Error
+        /// Name of the tag
         /// </summary>
-        [DataMember(Name="error", EmitDefaultValue=false)]
-        public ErrorDetailsError Error { get; set; }
+        /// <value>Name of the tag</value>
+        [DataMember(Name="name", EmitDefaultValue=false)]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// User defined value
+        /// </summary>
+        /// <value>User defined value</value>
+        [DataMember(Name="value", EmitDefaultValue=false)]
+        public string Value { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -65,8 +75,9 @@ namespace Avalara.SDK.Model.Shipping
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ErrorDetails {\n");
-            sb.Append("  Error: ").Append(Error).Append("\n");
+            sb.Append("class Tag {\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -87,24 +98,29 @@ namespace Avalara.SDK.Model.Shipping
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ErrorDetails);
+            return this.Equals(input as Tag);
         }
 
         /// <summary>
-        /// Returns true if ErrorDetails instances are equal
+        /// Returns true if Tag instances are equal
         /// </summary>
-        /// <param name="input">Instance of ErrorDetails to be compared</param>
+        /// <param name="input">Instance of Tag to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ErrorDetails input)
+        public bool Equals(Tag input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.Error == input.Error ||
-                    (this.Error != null &&
-                    this.Error.Equals(input.Error))
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
+                ) && 
+                (
+                    this.Value == input.Value ||
+                    (this.Value != null &&
+                    this.Value.Equals(input.Value))
                 );
         }
 
@@ -117,8 +133,10 @@ namespace Avalara.SDK.Model.Shipping
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Error != null)
-                    hashCode = hashCode * 59 + this.Error.GetHashCode();
+                if (this.Name != null)
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this.Value != null)
+                    hashCode = hashCode * 59 + this.Value.GetHashCode();
                 return hashCode;
             }
         }

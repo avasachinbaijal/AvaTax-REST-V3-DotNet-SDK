@@ -6,9 +6,9 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * Avalara Shipping Verification only
+ * foundation
  *
- * API for evaluating transactions against direct-to-consumer Beverage Alcohol shipping regulations.  This API is currently in beta. 
+ * Platform foundation consists of services on top of which the Avalara Compliance Cloud platform is built. These services are foundational and provide functionality such as common organization, tenant and user management for the rest of the compliance platform.
  *
 
  * @author     Sachin Baijal <sachin.baijal@avalara.com>
@@ -35,49 +35,31 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Avalara.SDK.Client.OpenAPIDateConverter;
 
-namespace Avalara.SDK.Model.AgeVerification
+namespace Avalara.SDK.Model.IAMDS
 {
     /// <summary>
-    /// Defines AgeVerifyFailureCode
+    /// Defines VersionError
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum AgeVerifyFailureCode
+    public enum VersionError
     {
         /// <summary>
-        /// Enum NotFound for value: not_found
+        /// Enum TooNew for value: version-too-new
         /// </summary>
-        [EnumMember(Value = "not_found")]
-        NotFound = 1,
+        [EnumMember(Value = "version-too-new")]
+        TooNew = 1,
 
         /// <summary>
-        /// Enum DobUnverifiable for value: dob_unverifiable
+        /// Enum TooOld for value: version-too-old
         /// </summary>
-        [EnumMember(Value = "dob_unverifiable")]
-        DobUnverifiable = 2,
+        [EnumMember(Value = "version-too-old")]
+        TooOld = 2,
 
         /// <summary>
-        /// Enum UnderAge for value: under_age
+        /// Enum NotValid for value: version-not-valid
         /// </summary>
-        [EnumMember(Value = "under_age")]
-        UnderAge = 3,
-
-        /// <summary>
-        /// Enum SuspectedFraud for value: suspected_fraud
-        /// </summary>
-        [EnumMember(Value = "suspected_fraud")]
-        SuspectedFraud = 4,
-
-        /// <summary>
-        /// Enum Deceased for value: deceased
-        /// </summary>
-        [EnumMember(Value = "deceased")]
-        Deceased = 5,
-
-        /// <summary>
-        /// Enum UnknownError for value: unknown_error
-        /// </summary>
-        [EnumMember(Value = "unknown_error")]
-        UnknownError = 6
+        [EnumMember(Value = "version-not-valid")]
+        NotValid = 3
 
     }
 

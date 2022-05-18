@@ -6,9 +6,9 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * Avalara Shipping Verification for Beverage Alcohol
+ * foundation
  *
- * API for evaluating transactions against direct-to-consumer Beverage Alcohol shipping regulations.  This API is currently in beta. 
+ * Platform foundation consists of services on top of which the Avalara Compliance Cloud platform is built. These services are foundational and provide functionality such as common organization, tenant and user management for the rest of the compliance platform.
  *
 
  * @author     Sachin Baijal <sachin.baijal@avalara.com>
@@ -35,28 +35,38 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Avalara.SDK.Client.OpenAPIDateConverter;
 
-namespace Avalara.SDK.Model.Shipping
+namespace Avalara.SDK.Model.IAMDS
 {
     /// <summary>
-    /// Message Object
+    /// ContactEmails
     /// </summary>
     [DataContract]
-    public partial class ErrorDetails :  IEquatable<ErrorDetails>
+    public partial class ContactEmails :  IEquatable<ContactEmails>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ErrorDetails" /> class.
+        /// Initializes a new instance of the <see cref="ContactEmails" /> class.
         /// </summary>
-        /// <param name="error">error.</param>
-        public ErrorDetails(ErrorDetailsError error = default(ErrorDetailsError))
+        /// <param name="emailId">Email address of the contact.</param>
+        /// <param name="isPrimary">Is this the primary email Id for the contact.</param>
+        public ContactEmails(string emailId = default(string), bool isPrimary = default(bool))
         {
-            this.Error = error;
+            this.EmailId = emailId;
+            this.IsPrimary = isPrimary;
         }
 
         /// <summary>
-        /// Gets or Sets Error
+        /// Email address of the contact
         /// </summary>
-        [DataMember(Name="error", EmitDefaultValue=false)]
-        public ErrorDetailsError Error { get; set; }
+        /// <value>Email address of the contact</value>
+        [DataMember(Name="emailId", EmitDefaultValue=false)]
+        public string EmailId { get; set; }
+
+        /// <summary>
+        /// Is this the primary email Id for the contact
+        /// </summary>
+        /// <value>Is this the primary email Id for the contact</value>
+        [DataMember(Name="isPrimary", EmitDefaultValue=false)]
+        public bool IsPrimary { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -65,8 +75,9 @@ namespace Avalara.SDK.Model.Shipping
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ErrorDetails {\n");
-            sb.Append("  Error: ").Append(Error).Append("\n");
+            sb.Append("class ContactEmails {\n");
+            sb.Append("  EmailId: ").Append(EmailId).Append("\n");
+            sb.Append("  IsPrimary: ").Append(IsPrimary).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -87,24 +98,29 @@ namespace Avalara.SDK.Model.Shipping
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ErrorDetails);
+            return this.Equals(input as ContactEmails);
         }
 
         /// <summary>
-        /// Returns true if ErrorDetails instances are equal
+        /// Returns true if ContactEmails instances are equal
         /// </summary>
-        /// <param name="input">Instance of ErrorDetails to be compared</param>
+        /// <param name="input">Instance of ContactEmails to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ErrorDetails input)
+        public bool Equals(ContactEmails input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.Error == input.Error ||
-                    (this.Error != null &&
-                    this.Error.Equals(input.Error))
+                    this.EmailId == input.EmailId ||
+                    (this.EmailId != null &&
+                    this.EmailId.Equals(input.EmailId))
+                ) && 
+                (
+                    this.IsPrimary == input.IsPrimary ||
+                    (this.IsPrimary != null &&
+                    this.IsPrimary.Equals(input.IsPrimary))
                 );
         }
 
@@ -117,8 +133,10 @@ namespace Avalara.SDK.Model.Shipping
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Error != null)
-                    hashCode = hashCode * 59 + this.Error.GetHashCode();
+                if (this.EmailId != null)
+                    hashCode = hashCode * 59 + this.EmailId.GetHashCode();
+                if (this.IsPrimary != null)
+                    hashCode = hashCode * 59 + this.IsPrimary.GetHashCode();
                 return hashCode;
             }
         }
