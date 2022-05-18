@@ -6,9 +6,9 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * Avalara Shipping Verification only
+ * foundation
  *
- * API for evaluating transactions against direct-to-consumer Beverage Alcohol shipping regulations.  This API is currently in beta. 
+ * Platform foundation consists of services on top of which the Avalara Compliance Cloud platform is built. These services are foundational and provide functionality such as common organization, tenant and user management for the rest of the compliance platform.
  *
 
  * @author     Sachin Baijal <sachin.baijal@avalara.com>
@@ -35,53 +35,38 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Avalara.SDK.Client.OpenAPIDateConverter;
 
-namespace Avalara.SDK.Model.AgeVerification
+namespace Avalara.SDK.Model.IAMDS
 {
     /// <summary>
-    /// The Request for the /ageVerification/verify endpoint. Describes information about the person whose age is being verified.
+    /// Name of the contact
     /// </summary>
     [DataContract]
-    public partial class AgeVerifyRequest :  IEquatable<AgeVerifyRequest>
+    public partial class ContactName :  IEquatable<ContactName>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AgeVerifyRequest" /> class.
+        /// Initializes a new instance of the <see cref="ContactName" /> class.
         /// </summary>
-        /// <param name="firstName">firstName.</param>
-        /// <param name="lastName">lastName.</param>
-        /// <param name="address">address.</param>
-        /// <param name="dOB">The value should be ISO-8601 compliant (e.g. 2020-07-21)..</param>
-        public AgeVerifyRequest(string firstName = default(string), string lastName = default(string), AgeVerifyRequestAddress address = default(AgeVerifyRequestAddress), string dOB = default(string))
+        /// <param name="firstName">First Name.</param>
+        /// <param name="lastName">Last Name.</param>
+        public ContactName(string firstName = default(string), string lastName = default(string))
         {
             this.FirstName = firstName;
             this.LastName = lastName;
-            this.Address = address;
-            this.DOB = dOB;
         }
 
         /// <summary>
-        /// Gets or Sets FirstName
+        /// First Name
         /// </summary>
+        /// <value>First Name</value>
         [DataMember(Name="firstName", EmitDefaultValue=false)]
         public string FirstName { get; set; }
 
         /// <summary>
-        /// Gets or Sets LastName
+        /// Last Name
         /// </summary>
+        /// <value>Last Name</value>
         [DataMember(Name="lastName", EmitDefaultValue=false)]
         public string LastName { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Address
-        /// </summary>
-        [DataMember(Name="address", EmitDefaultValue=false)]
-        public AgeVerifyRequestAddress Address { get; set; }
-
-        /// <summary>
-        /// The value should be ISO-8601 compliant (e.g. 2020-07-21).
-        /// </summary>
-        /// <value>The value should be ISO-8601 compliant (e.g. 2020-07-21).</value>
-        [DataMember(Name="DOB", EmitDefaultValue=false)]
-        public string DOB { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -90,11 +75,9 @@ namespace Avalara.SDK.Model.AgeVerification
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class AgeVerifyRequest {\n");
+            sb.Append("class ContactName {\n");
             sb.Append("  FirstName: ").Append(FirstName).Append("\n");
             sb.Append("  LastName: ").Append(LastName).Append("\n");
-            sb.Append("  Address: ").Append(Address).Append("\n");
-            sb.Append("  DOB: ").Append(DOB).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -115,15 +98,15 @@ namespace Avalara.SDK.Model.AgeVerification
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AgeVerifyRequest);
+            return this.Equals(input as ContactName);
         }
 
         /// <summary>
-        /// Returns true if AgeVerifyRequest instances are equal
+        /// Returns true if ContactName instances are equal
         /// </summary>
-        /// <param name="input">Instance of AgeVerifyRequest to be compared</param>
+        /// <param name="input">Instance of ContactName to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(AgeVerifyRequest input)
+        public bool Equals(ContactName input)
         {
             if (input == null)
                 return false;
@@ -138,16 +121,6 @@ namespace Avalara.SDK.Model.AgeVerification
                     this.LastName == input.LastName ||
                     (this.LastName != null &&
                     this.LastName.Equals(input.LastName))
-                ) && 
-                (
-                    this.Address == input.Address ||
-                    (this.Address != null &&
-                    this.Address.Equals(input.Address))
-                ) && 
-                (
-                    this.DOB == input.DOB ||
-                    (this.DOB != null &&
-                    this.DOB.Equals(input.DOB))
                 );
         }
 
@@ -164,10 +137,6 @@ namespace Avalara.SDK.Model.AgeVerification
                     hashCode = hashCode * 59 + this.FirstName.GetHashCode();
                 if (this.LastName != null)
                     hashCode = hashCode * 59 + this.LastName.GetHashCode();
-                if (this.Address != null)
-                    hashCode = hashCode * 59 + this.Address.GetHashCode();
-                if (this.DOB != null)
-                    hashCode = hashCode * 59 + this.DOB.GetHashCode();
                 return hashCode;
             }
         }
