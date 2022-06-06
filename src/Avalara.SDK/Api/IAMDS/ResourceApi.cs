@@ -278,7 +278,6 @@ namespace Avalara.SDK.Api.IAMDS
     /// </summary>
     public partial class ResourceApi : IResourceApiSync, IResourceApiAsync
     {
-        private const string requiredScopes = "_SAMPLE_SCOPES_";
         private Avalara.SDK.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 		
         /// <summary>
@@ -337,6 +336,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Resource</returns>
         private Avalara.SDK.Client.ApiResponse<Resource> CreateResourceWithHttpInfo(string avalaraVersion = default(string), string xCorrelationId = default(string), Resource resource = default(Resource))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -403,6 +404,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (Resource)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Resource>> CreateResourceWithHttpInfoAsync(string avalaraVersion = default(string), string xCorrelationId = default(string), Resource resource = default(Resource), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
 
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
@@ -468,6 +471,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> DeleteResourceWithHttpInfo(string resourceId, string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'resourceId' is set
             if (resourceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'resourceId' when calling ResourceApi->DeleteResource");
@@ -535,6 +540,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> DeleteResourceWithHttpInfoAsync(string resourceId, string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'resourceId' is set
             if (resourceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'resourceId' when calling ResourceApi->DeleteResource");
@@ -607,6 +614,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Resource</returns>
         private Avalara.SDK.Client.ApiResponse<Resource> GetResourceWithHttpInfo(string resourceId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifNoneMatch = default(string), string ifMatch = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'resourceId' is set
             if (resourceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'resourceId' when calling ResourceApi->GetResource");
@@ -688,6 +697,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (Resource)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Resource>> GetResourceWithHttpInfoAsync(string resourceId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifNoneMatch = default(string), string ifMatch = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'resourceId' is set
             if (resourceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'resourceId' when calling ResourceApi->GetResource");
@@ -777,6 +788,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of PermissionList</returns>
         private Avalara.SDK.Client.ApiResponse<PermissionList> ListResourcePermissionsWithHttpInfo(string resourceId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'resourceId' is set
             if (resourceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'resourceId' when calling ResourceApi->ListResourcePermissions");
@@ -882,6 +895,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (PermissionList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<PermissionList>> ListResourcePermissionsWithHttpInfoAsync(string resourceId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'resourceId' is set
             if (resourceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'resourceId' when calling ResourceApi->ListResourcePermissions");
@@ -985,6 +1000,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of ResourceList</returns>
         private Avalara.SDK.Client.ApiResponse<ResourceList> ListResourcesWithHttpInfo(string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1083,6 +1100,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (ResourceList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<ResourceList>> ListResourcesWithHttpInfoAsync(string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
 
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
@@ -1174,6 +1193,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> PatchResourceWithHttpInfo(string resourceId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Resource resource = default(Resource))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'resourceId' is set
             if (resourceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'resourceId' when calling ResourceApi->PatchResource");
@@ -1251,6 +1272,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> PatchResourceWithHttpInfoAsync(string resourceId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Resource resource = default(Resource), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'resourceId' is set
             if (resourceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'resourceId' when calling ResourceApi->PatchResource");
@@ -1328,6 +1351,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> ReplaceResourceWithHttpInfo(string resourceId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Resource resource = default(Resource))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'resourceId' is set
             if (resourceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'resourceId' when calling ResourceApi->ReplaceResource");
@@ -1405,6 +1430,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> ReplaceResourceWithHttpInfoAsync(string resourceId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Resource resource = default(Resource), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'resourceId' is set
             if (resourceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'resourceId' when calling ResourceApi->ReplaceResource");

@@ -530,7 +530,6 @@ namespace Avalara.SDK.Api.IAMDS
     /// </summary>
     public partial class GroupApi : IGroupApiSync, IGroupApiAsync
     {
-        private const string requiredScopes = "_SAMPLE_SCOPES_";
         private Avalara.SDK.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 		
         /// <summary>
@@ -590,6 +589,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> AddDeviceToGroupWithHttpInfo(string groupId, string deviceId, string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->AddDeviceToGroup");
@@ -664,6 +665,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> AddDeviceToGroupWithHttpInfoAsync(string groupId, string deviceId, string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->AddDeviceToGroup");
@@ -738,6 +741,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> AddGrantToGroupWithHttpInfo(string groupId, string grantId, string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->AddGrantToGroup");
@@ -812,6 +817,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> AddGrantToGroupWithHttpInfoAsync(string groupId, string grantId, string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->AddGrantToGroup");
@@ -886,6 +893,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> AddUserToGroupWithHttpInfo(string groupId, string userId, string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->AddUserToGroup");
@@ -960,6 +969,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> AddUserToGroupWithHttpInfoAsync(string groupId, string userId, string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->AddUserToGroup");
@@ -1033,6 +1044,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Group</returns>
         private Avalara.SDK.Client.ApiResponse<Group> CreateGroupWithHttpInfo(string avalaraVersion = default(string), string xCorrelationId = default(string), Group group = default(Group))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1099,6 +1112,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (Group)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Group>> CreateGroupWithHttpInfoAsync(string avalaraVersion = default(string), string xCorrelationId = default(string), Group group = default(Group), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
 
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
@@ -1166,6 +1181,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> DeleteGroupWithHttpInfo(string groupId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->DeleteGroup");
@@ -1239,6 +1256,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> DeleteGroupWithHttpInfoAsync(string groupId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->DeleteGroup");
@@ -1313,6 +1332,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Group</returns>
         private Avalara.SDK.Client.ApiResponse<Group> GetGroupWithHttpInfo(string groupId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifNoneMatch = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->GetGroup");
@@ -1388,6 +1409,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (Group)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Group>> GetGroupWithHttpInfoAsync(string groupId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifNoneMatch = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->GetGroup");
@@ -1473,6 +1496,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of DeviceList</returns>
         private Avalara.SDK.Client.ApiResponse<DeviceList> ListGroupDevicesWithHttpInfo(string groupId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->ListGroupDevices");
@@ -1578,6 +1603,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (DeviceList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<DeviceList>> ListGroupDevicesWithHttpInfoAsync(string groupId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->ListGroupDevices");
@@ -1683,6 +1710,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of GrantList</returns>
         private Avalara.SDK.Client.ApiResponse<GrantList> ListGroupGrantsWithHttpInfo(string groupId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->ListGroupGrants");
@@ -1788,6 +1817,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (GrantList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<GrantList>> ListGroupGrantsWithHttpInfoAsync(string groupId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->ListGroupGrants");
@@ -1893,6 +1924,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of UserList</returns>
         private Avalara.SDK.Client.ApiResponse<UserList> ListGroupUsersWithHttpInfo(string groupId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->ListGroupUsers");
@@ -1998,6 +2031,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (UserList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<UserList>> ListGroupUsersWithHttpInfoAsync(string groupId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->ListGroupUsers");
@@ -2101,6 +2136,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of GroupList</returns>
         private Avalara.SDK.Client.ApiResponse<GroupList> ListGroupsWithHttpInfo(string filter = default(string), string top = default(string), string skip = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string orderBy = default(string), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -2199,6 +2236,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (GroupList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<GroupList>> ListGroupsWithHttpInfoAsync(string filter = default(string), string top = default(string), string skip = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string orderBy = default(string), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
 
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
@@ -2290,6 +2329,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> PatchGroupWithHttpInfo(string groupId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Group group = default(Group))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->PatchGroup");
@@ -2367,6 +2408,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> PatchGroupWithHttpInfoAsync(string groupId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Group group = default(Group), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->PatchGroup");
@@ -2442,6 +2485,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> RemoveDeviceFromGroupWithHttpInfo(string groupId, string deviceId, string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->RemoveDeviceFromGroup");
@@ -2516,6 +2561,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> RemoveDeviceFromGroupWithHttpInfoAsync(string groupId, string deviceId, string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->RemoveDeviceFromGroup");
@@ -2590,6 +2637,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> RemoveGrantFromGroupWithHttpInfo(string groupId, string grantId, string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->RemoveGrantFromGroup");
@@ -2664,6 +2713,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> RemoveGrantFromGroupWithHttpInfoAsync(string groupId, string grantId, string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->RemoveGrantFromGroup");
@@ -2738,6 +2789,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> RemoveUserFromGroupWithHttpInfo(string groupId, string userId, string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->RemoveUserFromGroup");
@@ -2812,6 +2865,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> RemoveUserFromGroupWithHttpInfoAsync(string groupId, string userId, string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->RemoveUserFromGroup");
@@ -2888,6 +2943,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> ReplaceGroupWithHttpInfo(string groupId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Group group = default(Group))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->ReplaceGroup");
@@ -2965,6 +3022,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> ReplaceGroupWithHttpInfoAsync(string groupId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Group group = default(Group), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'groupId' is set
             if (groupId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'groupId' when calling GroupApi->ReplaceGroup");

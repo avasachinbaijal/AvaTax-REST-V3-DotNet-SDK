@@ -375,7 +375,6 @@ namespace Avalara.SDK.Api.IAMDS
     /// </summary>
     public partial class DeviceApi : IDeviceApiSync, IDeviceApiAsync
     {
-        private const string requiredScopes = "_SAMPLE_SCOPES_";
         private Avalara.SDK.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 		
         /// <summary>
@@ -435,6 +434,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> AddGrantToDeviceWithHttpInfo(string deviceId, string grantId, string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'deviceId' when calling DeviceApi->AddGrantToDevice");
@@ -509,6 +510,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> AddGrantToDeviceWithHttpInfoAsync(string deviceId, string grantId, string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'deviceId' when calling DeviceApi->AddGrantToDevice");
@@ -582,6 +585,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Device</returns>
         private Avalara.SDK.Client.ApiResponse<Device> CreateDeviceWithHttpInfo(string avalaraVersion = default(string), string xCorrelationId = default(string), Device device = default(Device))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -648,6 +653,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (Device)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Device>> CreateDeviceWithHttpInfoAsync(string avalaraVersion = default(string), string xCorrelationId = default(string), Device device = default(Device), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
 
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
@@ -715,6 +722,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> DeleteDeviceWithHttpInfo(string deviceId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'deviceId' when calling DeviceApi->DeleteDevice");
@@ -788,6 +797,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> DeleteDeviceWithHttpInfoAsync(string deviceId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'deviceId' when calling DeviceApi->DeleteDevice");
@@ -862,6 +873,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Device</returns>
         private Avalara.SDK.Client.ApiResponse<Device> GetDeviceWithHttpInfo(string deviceId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifNoneMatch = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'deviceId' when calling DeviceApi->GetDevice");
@@ -937,6 +950,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (Device)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Device>> GetDeviceWithHttpInfoAsync(string deviceId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifNoneMatch = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'deviceId' when calling DeviceApi->GetDevice");
@@ -1022,6 +1037,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of GroupList</returns>
         private Avalara.SDK.Client.ApiResponse<GroupList> GetDeviceGroupsWithHttpInfo(string deviceId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'deviceId' when calling DeviceApi->GetDeviceGroups");
@@ -1127,6 +1144,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (GroupList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<GroupList>> GetDeviceGroupsWithHttpInfoAsync(string deviceId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'deviceId' when calling DeviceApi->GetDeviceGroups");
@@ -1232,6 +1251,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of DeviceList</returns>
         private Avalara.SDK.Client.ApiResponse<DeviceList> ListDeviceGrantsWithHttpInfo(string deviceId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'deviceId' when calling DeviceApi->ListDeviceGrants");
@@ -1337,6 +1358,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (DeviceList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<DeviceList>> ListDeviceGrantsWithHttpInfoAsync(string deviceId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'deviceId' when calling DeviceApi->ListDeviceGrants");
@@ -1440,6 +1463,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of DeviceList</returns>
         private Avalara.SDK.Client.ApiResponse<DeviceList> ListDevicesWithHttpInfo(string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1538,6 +1563,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (DeviceList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<DeviceList>> ListDevicesWithHttpInfoAsync(string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
 
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
@@ -1629,6 +1656,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> PatchDeviceWithHttpInfo(string deviceId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Device device = default(Device))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'deviceId' when calling DeviceApi->PatchDevice");
@@ -1706,6 +1735,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> PatchDeviceWithHttpInfoAsync(string deviceId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Device device = default(Device), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'deviceId' when calling DeviceApi->PatchDevice");
@@ -1781,6 +1812,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> RemoveGrantFromDeviceWithHttpInfo(string deviceId, string grantId, string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'deviceId' when calling DeviceApi->RemoveGrantFromDevice");
@@ -1855,6 +1888,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> RemoveGrantFromDeviceWithHttpInfoAsync(string deviceId, string grantId, string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'deviceId' when calling DeviceApi->RemoveGrantFromDevice");
@@ -1931,6 +1966,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> ReplaceDeviceWithHttpInfo(string deviceId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Device device = default(Device))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'deviceId' when calling DeviceApi->ReplaceDevice");
@@ -2008,6 +2045,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> ReplaceDeviceWithHttpInfoAsync(string deviceId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Device device = default(Device), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'deviceId' when calling DeviceApi->ReplaceDevice");

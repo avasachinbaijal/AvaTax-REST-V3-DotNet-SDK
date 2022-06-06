@@ -239,7 +239,6 @@ namespace Avalara.SDK.Api.IAMDS
     /// </summary>
     public partial class PermissionApi : IPermissionApiSync, IPermissionApiAsync
     {
-        private const string requiredScopes = "_SAMPLE_SCOPES_";
         private Avalara.SDK.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 		
         /// <summary>
@@ -298,6 +297,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Permission</returns>
         private Avalara.SDK.Client.ApiResponse<Permission> CreatePermissionWithHttpInfo(string avalaraVersion = default(string), string xCorrelationId = default(string), Permission permission = default(Permission))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -364,6 +365,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (Permission)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Permission>> CreatePermissionWithHttpInfoAsync(string avalaraVersion = default(string), string xCorrelationId = default(string), Permission permission = default(Permission), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
 
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
@@ -431,6 +434,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> DeletePermissionWithHttpInfo(string permissionId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'permissionId' is set
             if (permissionId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'permissionId' when calling PermissionApi->DeletePermission");
@@ -504,6 +509,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> DeletePermissionWithHttpInfoAsync(string permissionId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'permissionId' is set
             if (permissionId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'permissionId' when calling PermissionApi->DeletePermission");
@@ -578,6 +585,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Permission</returns>
         private Avalara.SDK.Client.ApiResponse<Permission> GetPermissionWithHttpInfo(string permissionId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifNoneMatch = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'permissionId' is set
             if (permissionId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'permissionId' when calling PermissionApi->GetPermission");
@@ -653,6 +662,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (Permission)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Permission>> GetPermissionWithHttpInfoAsync(string permissionId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifNoneMatch = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'permissionId' is set
             if (permissionId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'permissionId' when calling PermissionApi->GetPermission");
@@ -736,6 +747,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of PermissionList</returns>
         private Avalara.SDK.Client.ApiResponse<PermissionList> ListPermissionsWithHttpInfo(string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -834,6 +847,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (PermissionList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<PermissionList>> ListPermissionsWithHttpInfoAsync(string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
 
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
@@ -925,6 +940,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> PatchPermissionWithHttpInfo(string permissionId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Permission permission = default(Permission))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'permissionId' is set
             if (permissionId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'permissionId' when calling PermissionApi->PatchPermission");
@@ -1002,6 +1019,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> PatchPermissionWithHttpInfoAsync(string permissionId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Permission permission = default(Permission), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'permissionId' is set
             if (permissionId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'permissionId' when calling PermissionApi->PatchPermission");
@@ -1079,6 +1098,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> ReplacePermissionWithHttpInfo(string permissionId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Permission permission = default(Permission))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'permissionId' is set
             if (permissionId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'permissionId' when calling PermissionApi->ReplacePermission");
@@ -1156,6 +1177,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> ReplacePermissionWithHttpInfoAsync(string permissionId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Permission permission = default(Permission), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'permissionId' is set
             if (permissionId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'permissionId' when calling PermissionApi->ReplacePermission");

@@ -655,7 +655,6 @@ namespace Avalara.SDK.Api.IAMDS
     /// </summary>
     public partial class TenantApi : ITenantApiSync, ITenantApiAsync
     {
-        private const string requiredScopes = "_SAMPLE_SCOPES_";
         private Avalara.SDK.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 		
         /// <summary>
@@ -715,6 +714,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> AddDeviceToTenantWithHttpInfo(string tenantId, string deviceId, string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->AddDeviceToTenant");
@@ -789,6 +790,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> AddDeviceToTenantWithHttpInfoAsync(string tenantId, string deviceId, string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->AddDeviceToTenant");
@@ -865,6 +868,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> AddGrantToTenantUserWithHttpInfo(string tenantId, string userId, string grantId, string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->AddGrantToTenantUser");
@@ -946,6 +951,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> AddGrantToTenantUserWithHttpInfoAsync(string tenantId, string userId, string grantId, string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->AddGrantToTenantUser");
@@ -1025,6 +1032,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> AddUserToTenantWithHttpInfo(string tenantId, string userId, string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->AddUserToTenant");
@@ -1099,6 +1108,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> AddUserToTenantWithHttpInfoAsync(string tenantId, string userId, string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->AddUserToTenant");
@@ -1172,6 +1183,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Tenant</returns>
         private Avalara.SDK.Client.ApiResponse<Tenant> CreateTenantWithHttpInfo(string avalaraVersion = default(string), string xCorrelationId = default(string), Tenant tenant = default(Tenant))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1238,6 +1251,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (Tenant)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Tenant>> CreateTenantWithHttpInfoAsync(string avalaraVersion = default(string), string xCorrelationId = default(string), Tenant tenant = default(Tenant), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
 
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
@@ -1305,6 +1320,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> DeleteTenantWithHttpInfo(string tenantId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->DeleteTenant");
@@ -1378,6 +1395,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> DeleteTenantWithHttpInfoAsync(string tenantId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->DeleteTenant");
@@ -1452,6 +1471,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Tenant</returns>
         private Avalara.SDK.Client.ApiResponse<Tenant> GetTenantWithHttpInfo(string tenantId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifNoneMatch = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->GetTenant");
@@ -1527,6 +1548,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (Tenant)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Tenant>> GetTenantWithHttpInfoAsync(string tenantId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifNoneMatch = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->GetTenant");
@@ -1612,6 +1635,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of DeviceList</returns>
         private Avalara.SDK.Client.ApiResponse<DeviceList> ListTenantDevicesWithHttpInfo(string tenantId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->ListTenantDevices");
@@ -1717,6 +1742,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (DeviceList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<DeviceList>> ListTenantDevicesWithHttpInfoAsync(string tenantId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->ListTenantDevices");
@@ -1822,6 +1849,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of EntitlementList</returns>
         private Avalara.SDK.Client.ApiResponse<EntitlementList> ListTenantEntitlementsWithHttpInfo(string tenantId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->ListTenantEntitlements");
@@ -1927,6 +1956,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (EntitlementList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<EntitlementList>> ListTenantEntitlementsWithHttpInfoAsync(string tenantId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->ListTenantEntitlements");
@@ -2032,6 +2063,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of GroupList</returns>
         private Avalara.SDK.Client.ApiResponse<GroupList> ListTenantGroupsWithHttpInfo(string tenantId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->ListTenantGroups");
@@ -2137,6 +2170,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (GroupList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<GroupList>> ListTenantGroupsWithHttpInfoAsync(string tenantId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->ListTenantGroups");
@@ -2244,6 +2279,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of GrantList</returns>
         private Avalara.SDK.Client.ApiResponse<GrantList> ListTenantUserGrantsWithHttpInfo(string tenantId, string userId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->ListTenantUserGrants");
@@ -2356,6 +2393,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (GrantList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<GrantList>> ListTenantUserGrantsWithHttpInfoAsync(string tenantId, string userId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->ListTenantUserGrants");
@@ -2468,6 +2507,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of GroupList</returns>
         private Avalara.SDK.Client.ApiResponse<GroupList> ListTenantUserGroupsWithHttpInfo(string tenantId, string userId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->ListTenantUserGroups");
@@ -2580,6 +2621,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (GroupList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<GroupList>> ListTenantUserGroupsWithHttpInfoAsync(string tenantId, string userId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->ListTenantUserGroups");
@@ -2690,6 +2733,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of UserList</returns>
         private Avalara.SDK.Client.ApiResponse<UserList> ListTenantUsersWithHttpInfo(string tenantId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->ListTenantUsers");
@@ -2795,6 +2840,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (UserList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<UserList>> ListTenantUsersWithHttpInfoAsync(string tenantId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->ListTenantUsers");
@@ -2898,6 +2945,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of TenantList</returns>
         private Avalara.SDK.Client.ApiResponse<TenantList> ListTenantsWithHttpInfo(string filter = default(string), string top = default(string), string skip = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string orderBy = default(string), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "TestScope TestScope1";
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -2996,6 +3045,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (TenantList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<TenantList>> ListTenantsWithHttpInfoAsync(string filter = default(string), string top = default(string), string skip = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string orderBy = default(string), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "TestScope TestScope1";
 
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
@@ -3087,6 +3138,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> PatchTenantWithHttpInfo(string tenantId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Tenant tenant = default(Tenant))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->PatchTenant");
@@ -3164,6 +3217,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> PatchTenantWithHttpInfoAsync(string tenantId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Tenant tenant = default(Tenant), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->PatchTenant");
@@ -3239,6 +3294,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> RemoveDeviceFromTenantWithHttpInfo(string tenantId, string deviceId, string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->RemoveDeviceFromTenant");
@@ -3313,6 +3370,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> RemoveDeviceFromTenantWithHttpInfoAsync(string tenantId, string deviceId, string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->RemoveDeviceFromTenant");
@@ -3389,6 +3448,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> RemoveGrantFromTenantUserWithHttpInfo(string tenantId, string userId, string grantId, string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->RemoveGrantFromTenantUser");
@@ -3470,6 +3531,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> RemoveGrantFromTenantUserWithHttpInfoAsync(string tenantId, string userId, string grantId, string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->RemoveGrantFromTenantUser");
@@ -3549,6 +3612,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> RemoveUserFromTenantWithHttpInfo(string tenantId, string userId, string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->RemoveUserFromTenant");
@@ -3623,6 +3688,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> RemoveUserFromTenantWithHttpInfoAsync(string tenantId, string userId, string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->RemoveUserFromTenant");
@@ -3699,6 +3766,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> ReplaceTenantWithHttpInfo(string tenantId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Tenant tenant = default(Tenant))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->ReplaceTenant");
@@ -3776,6 +3845,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> ReplaceTenantWithHttpInfoAsync(string tenantId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Tenant tenant = default(Tenant), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'tenantId' is set
             if (tenantId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'tenantId' when calling TenantApi->ReplaceTenant");

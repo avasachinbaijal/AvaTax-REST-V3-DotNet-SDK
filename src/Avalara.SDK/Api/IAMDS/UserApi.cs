@@ -278,7 +278,6 @@ namespace Avalara.SDK.Api.IAMDS
     /// </summary>
     public partial class UserApi : IUserApiSync, IUserApiAsync
     {
-        private const string requiredScopes = "_SAMPLE_SCOPES_";
         private Avalara.SDK.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 		
         /// <summary>
@@ -337,6 +336,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of User</returns>
         private Avalara.SDK.Client.ApiResponse<User> CreateUserWithHttpInfo(string avalaraVersion = default(string), string xCorrelationId = default(string), User user = default(User))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "TestScope1";
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -403,6 +404,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (User)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<User>> CreateUserWithHttpInfoAsync(string avalaraVersion = default(string), string xCorrelationId = default(string), User user = default(User), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "TestScope1";
 
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
@@ -470,6 +473,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> DeleteUserWithHttpInfo(string userId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'userId' is set
             if (userId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'userId' when calling UserApi->DeleteUser");
@@ -543,6 +548,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> DeleteUserWithHttpInfoAsync(string userId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'userId' is set
             if (userId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'userId' when calling UserApi->DeleteUser");
@@ -617,6 +624,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of User</returns>
         private Avalara.SDK.Client.ApiResponse<User> GetUserWithHttpInfo(string userId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifNoneMatch = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam";
             // verify the required parameter 'userId' is set
             if (userId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'userId' when calling UserApi->GetUser");
@@ -692,6 +701,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (User)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<User>> GetUserWithHttpInfoAsync(string userId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifNoneMatch = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam";
             // verify the required parameter 'userId' is set
             if (userId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'userId' when calling UserApi->GetUser");
@@ -777,6 +788,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of TenantList</returns>
         private Avalara.SDK.Client.ApiResponse<TenantList> GetUserTenantsWithHttpInfo(string userId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'userId' is set
             if (userId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'userId' when calling UserApi->GetUserTenants");
@@ -882,6 +895,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (TenantList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<TenantList>> GetUserTenantsWithHttpInfoAsync(string userId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'userId' is set
             if (userId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'userId' when calling UserApi->GetUserTenants");
@@ -985,6 +1000,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of UserList</returns>
         private Avalara.SDK.Client.ApiResponse<UserList> ListUsersWithHttpInfo(string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "TestScope TestScope1";
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1083,6 +1100,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (UserList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<UserList>> ListUsersWithHttpInfoAsync(string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "TestScope TestScope1";
 
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
@@ -1174,6 +1193,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> PatchUserWithHttpInfo(string userId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), User user = default(User))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'userId' is set
             if (userId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'userId' when calling UserApi->PatchUser");
@@ -1251,6 +1272,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> PatchUserWithHttpInfoAsync(string userId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), User user = default(User), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'userId' is set
             if (userId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'userId' when calling UserApi->PatchUser");
@@ -1328,6 +1351,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> ReplaceUserWithHttpInfo(string userId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), User user = default(User))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "TestScope TestScope1 iam";
             // verify the required parameter 'userId' is set
             if (userId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'userId' when calling UserApi->ReplaceUser");
@@ -1405,6 +1430,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> ReplaceUserWithHttpInfoAsync(string userId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), User user = default(User), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "TestScope TestScope1 iam";
             // verify the required parameter 'userId' is set
             if (userId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'userId' when calling UserApi->ReplaceUser");

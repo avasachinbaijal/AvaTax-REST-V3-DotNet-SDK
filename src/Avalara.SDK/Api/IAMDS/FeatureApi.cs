@@ -278,7 +278,6 @@ namespace Avalara.SDK.Api.IAMDS
     /// </summary>
     public partial class FeatureApi : IFeatureApiSync, IFeatureApiAsync
     {
-        private const string requiredScopes = "_SAMPLE_SCOPES_";
         private Avalara.SDK.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 		
         /// <summary>
@@ -337,6 +336,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Feature</returns>
         private Avalara.SDK.Client.ApiResponse<Feature> CreateFeatureWithHttpInfo(string avalaraVersion = default(string), string xCorrelationId = default(string), Feature feature = default(Feature))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -403,6 +404,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (Feature)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Feature>> CreateFeatureWithHttpInfoAsync(string avalaraVersion = default(string), string xCorrelationId = default(string), Feature feature = default(Feature), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
 
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
@@ -470,6 +473,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> DeleteFeatureWithHttpInfo(string featureId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'featureId' is set
             if (featureId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'featureId' when calling FeatureApi->DeleteFeature");
@@ -543,6 +548,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> DeleteFeatureWithHttpInfoAsync(string featureId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'featureId' is set
             if (featureId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'featureId' when calling FeatureApi->DeleteFeature");
@@ -617,6 +624,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Feature</returns>
         private Avalara.SDK.Client.ApiResponse<Feature> GetFeatureWithHttpInfo(string featureId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifNoneMatch = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'featureId' is set
             if (featureId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'featureId' when calling FeatureApi->GetFeature");
@@ -692,6 +701,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (Feature)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Feature>> GetFeatureWithHttpInfoAsync(string featureId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifNoneMatch = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'featureId' is set
             if (featureId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'featureId' when calling FeatureApi->GetFeature");
@@ -777,6 +788,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of GrantList</returns>
         private Avalara.SDK.Client.ApiResponse<GrantList> ListFeatureGrantsWithHttpInfo(string featureId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'featureId' is set
             if (featureId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'featureId' when calling FeatureApi->ListFeatureGrants");
@@ -882,6 +895,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (GrantList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<GrantList>> ListFeatureGrantsWithHttpInfoAsync(string featureId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'featureId' is set
             if (featureId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'featureId' when calling FeatureApi->ListFeatureGrants");
@@ -985,6 +1000,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of FeatureList</returns>
         private Avalara.SDK.Client.ApiResponse<FeatureList> ListFeaturesWithHttpInfo(string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1083,6 +1100,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (FeatureList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<FeatureList>> ListFeaturesWithHttpInfoAsync(string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
 
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
@@ -1174,6 +1193,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> PatchFeatureWithHttpInfo(string featureId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Feature feature = default(Feature))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'featureId' is set
             if (featureId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'featureId' when calling FeatureApi->PatchFeature");
@@ -1251,6 +1272,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> PatchFeatureWithHttpInfoAsync(string featureId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Feature feature = default(Feature), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'featureId' is set
             if (featureId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'featureId' when calling FeatureApi->PatchFeature");
@@ -1328,6 +1351,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> ReplaceFeatureWithHttpInfo(string featureId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Feature feature = default(Feature))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'featureId' is set
             if (featureId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'featureId' when calling FeatureApi->ReplaceFeature");
@@ -1405,6 +1430,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> ReplaceFeatureWithHttpInfoAsync(string featureId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Feature feature = default(Feature), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'featureId' is set
             if (featureId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'featureId' when calling FeatureApi->ReplaceFeature");

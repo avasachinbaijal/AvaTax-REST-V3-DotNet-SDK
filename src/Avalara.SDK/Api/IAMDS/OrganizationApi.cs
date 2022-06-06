@@ -356,7 +356,6 @@ namespace Avalara.SDK.Api.IAMDS
     /// </summary>
     public partial class OrganizationApi : IOrganizationApiSync, IOrganizationApiAsync
     {
-        private const string requiredScopes = "_SAMPLE_SCOPES_";
         private Avalara.SDK.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 		
         /// <summary>
@@ -415,6 +414,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Organization</returns>
         private Avalara.SDK.Client.ApiResponse<Organization> CreateOrganizationsWithHttpInfo(string avalaraVersion = default(string), string xCorrelationId = default(string), Organization organization = default(Organization))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -481,6 +482,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (Organization)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Organization>> CreateOrganizationsWithHttpInfoAsync(string avalaraVersion = default(string), string xCorrelationId = default(string), Organization organization = default(Organization), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
 
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
@@ -548,6 +551,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> DeleteOrganizationWithHttpInfo(string organizationId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'organizationId' is set
             if (organizationId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'organizationId' when calling OrganizationApi->DeleteOrganization");
@@ -621,6 +626,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> DeleteOrganizationWithHttpInfoAsync(string organizationId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'organizationId' is set
             if (organizationId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'organizationId' when calling OrganizationApi->DeleteOrganization");
@@ -695,6 +702,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Organization</returns>
         private Avalara.SDK.Client.ApiResponse<Organization> GetOrganizationWithHttpInfo(string organizationId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifNoneMatch = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'organizationId' is set
             if (organizationId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'organizationId' when calling OrganizationApi->GetOrganization");
@@ -770,6 +779,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (Organization)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Organization>> GetOrganizationWithHttpInfoAsync(string organizationId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifNoneMatch = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'organizationId' is set
             if (organizationId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'organizationId' when calling OrganizationApi->GetOrganization");
@@ -855,6 +866,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of AppList</returns>
         private Avalara.SDK.Client.ApiResponse<AppList> ListOrganizationAppsWithHttpInfo(string organizationId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'organizationId' is set
             if (organizationId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'organizationId' when calling OrganizationApi->ListOrganizationApps");
@@ -960,6 +973,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (AppList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<AppList>> ListOrganizationAppsWithHttpInfoAsync(string organizationId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'organizationId' is set
             if (organizationId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'organizationId' when calling OrganizationApi->ListOrganizationApps");
@@ -1065,6 +1080,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of TenantList</returns>
         private Avalara.SDK.Client.ApiResponse<TenantList> ListOrganizationTenantsWithHttpInfo(string organizationId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'organizationId' is set
             if (organizationId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'organizationId' when calling OrganizationApi->ListOrganizationTenants");
@@ -1170,6 +1187,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (TenantList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<TenantList>> ListOrganizationTenantsWithHttpInfoAsync(string organizationId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'organizationId' is set
             if (organizationId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'organizationId' when calling OrganizationApi->ListOrganizationTenants");
@@ -1275,6 +1294,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of UserList</returns>
         private Avalara.SDK.Client.ApiResponse<UserList> ListOrganizationUsersWithHttpInfo(string organizationId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'organizationId' is set
             if (organizationId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'organizationId' when calling OrganizationApi->ListOrganizationUsers");
@@ -1380,6 +1401,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (UserList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<UserList>> ListOrganizationUsersWithHttpInfoAsync(string organizationId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'organizationId' is set
             if (organizationId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'organizationId' when calling OrganizationApi->ListOrganizationUsers");
@@ -1483,6 +1506,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of OrganizationList</returns>
         private Avalara.SDK.Client.ApiResponse<OrganizationList> ListOrganizationsWithHttpInfo(string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1581,6 +1606,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (OrganizationList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<OrganizationList>> ListOrganizationsWithHttpInfoAsync(string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
 
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
@@ -1672,6 +1699,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> PatchOrganizationWithHttpInfo(string organizationId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Organization organization = default(Organization))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'organizationId' is set
             if (organizationId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'organizationId' when calling OrganizationApi->PatchOrganization");
@@ -1749,6 +1778,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> PatchOrganizationWithHttpInfoAsync(string organizationId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Organization organization = default(Organization), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'organizationId' is set
             if (organizationId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'organizationId' when calling OrganizationApi->PatchOrganization");
@@ -1826,6 +1857,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> ReplaceOrganizationWithHttpInfo(string organizationId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Organization organization = default(Organization))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'organizationId' is set
             if (organizationId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'organizationId' when calling OrganizationApi->ReplaceOrganization");
@@ -1903,6 +1936,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> ReplaceOrganizationWithHttpInfoAsync(string organizationId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Organization organization = default(Organization), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'organizationId' is set
             if (organizationId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'organizationId' when calling OrganizationApi->ReplaceOrganization");

@@ -363,7 +363,6 @@ namespace Avalara.SDK.Api.IAMDS
     /// </summary>
     public partial class AppApi : IAppApiSync, IAppApiAsync
     {
-        private const string requiredScopes = "_SAMPLE_SCOPES_";
         private Avalara.SDK.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 		
         /// <summary>
@@ -423,6 +422,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> AddGrantToAppWithHttpInfo(string appId, string grantId, string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'appId' is set
             if (appId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'appId' when calling AppApi->AddGrantToApp");
@@ -497,6 +498,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> AddGrantToAppWithHttpInfoAsync(string appId, string grantId, string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'appId' is set
             if (appId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'appId' when calling AppApi->AddGrantToApp");
@@ -570,6 +573,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of App</returns>
         private Avalara.SDK.Client.ApiResponse<App> CreateAppWithHttpInfo(string avalaraVersion = default(string), string xCorrelationId = default(string), App app = default(App))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -636,6 +641,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (App)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<App>> CreateAppWithHttpInfoAsync(string avalaraVersion = default(string), string xCorrelationId = default(string), App app = default(App), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
 
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
@@ -702,6 +709,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of string</returns>
         private Avalara.SDK.Client.ApiResponse<string> CreateAppSecretWithHttpInfo(string appId, string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'appId' is set
             if (appId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'appId' when calling AppApi->CreateAppSecret");
@@ -771,6 +780,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (string)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<string>> CreateAppSecretWithHttpInfoAsync(string appId, string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'appId' is set
             if (appId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'appId' when calling AppApi->CreateAppSecret");
@@ -841,6 +852,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> DeleteAppWithHttpInfo(string appId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'appId' is set
             if (appId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'appId' when calling AppApi->DeleteApp");
@@ -914,6 +927,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> DeleteAppWithHttpInfoAsync(string appId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'appId' is set
             if (appId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'appId' when calling AppApi->DeleteApp");
@@ -988,6 +1003,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of App</returns>
         private Avalara.SDK.Client.ApiResponse<App> GetAppWithHttpInfo(string appId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifNoneMatch = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'appId' is set
             if (appId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'appId' when calling AppApi->GetApp");
@@ -1063,6 +1080,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (App)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<App>> GetAppWithHttpInfoAsync(string appId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifNoneMatch = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'appId' is set
             if (appId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'appId' when calling AppApi->GetApp");
@@ -1148,6 +1167,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of AppList</returns>
         private Avalara.SDK.Client.ApiResponse<AppList> ListAppGrantsWithHttpInfo(string appId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'appId' is set
             if (appId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'appId' when calling AppApi->ListAppGrants");
@@ -1253,6 +1274,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (AppList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<AppList>> ListAppGrantsWithHttpInfoAsync(string appId, string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'appId' is set
             if (appId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'appId' when calling AppApi->ListAppGrants");
@@ -1356,6 +1379,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of AppList</returns>
         private Avalara.SDK.Client.ApiResponse<AppList> ListAppsWithHttpInfo(string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1454,6 +1479,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (AppList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<AppList>> ListAppsWithHttpInfoAsync(string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
 
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
@@ -1545,6 +1572,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> PatchAppWithHttpInfo(string appId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), App app = default(App))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'appId' is set
             if (appId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'appId' when calling AppApi->PatchApp");
@@ -1622,6 +1651,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> PatchAppWithHttpInfoAsync(string appId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), App app = default(App), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'appId' is set
             if (appId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'appId' when calling AppApi->PatchApp");
@@ -1697,6 +1728,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> RemoveGrantFromAppWithHttpInfo(string appId, string grantId, string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'appId' is set
             if (appId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'appId' when calling AppApi->RemoveGrantFromApp");
@@ -1771,6 +1804,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> RemoveGrantFromAppWithHttpInfoAsync(string appId, string grantId, string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'appId' is set
             if (appId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'appId' when calling AppApi->RemoveGrantFromApp");
@@ -1847,6 +1882,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> ReplaceAppWithHttpInfo(string appId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), App app = default(App))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'appId' is set
             if (appId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'appId' when calling AppApi->ReplaceApp");
@@ -1924,6 +1961,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> ReplaceAppWithHttpInfoAsync(string appId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), App app = default(App), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'appId' is set
             if (appId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'appId' when calling AppApi->ReplaceApp");

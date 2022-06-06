@@ -237,7 +237,6 @@ namespace Avalara.SDK.Api.IAMDS
     /// </summary>
     public partial class RoleApi : IRoleApiSync, IRoleApiAsync
     {
-        private const string requiredScopes = "_SAMPLE_SCOPES_";
         private Avalara.SDK.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 		
         /// <summary>
@@ -296,6 +295,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Role</returns>
         private Avalara.SDK.Client.ApiResponse<Role> CreateRoleWithHttpInfo(string avalaraVersion = default(string), string xCorrelationId = default(string), Role role = default(Role))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -362,6 +363,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (Role)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Role>> CreateRoleWithHttpInfoAsync(string avalaraVersion = default(string), string xCorrelationId = default(string), Role role = default(Role), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
 
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
@@ -429,6 +432,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> DeleteRoleWithHttpInfo(string roleId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'roleId' is set
             if (roleId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'roleId' when calling RoleApi->DeleteRole");
@@ -502,6 +507,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> DeleteRoleWithHttpInfoAsync(string roleId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'roleId' is set
             if (roleId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'roleId' when calling RoleApi->DeleteRole");
@@ -576,6 +583,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Role</returns>
         private Avalara.SDK.Client.ApiResponse<Role> GetRoleWithHttpInfo(string roleId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifNoneMatch = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'roleId' is set
             if (roleId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'roleId' when calling RoleApi->GetRole");
@@ -651,6 +660,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (Role)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Role>> GetRoleWithHttpInfoAsync(string roleId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifNoneMatch = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'roleId' is set
             if (roleId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'roleId' when calling RoleApi->GetRole");
@@ -734,6 +745,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of RoleList</returns>
         private Avalara.SDK.Client.ApiResponse<RoleList> ListRolesWithHttpInfo(string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -832,6 +845,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (RoleList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<RoleList>> ListRolesWithHttpInfoAsync(string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
 
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
@@ -921,6 +936,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> PatchRoleWithHttpInfo(string roleId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'roleId' is set
             if (roleId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'roleId' when calling RoleApi->PatchRole");
@@ -994,6 +1011,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> PatchRoleWithHttpInfoAsync(string roleId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'roleId' is set
             if (roleId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'roleId' when calling RoleApi->PatchRole");
@@ -1069,6 +1088,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> ReplaceRoleWithHttpInfo(string roleId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Role role = default(Role))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'roleId' is set
             if (roleId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'roleId' when calling RoleApi->ReplaceRole");
@@ -1146,6 +1167,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> ReplaceRoleWithHttpInfoAsync(string roleId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Role role = default(Role), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'roleId' is set
             if (roleId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'roleId' when calling RoleApi->ReplaceRole");

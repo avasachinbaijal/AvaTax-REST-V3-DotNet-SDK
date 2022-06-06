@@ -230,7 +230,7 @@ namespace Avalara.SDK.Client
                     UpdateOAuthAccessToken(requiredScopes);
                     accessKey = GetOAuthAccessToken(requiredScopes);
                 }
-                request.AddHeader("Authorization", "Bearer " + accessKey);
+                request.AddHeader("Authorization", "Bearer " + accessKey.Token);
             }
             // authentication (BasicAuth) required
             else if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password))

@@ -239,7 +239,6 @@ namespace Avalara.SDK.Api.IAMDS
     /// </summary>
     public partial class EntitlementApi : IEntitlementApiSync, IEntitlementApiAsync
     {
-        private const string requiredScopes = "_SAMPLE_SCOPES_";
         private Avalara.SDK.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 		
         /// <summary>
@@ -298,6 +297,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Entitlement</returns>
         private Avalara.SDK.Client.ApiResponse<Entitlement> CreateEntitlementWithHttpInfo(string avalaraVersion = default(string), string xCorrelationId = default(string), Entitlement entitlement = default(Entitlement))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -364,6 +365,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (Entitlement)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Entitlement>> CreateEntitlementWithHttpInfoAsync(string avalaraVersion = default(string), string xCorrelationId = default(string), Entitlement entitlement = default(Entitlement), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
 
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
@@ -431,6 +434,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> DeleteEntitlementWithHttpInfo(string entitlementId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'entitlementId' is set
             if (entitlementId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'entitlementId' when calling EntitlementApi->DeleteEntitlement");
@@ -504,6 +509,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> DeleteEntitlementWithHttpInfoAsync(string entitlementId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'entitlementId' is set
             if (entitlementId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'entitlementId' when calling EntitlementApi->DeleteEntitlement");
@@ -578,6 +585,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Entitlement</returns>
         private Avalara.SDK.Client.ApiResponse<Entitlement> GetEntitlementWithHttpInfo(string entitlementId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifNoneMatch = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'entitlementId' is set
             if (entitlementId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'entitlementId' when calling EntitlementApi->GetEntitlement");
@@ -653,6 +662,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (Entitlement)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Entitlement>> GetEntitlementWithHttpInfoAsync(string entitlementId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifNoneMatch = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'entitlementId' is set
             if (entitlementId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'entitlementId' when calling EntitlementApi->GetEntitlement");
@@ -736,6 +747,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of EntitlementList</returns>
         private Avalara.SDK.Client.ApiResponse<EntitlementList> ListEntitlementsWithHttpInfo(string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -834,6 +847,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse (EntitlementList)</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<EntitlementList>> ListEntitlementsWithHttpInfoAsync(string filter = default(string), string top = default(string), string skip = default(string), string orderBy = default(string), bool? count = default(bool?), bool? countOnly = default(bool?), string avalaraVersion = default(string), string xCorrelationId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
 
             Avalara.SDK.Client.RequestOptions localVarRequestOptions = new Avalara.SDK.Client.RequestOptions();
 
@@ -925,6 +940,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> PatchEntitlementWithHttpInfo(string entitlementId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Entitlement entitlement = default(Entitlement))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'entitlementId' is set
             if (entitlementId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'entitlementId' when calling EntitlementApi->PatchEntitlement");
@@ -1002,6 +1019,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> PatchEntitlementWithHttpInfoAsync(string entitlementId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Entitlement entitlement = default(Entitlement), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'entitlementId' is set
             if (entitlementId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'entitlementId' when calling EntitlementApi->PatchEntitlement");
@@ -1079,6 +1098,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>ApiResponse of Object(void)</returns>
         private Avalara.SDK.Client.ApiResponse<Object> ReplaceEntitlementWithHttpInfo(string entitlementId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Entitlement entitlement = default(Entitlement))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'entitlementId' is set
             if (entitlementId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'entitlementId' when calling EntitlementApi->ReplaceEntitlement");
@@ -1156,6 +1177,8 @@ namespace Avalara.SDK.Api.IAMDS
         /// <returns>Task of ApiResponse</returns>
         private async System.Threading.Tasks.Task<Avalara.SDK.Client.ApiResponse<Object>> ReplaceEntitlementWithHttpInfoAsync(string entitlementId, string avalaraVersion = default(string), string xCorrelationId = default(string), string ifMatch = default(string), Entitlement entitlement = default(Entitlement), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            //OAuth2 Scopes
+            String requiredScopes = "iam TestScope TestScope1";
             // verify the required parameter 'entitlementId' is set
             if (entitlementId == null)
                 throw new Avalara.SDK.Client.ApiException(400, "Missing required parameter 'entitlementId' when calling EntitlementApi->ReplaceEntitlement");
