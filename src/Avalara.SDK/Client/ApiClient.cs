@@ -13,31 +13,22 @@
  * @link       https://github.com/avadev/AvaTax-REST-V3-DotNet-SDK
  */
 
+using Avalara.SDK.Auth;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using Polly;
+using RestSharp;
+using RestSharp.Deserializers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters;
-using System.Text;
-using System.Threading;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Web;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using ErrorEventArgs = Newtonsoft.Json.Serialization.ErrorEventArgs;
-using RestSharp;
-using RestSharp.Deserializers;
 using RestSharpMethod = RestSharp.Method;
-using Polly;
-using Avalara.SDK.Api;
-using Avalara.SDK.Auth;
-using System.Runtime.CompilerServices;
 
 namespace Avalara.SDK.Client
 {
@@ -226,26 +217,27 @@ namespace Avalara.SDK.Client
         /// <param name="requiredScopes">Scope(s) of OAuth2</param>
         private void InterceptRequest(IRestRequest request, string requiredScopes)
         {
-            //OAuth2 flow
-            if (!this.Configuration.ClientID.IsNullorEmpty() && !this.Configuration.ClientSecret.IsNullorEmpty())
+            if (!string.IsNullOrEmpty(this.Configuration.BearerToken))
             {
-                string accessKey = GetOAuthAccessToken(requiredScopes);
-                if (accessKey.IsNullorEmpty())
+                request.AddHeader("Authorization", "Bearer " + this.Configuration.BearerToken);
+            }
+            //OAuth2 flow
+            else if (!this.Configuration.ClientID.IsNullorEmpty() && !this.Configuration.ClientSecret.IsNullorEmpty())
+            {
+                var accessKey = GetOAuthAccessToken(requiredScopes);
+                if (accessKey == null)
                 {
                     UpdateOAuthAccessToken(requiredScopes);
                     accessKey = GetOAuthAccessToken(requiredScopes);
                 }
-                request.AddHeader("Authorization", "Bearer " + accessKey);
+                request.AddHeader("Authorization", "Bearer " + accessKey.Token);
             }
             // authentication (BasicAuth) required
             else if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password))
             {
                 request.AddHeader("Authorization", "Basic " + Avalara.SDK.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
             }
-            else if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                request.AddHeader("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
-            }
+ 
         }
 
         /// <summary>
@@ -521,7 +513,7 @@ namespace Avalara.SDK.Client
                         if (authValues.Length == 2)
                         {
                             UpdateOAuthAccessToken(requiredScopes, authValues[1]);
-                            string accessToken = GetOAuthAccessToken(requiredScopes);
+                            string accessToken = GetOAuthAccessToken(requiredScopes).Token;
                             req.AddHeader("Authorization", "Bearer " + accessToken);
                             response = ExecuteRequest<T>(req, client);
                         }
@@ -679,7 +671,7 @@ namespace Avalara.SDK.Client
                         if (authValues.Length == 2)
                         {
                             UpdateOAuthAccessToken(requiredScopes, authValues[1]);
-                            string accessToken = GetOAuthAccessToken(requiredScopes);
+                            string accessToken = GetOAuthAccessToken(requiredScopes).Token;
                             req.AddHeader("Authorization", "Bearer " + accessToken);
                             response = await client.ExecuteAsync<T>(req, cancellationToken).ConfigureAwait(false);
                         }
@@ -752,40 +744,53 @@ namespace Avalara.SDK.Client
 
         }
 
-        private string GetOAuthAccessToken(string requiredScopes)
+        private AccessToken GetOAuthAccessToken(string requiredScopes)
         {
-            string accessToken = string.Empty;
-            if (this.hashScopeTable.ContainsKey(requiredScopes))
+            var scopes = StandardizeScopes(requiredScopes);
+            if (this.hashScopeTable.ContainsKey(scopes))
             {
-                accessToken = Convert.ToString(hashScopeTable[requiredScopes]);
+                var accessToken = (AccessToken)hashScopeTable[scopes];
+                var expirationTime = DateTime.Now.AddMinutes(5);
+                if (expirationTime < accessToken.ExpiryTime)
+                {
+                    return accessToken;
+                }
             }
-            return accessToken;
+            return null;
         }
         
         [MethodImpl(MethodImplOptions.Synchronized)]
         private void UpdateOAuthAccessToken(string requiredScopes, string access_token= default(string))
         {
-            if (GetOAuthAccessToken(requiredScopes).IsNullorEmpty() ||
-                GetOAuthAccessToken(requiredScopes).Equals(access_token) )
+            var scopes = StandardizeScopes(requiredScopes);
+            if (GetOAuthAccessToken(scopes) == null ||
+                GetOAuthAccessToken(scopes).Token.Equals(access_token) )
             {
                 if (this.OAuthObj == null)
                 {
                     OAuthObj = new Auth.OAuth2ClientCredentials(tokenURL: this.Configuration.TokenURL,
                             clientID: this.Configuration.ClientID,
                             clientSecret: this.Configuration.ClientSecret,
-                            requiredScopes : requiredScopes);
+                            requiredScopes : scopes);
                 }
-                string accessToken = this.OAuthObj.GetAccessToken();
-                if (this.hashScopeTable.ContainsKey(requiredScopes))
+                var accessToken = this.OAuthObj.GetAccessToken();
+                if (this.hashScopeTable.ContainsKey(scopes))
                 {
-                    this.hashScopeTable[requiredScopes] = accessToken;
+                    this.hashScopeTable[scopes] = accessToken;
                 }
                 else
                 {
-                    this.hashScopeTable.Add(requiredScopes, accessToken);
+                    this.hashScopeTable.Add(scopes, accessToken);
                 }
             }         
             
+        }
+
+        private string StandardizeScopes(string scopes)
+        {
+            string[] scopeArray = scopes.Split(' ');
+            Array.Sort(scopeArray);
+            return String.Join(" ", scopeArray);
         }
 
         #region IAsynchronousClient

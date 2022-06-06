@@ -57,7 +57,7 @@ namespace Avalara.SDK.Auth
         /// <summary>
         /// Method Return the access token
         /// </summary>
-        public string GetAccessToken()
+        public AccessToken GetAccessToken()
         {
             try
             {
@@ -96,7 +96,7 @@ namespace Avalara.SDK.Auth
                 if (statusCode>199  && statusCode < 300)
                 {
                     Token tokenObj = JsonConvert.DeserializeObject<Token>(content);
-                    return tokenObj.access_token;
+                    return new AccessToken(tokenObj.access_token, DateTime.Now.AddSeconds(tokenObj.expires_in));
                 }
                 else
                 {

@@ -255,6 +255,10 @@ namespace Avalara.SDK.Client
         /// </summary>
         public string ClientSecret { get; set; }
         /// <summary>
+        /// Bearer Token from Avalara Identity for oAuth2 flow
+        /// </summary>
+        public string BearerToken { get; set; }
+        /// <summary>
         /// List of RequiredScopes
         /// </summary>
         public List<string> RequiredScopes { get; set; }
@@ -458,6 +462,7 @@ namespace Avalara.SDK.Client
                 TestTokenURL = second.TestTokenURL ?? first.TestTokenURL,
                 ClientID = second.ClientID ?? first.ClientID,
                 ClientSecret = second.ClientSecret ?? first.ClientSecret,
+                BearerToken = second.BearerToken ?? first.BearerToken,
                 RequiredScopes = second.RequiredScopes ?? first.RequiredScopes
             };
             return config;
