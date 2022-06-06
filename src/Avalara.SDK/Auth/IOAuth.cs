@@ -68,6 +68,6 @@ namespace Avalara.SDK.Auth
         /// <summary>
         /// Method Return the access token
         /// </summary>
-        string GetAccessToken();
+        AccessToken GetAccessToken();
     }
 }

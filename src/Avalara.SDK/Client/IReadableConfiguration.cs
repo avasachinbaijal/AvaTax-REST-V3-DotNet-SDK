@@ -135,6 +135,10 @@ namespace Avalara.SDK.Client
         /// </summary>
         string ClientSecret { get; set; }
         /// <summary>
+        /// Bearer Token from Avalara Identity for oAuth2 flow
+        /// </summary>
+        string BearerToken { get; set; }
+        /// <summary>
         /// List of Scopes
         /// </summary>
         List<string> RequiredScopes { get; set; }
