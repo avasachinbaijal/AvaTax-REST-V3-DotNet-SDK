@@ -193,11 +193,7 @@ namespace Avalara.SDK.Client
 
             hashScopeTable = new Hashtable();
             CheckConfiguration();
-            if (this.Configuration.ClientID != null && this.Configuration.ClientSecret != null)
-            {
-                string tokenUrl = this.Configuration.Environment == AvalaraEnvironment.Test ? this.Configuration.TestTokenURL : FetchTokenURLFromOpenIdConnect(this.Configuration.OpenIdConnectURL);
-                this.Configuration.TokenURL = tokenUrl;
-            }
+            PopulateTokenURLFromOpenIdConnect();
         }
         /// Specifies the settings on a <see cref="JsonSerializer" /> object.
         /// These settings can be adjusted to accommodate custom serialization rules.
@@ -792,7 +788,24 @@ namespace Avalara.SDK.Client
             
         }
 
-        private string FetchTokenURLFromOpenIdConnect(string openIdConnectUrl)
+        private string StandardizeScopes(string scopes)
+        {
+            string[] scopeArray = scopes.Split(' ');
+            Array.Sort(scopeArray);
+            return String.Join(" ", scopeArray);
+        }
+
+        private void PopulateTokenURLFromOpenIdConnect()
+        {
+            if (this.Configuration.ClientID != null && this.Configuration.ClientSecret != null)
+            {
+                string tokenUrl = this.Configuration.Environment == AvalaraEnvironment.Test ? this.Configuration.TestTokenURL
+                    : FetchTokenURLFromOpenIdConnect();
+                this.Configuration.TokenURL = tokenUrl;
+            }
+        }
+
+        private string FetchTokenURLFromOpenIdConnect()
         {
             string requiredScopes = "TestScope TestScope1";
             RequestOptions localVarRequestOptions = new RequestOptions();
@@ -811,16 +824,9 @@ namespace Avalara.SDK.Client
             var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            var localVarResponse = this.Get<OpenIdConnectURLs>(openIdConnectUrl, localVarRequestOptions, requiredScopes);
+            var localVarResponse = this.Get<OpenIdConnectURLs>(this.Configuration.OpenIdConnectURL, localVarRequestOptions, requiredScopes);
             OpenIdConnectURLs openIdConnectURLs = localVarResponse.Data;
             return openIdConnectURLs.TokenEndpoint;
-        }
-
-        private string StandardizeScopes(string scopes)
-        {
-            string[] scopeArray = scopes.Split(' ');
-            Array.Sort(scopeArray);
-            return String.Join(" ", scopeArray);
         }
 
         #region IAsynchronousClient
