@@ -107,5 +107,11 @@ namespace Avalara.SDK.Test.Api
                 Console.WriteLine(ex.Message);
             }
         }
+
+        [Fact (Skip = "QA Env is not ready, if we want to execute this test then constructor needs to have configuration.Environment = AvalaraEnvironment.QA")]
+        public void VerifyTokenUrlPopulated()
+        {
+            Assert.Equal("https://ai-awscqa.avlr.sh/connect/token", apiclient.Configuration.TokenURL);
+        }
     }
 }

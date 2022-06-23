@@ -170,7 +170,7 @@ namespace Avalara.SDK.Client
         /// <summary>
         /// The standard configuration object
         /// </summary>
-        internal Avalara.SDK.Client.IReadableConfiguration Configuration;
+        public Avalara.SDK.Client.IReadableConfiguration Configuration;
         /// <summary>
         /// SDKVersion property - Connot be set by user
         /// </summary>
@@ -193,7 +193,8 @@ namespace Avalara.SDK.Client
 
             hashScopeTable = new Hashtable();
             CheckConfiguration();
-
+            string tokenUrl = this.Configuration.Environment == AvalaraEnvironment.Test ? this.Configuration.TestTokenURL : FetchTokenURLFromOpenIdConnect(this.Configuration.OpenIdConnectURL);
+            this.Configuration.TokenURL = tokenUrl;
         }
         /// Specifies the settings on a <see cref="JsonSerializer" /> object.
         /// These settings can be adjusted to accommodate custom serialization rules.
@@ -217,27 +218,29 @@ namespace Avalara.SDK.Client
         /// <param name="requiredScopes">Scope(s) of OAuth2</param>
         private void InterceptRequest(IRestRequest request, string requiredScopes)
         {
-            if (!string.IsNullOrEmpty(this.Configuration.BearerToken))
+            if(!request.Resource.Contains("openid-configuration"))
             {
-                request.AddHeader("Authorization", "Bearer " + this.Configuration.BearerToken);
-            }
-            //OAuth2 flow
-            else if (!this.Configuration.ClientID.IsNullorEmpty() && !this.Configuration.ClientSecret.IsNullorEmpty())
-            {
-                var accessKey = GetOAuthAccessToken(requiredScopes);
-                if (accessKey == null)
+                if (!string.IsNullOrEmpty(this.Configuration.BearerToken))
                 {
-                    UpdateOAuthAccessToken(requiredScopes);
-                    accessKey = GetOAuthAccessToken(requiredScopes);
+                    request.AddHeader("Authorization", "Bearer " + this.Configuration.BearerToken);
                 }
-                request.AddHeader("Authorization", "Bearer " + accessKey.Token);
+                //OAuth2 flow
+                else if (!this.Configuration.ClientID.IsNullorEmpty() && !this.Configuration.ClientSecret.IsNullorEmpty())
+                {
+                    var accessKey = GetOAuthAccessToken(requiredScopes);
+                    if (accessKey == null)
+                    {
+                        UpdateOAuthAccessToken(requiredScopes);
+                        accessKey = GetOAuthAccessToken(requiredScopes);
+                    }
+                    request.AddHeader("Authorization", "Bearer " + accessKey.Token);
+                }
+                // authentication (BasicAuth) required
+                else if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password))
+                {
+                    request.AddHeader("Authorization", "Basic " + Avalara.SDK.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+                }
             }
-            // authentication (BasicAuth) required
-            else if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password))
-            {
-                request.AddHeader("Authorization", "Basic " + Avalara.SDK.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
-            }
- 
         }
 
         /// <summary>
@@ -784,6 +787,30 @@ namespace Avalara.SDK.Client
                 }
             }         
             
+        }
+
+        private string FetchTokenURLFromOpenIdConnect(string openIdConnectUrl)
+        {
+            string requiredScopes = "TestScope TestScope1";
+            RequestOptions localVarRequestOptions = new RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            string[] _accepts = new string[] {
+                "application/json",
+                "text/plain"
+            };
+
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            var localVarResponse = this.Get<OpenIdConnectURLs>(openIdConnectUrl, localVarRequestOptions, requiredScopes);
+            OpenIdConnectURLs openIdConnectURLs = localVarResponse.Data;
+            return openIdConnectURLs.TokenEndpoint;
         }
 
         private string StandardizeScopes(string scopes)

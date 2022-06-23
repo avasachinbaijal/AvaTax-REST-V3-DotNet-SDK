@@ -44,7 +44,11 @@ namespace Avalara.SDK.Client
         /// <summary>
         /// Represents Test environment - User need to configure TestBasePath and TestTokenUrl (for OAuth2)
         /// </summary>
-        Test = 2
+        Test = 2,
+        /// <summary>
+        /// Represents the QA environment
+        /// </summary>
+        QA = 3
     }
     /// <summary>
     /// Represents a set of configuration settings
@@ -63,16 +67,18 @@ namespace Avalara.SDK.Client
         /// Official URL of AvaTax (Production)
         /// </summary>
         private static readonly string AVATAX_PRODUCTION_URL = "https://rest.avatax.com";
-
         /// <summary>
         /// Official Token URL of Sandbox Avalara identity Server 
         /// </summary>
-        private static readonly string TOKEN_SANDBOX_URL = "https://TO-BE-SET";
-
+        private static readonly string OPENID_CONNECT_URL_QA = "https://ai-awscqa.avlr.sh/.well-known/openid-configuration";
+        /// <summary>
+        /// Official Token URL of Sandbox Avalara identity Server 
+        /// </summary>
+        private static readonly string OPENID_CONNECT_URL_SBX = "https://TO-BE-SET";
         /// <summary>
         /// Official Token URL of Production Avalara identity Server 
         /// </summary>
-        private static readonly string TOKEN_PRODUCTION_URL = "https://TO-BE-SET";
+        private static readonly string OPENID_CONNECT_URL_PRD = "https://TO-BE-SET";
 
         /// <summary>
         /// Identifier for ISO 8601 DateTime Format
@@ -159,6 +165,7 @@ namespace Avalara.SDK.Client
                     case AvalaraEnvironment.Production:
                         _basePath = AVATAX_PRODUCTION_URL;
                         break;
+                    case AvalaraEnvironment.QA:
                     case AvalaraEnvironment.Sandbox:
                         _basePath = AVATAX_SANDBOX_URL;
                         break;
@@ -221,20 +228,20 @@ namespace Avalara.SDK.Client
         /// <summary>
         /// Token Server URL for oAuth2 flow. Should be set only for Other Envrionment
         /// </summary>
-        public string TokenURL
+        public string OpenIdConnectURL
         {
             get
             {
                 switch (this.Environment)
                 {
                     case AvalaraEnvironment.Production:
-                        _tokenURL = TOKEN_PRODUCTION_URL;
+                        _tokenURL = OPENID_CONNECT_URL_PRD;
                         break;
                     case AvalaraEnvironment.Sandbox:
-                        _tokenURL = TOKEN_SANDBOX_URL;
+                        _tokenURL = OPENID_CONNECT_URL_SBX;
                         break;
-                    case AvalaraEnvironment.Test:
-                        _tokenURL = TestTokenURL;
+                    case AvalaraEnvironment.QA:
+                        _tokenURL = OPENID_CONNECT_URL_QA;
                         break;
                     default:
                         break;
@@ -242,6 +249,9 @@ namespace Avalara.SDK.Client
                 return _tokenURL;
             }
         }
+
+        public string TokenURL { get; set; }
+
         /// <summary>
         /// Token Server URL for Test system for oAuth2 flow
         /// </summary>
