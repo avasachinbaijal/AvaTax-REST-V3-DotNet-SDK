@@ -193,8 +193,11 @@ namespace Avalara.SDK.Client
 
             hashScopeTable = new Hashtable();
             CheckConfiguration();
-            string tokenUrl = this.Configuration.Environment == AvalaraEnvironment.Test ? this.Configuration.TestTokenURL : FetchTokenURLFromOpenIdConnect(this.Configuration.OpenIdConnectURL);
-            this.Configuration.TokenURL = tokenUrl;
+            if (this.Configuration.ClientID != null && this.Configuration.ClientSecret != null)
+            {
+                string tokenUrl = this.Configuration.Environment == AvalaraEnvironment.Test ? this.Configuration.TestTokenURL : FetchTokenURLFromOpenIdConnect(this.Configuration.OpenIdConnectURL);
+                this.Configuration.TokenURL = tokenUrl;
+            }
         }
         /// Specifies the settings on a <see cref="JsonSerializer" /> object.
         /// These settings can be adjusted to accommodate custom serialization rules.
