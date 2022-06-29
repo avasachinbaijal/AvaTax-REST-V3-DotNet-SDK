@@ -121,7 +121,11 @@ namespace Avalara.SDK.Client
         /// <summary>
         /// Token Server URL for oAuth2 flow
         /// </summary>
-        string TokenURL { get;  }
+        string TokenURL { get; set; }
+        /// <summary>
+        /// Open ID Connect URL
+        /// </summary>
+        string OpenIdConnectURL { get; }
         /// <summary>
         /// Token Server URL for Test system for oAuth2 flow
         /// </summary>
